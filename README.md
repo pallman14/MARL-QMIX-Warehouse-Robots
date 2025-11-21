@@ -16,7 +16,7 @@ This project implements multi-agent reinforcement learning (MARL) for autonomous
 
 ### Performance
 
-Trained agents achieve **207.96 mean return** after 350,000 timesteps (~3.3 hours training), demonstrating effective coordination for warehouse tasks.
+**Note**: Initial training runs show a significant gap between training and test performance, indicating the agents have not yet learned an effective policy. Current best run (#93) achieved **207.96 training return** but only **0.21 test return** in pure greedy evaluation, suggesting the high training returns come primarily from epsilon-greedy exploration rather than learned behavior. This is an active area of investigation - see [Known Issues](#training-vs-test-performance-gap) for details.
 
 ## Repository Structure
 
@@ -220,12 +220,28 @@ Steps    | Return  | Test Return | Epsilon
 350k     | 207.96  | 49.29       | 0.10
 ```
 
-**Key Observations:**
-- Rapid learning in first 100k steps
-- Stable improvement through 300k steps
-- 17.5× improvement in returns (13.6 → 238.1 at peak)
+**Critical Finding:**
+The large gap between training returns (207.96) and test returns (0.02-49.29) indicates that agents are not learning an effective policy. High training returns appear to result from random exploration (epsilon-greedy) rather than learned behavior. When tested with pure greedy policy (epsilon=0), agents perform minimal useful actions.
 
 ## Known Issues
+
+### Training vs Test Performance Gap
+
+**Issue**: Agents show significantly higher returns during training (with epsilon-greedy exploration) compared to testing (pure greedy policy).
+
+**Observed Behavior**:
+- Training returns: 13.6 → 207.96 (steadily increasing)
+- Test returns: 0.02 → 0.08 (consistently near zero throughout training)
+- Final evaluation with greedy policy: 0.21 return (agents barely move)
+
+**Root Cause**: Agents are not learning an effective task policy. High training returns result from random exploration finding occasional rewards, not from learned coordinated behavior. The learned Q-values do not generalize to effective greedy action selection.
+
+**Potential Solutions** (under investigation):
+1. **Reward shaping**: Current sparse rewards may not provide sufficient learning signal
+2. **Observation space**: Agents may lack critical environmental information
+3. **Hyperparameter tuning**: Learning rate, network capacity, or exploration schedule may need adjustment
+4. **Curriculum learning**: Start with simpler tasks and gradually increase complexity
+5. **Intrinsic motivation**: Add exploration bonuses or curiosity-driven rewards
 
 ### Unity Editor Timeout
 
