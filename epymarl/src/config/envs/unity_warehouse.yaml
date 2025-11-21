@@ -1,0 +1,16 @@
+# Unity Warehouse Environment Configuration for EPyMARL
+
+env: unity_warehouse
+
+# Environment arguments
+env_args:
+  env_path: null  # null = connect to Unity Editor, or path to built executable
+  no_graphics: true  # PEER OPTIMIZED: Headless for speed
+  time_scale: 50.0  # PEER OPTIMIZED: 50× faster (was 20.0)
+  worker_id: 0  # For parallel environments
+
+# This will be populated by the environment
+# n_agents: 3  # Now 3 agents (was 10)
+# n_actions: 6
+# obs_shape: 99
+episode_limit: 300  # PEER OPTIMIZED: Shorter episodes (was 500)

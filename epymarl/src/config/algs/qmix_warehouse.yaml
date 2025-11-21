@@ -1,0 +1,66 @@
+# QMIX Configuration for Unity Warehouse
+
+name: "qmix"
+
+# Action selection
+action_selector: "epsilon_greedy"
+epsilon_start: 1.0
+epsilon_finish: 0.05
+epsilon_anneal_time: 50000
+evaluation_epsilon: 0.0
+
+# Runner
+runner: "episode"
+
+# Buffer
+buffer_size: 1000  # Reduced from 5000 to save memory
+
+# Target network update
+target_update_interval_or_tau: 200
+
+# Observations
+obs_agent_id: True
+obs_last_action: False
+obs_individual_obs: False
+
+# Learning
+standardise_returns: False
+standardise_rewards: True
+agent_output_type: "q"
+learner: "q_learner"
+double_q: True
+
+# Agent network
+agent: "rnn"
+use_rnn: True
+rnn_hidden_dim: 64
+
+# Mixer network
+mixer: "qmix"
+mixing_embed_dim: 32
+hypernet_layers: 2
+hypernet_embed: 64
+
+# Training
+batch_size: 16  # Reduced from 32 for 10 agents
+batch_size_run: 1
+lr: 0.0005
+optim_alpha: 0.99
+optim_eps: 0.00001
+grad_norm_clip: 10
+gamma: 0.99
+
+# Evaluation
+test_nepisode: 5  # Reduced from 20 to save memory
+test_interval: 5000  # Reduced from 10000
+log_interval: 5000  # Reduced from 10000
+runner_log_interval: 5000  # Reduced from 10000
+learner_log_interval: 5000  # Reduced from 10000
+
+# Checkpointing
+save_model: True
+save_model_interval: 50000
+checkpoint_path: ""
+
+# Other
+use_cuda: True
