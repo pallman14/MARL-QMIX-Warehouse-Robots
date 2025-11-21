@@ -236,6 +236,29 @@ The large gap between training returns (207.96) and test returns (0.02-49.29) in
 
 **Root Cause**: Agents are not learning an effective task policy. High training returns result from random exploration finding occasional rewards, not from learned coordinated behavior. The learned Q-values do not generalize to effective greedy action selection.
 
+**Hypothesis Testing**:
+
+To confirm that agents rely entirely on random exploration rather than learned Q-values, we conducted controlled evaluation experiments:
+
+| Test Configuration | Test Return | Interpretation |
+|-------------------|-------------|----------------|
+| **Training** (epsilon 1.0→0.1) | 207.96 | Baseline performance with exploration |
+| **Evaluation epsilon=0.0** (pure greedy) | **0.21** | Learned Q-values produce no useful behavior |
+| **Evaluation epsilon=0.1** (10% random) | **191.22 - 253.52** | Random actions restore performance |
+
+**Key Finding**: Adding just 10% random exploration during evaluation resulted in a **904-1207x improvement** over pure greedy evaluation. This proves that:
+
+1. The Q-network's learned values don't encode useful warehouse task behavior
+2. All task performance comes from randomly stumbling upon packages and goals
+3. Agents never learned coordinated pick-and-place strategies
+
+If agents had learned properly, we would expect:
+- Pure greedy (epsilon=0.0) performance to match or exceed epsilon=0.1 performance
+- Only a small gap between training and test returns
+- Improving performance as epsilon decreases during training
+
+Instead, performance **collapses completely** without randomness, confirming the Q-network learned nothing meaningful after 350k training steps.
+
 **Potential Solutions** (under investigation):
 1. **Reward shaping**: Current sparse rewards may not provide sufficient learning signal
 2. **Observation space**: Agents may lack critical environmental information
