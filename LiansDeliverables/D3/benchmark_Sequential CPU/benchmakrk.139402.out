@@ -1,0 +1,11 @@
+==================================================
+MASAC RWARE PARALLEL RUN (Benchmark)
+Fix: CRITICAL - Abandoned SyncVectorEnv. Using manual list.
+Job ID: 139402
+Start Time: Thu Nov  6 22:26:25 CST 2025
+==================================================
+
+Environment:
+/home/gcsc563_08/.conda/envs/masac_rware/bin/python
+Python 3.8.20
+Starting training on rware-tiny-2ag-v2 with 1 parallel environments...

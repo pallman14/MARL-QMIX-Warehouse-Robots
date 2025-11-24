@@ -1,0 +1,106 @@
+#!/bin/bash
+#SBATCH --job-name=benchmakrk
+#SBATCH -o benchmakrk.%j.out
+#SBATCH -e benchmakrk.%j.err
+#SBATCH -N 1
+#SBATCH -n 8                         # Request 8 CPU cores (for PyTorch train_step)
+#SBATCH --time=0-08:00:00            # Max runtime (DD-HH:MM:SS)
+#SBATCH --partition=sb
+#SBATCH --mail-user=llianzthang@oru.edu
+#SBATCH --mail-type=END,FAIL
+
+echo "=================================================="
+echo "MASAC RWARE PARALLEL RUN (Benchmark)"
+echo "Fix: CRITICAL - Abandoned SyncVectorEnv. Using manual list."
+echo "Job ID: $SLURM_JOB_ID"
+echo "Start Time: $(date)"
+echo "=================================================="
+
+# --- Load CUDA Drivers ---
+# This is ESSENTIAL for the GPU to be found by PyTorch
+# Use the version that matches your PyTorch installation (e.g., 11.7, 11.8, 12.1)
+module load CUDA/12.3.0
+
+# Initialize conda
+if [ -f "$HOME/.conda/etc/profile.d/conda.sh" ]; then
+    source "$HOME/.conda/etc/profile.d/conda.sh"
+elif [ -f "/opt/software/Anaconda3/2022.05/etc/profile.d/conda.sh" ]; then
+    # Fix V36 typo
+    source "/opt/software/Anaconda3/2022.05/etc/profile.d/conda.sh"
+fi
+
+# Activate environment
+source activate masac_rware 2>/dev/null || export PATH="$HOME/.conda/envs/masac_rware/bin:$PATH"
+
+echo ""
+echo "Environment:"
+which python
+python --version
+
+# Set threads (Match to -n 8)
+export OMP_NUM_THREADS=8
+export MKL_NUM_THREADS=8
+
+# --- Environment Selection ---
+ENV_TO_RUN="rware-tiny-2ag-v2"
+# Using 8 parallel environments
+NUM_ENVS=1
+SEED=42
+
+# Create test directory and copy script
+RUN_DIR="benchmark_${SLURM_JOB_ID}"
+mkdir -p ${RUN_DIR}
+cd ${RUN_DIR}
+
+# --- Setup cleanup trap ---
+cleanup() {
+    echo ""
+    echo "=================================================="
+    echo "Job interrupted or finished. Preserving logs..."
+    mkdir -p "${RUN_DIR}"
+    cp -n ../benchmakrk.${SLURM_JOB_ID}.out "${RUN_DIR}/" 2>/dev/null
+    cp -n ../benchmakrk.${SLURM_JOB_ID}.err "${RUN_DIR}/" 2>/dev/null
+    echo "Logs copied to ${RUN_DIR}/"
+    echo "=================================================="
+}
+trap cleanup EXIT INT TERM
+
+# Copy the NEW Python file
+cp ../masac_benchmark.py .
+
+# Copy the current batch file itself
+cp "$0" .
+
+echo "Starting training on ${ENV_TO_RUN} with ${NUM_ENVS} parallel environments..."
+
+# Run the training script, passing the environment ID and num_envs
+python masac_benchmark.py \
+    --num_envs ${NUM_ENVS}
+
+
+
+# Get the exit status of the python command
+exit_status=$?
+
+# Copy job output files to the unique run directory
+cp ../benchmakrk.${SLURM_JOB_ID}.out .
+cp ../benchmakrk.${SLURM_JOB_ID}.err .
+
+# --- CLEANUP ---
+# Remove the original log files from the parent directory
+rm ../benchmakrk.${SLURM_JOB_ID}.out
+rm ../benchmakrk.${SLURM_JOB_ID}.err
+
+echo "=================================================="
+if [ $exit_status == 0 ]; then
+    echo "✓ Training completed successfully!"
+else
+    echo "✗ Training stopped. Check errors in benchmakrk.${SLURM_JOB_ID}.err"
+fi
+echo "End Time: $(date)"
+echo "=================================================="
+
+# Exit with the status of the Python command
+exit $exit_status
+
+
