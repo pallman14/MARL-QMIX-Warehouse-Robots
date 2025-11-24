@@ -93,6 +93,209 @@ pip install -r env_requirements.txt
 3. Open with Unity 2021.1+ (Unity 6.0 recommended)
 4. Wait for package import and compilation
 
+## Troubleshooting
+
+This section documents common installation and runtime issues encountered during setup and training.
+
+### ML-Agents Installation Issues
+
+#### Version Mismatch Errors
+
+**Symptoms:**
+- `ImportError: No module named 'mlagents'`
+- Unity editor communication failures
+- Training script hanging while waiting on the environment
+
+**Solution:**
+
+```bash
+pip uninstall mlagents mlagents-envs -y
+pip install mlagents==0.30.0
+pip install mlagents-envs==0.30.0
+```
+
+**Note**: ML-Agents 4.0 (Unity package) corresponds to Python package version **0.30.0**.
+
+#### Port Connection Failures
+
+**Symptoms:**
+- Python timeout errors
+- Unity does not display "Listening on port 5004"
+- Training cannot establish connection to Unity
+
+**Solution:**
+
+1. Close all Unity instances
+2. Reopen the Warehouse project
+3. Press Play and confirm port 5004 message
+4. Start Python script only after Unity is listening
+
+To kill a blocked port:
+
+```bash
+# Linux/macOS
+sudo lsof -i :5004
+kill -9 <PID>
+
+# Windows
+netstat -ano | findstr :5004
+taskkill /PID <PID> /F
+```
+
+#### Barracuda Inference Errors
+
+**Symptoms:**
+- Unity error messages referencing the inference engine or model loading
+
+**Solution:**
+- Reinstall **Barracuda** package in Unity's Package Manager (Window → Package Manager)
+- Ensure version compatibility with ML-Agents 4.0
+
+### Sacred Installation Issues
+
+#### Sacred Import Failures
+
+**Symptoms:**
+- `ImportError: No module named 'sacred'`
+- Sacred-related errors when starting training
+
+**Solution:**
+
+```bash
+pip uninstall sacred -y
+pip install sacred==0.8.7
+```
+
+#### Sacred Logging Errors
+
+**Symptoms:**
+- `KeyError: 'config'`
+- Missing or incomplete run directories in `results/sacred/`
+
+**Solution:**
+
+Ensure the Sacred logging directory exists:
+
+```bash
+mkdir -p epymarl/results/sacred
+```
+
+Fix permissions if needed:
+
+```bash
+# Linux/macOS
+chmod -R 755 epymarl/results
+
+# Windows: Right-click → Properties → Security → Edit permissions
+```
+
+Test Sacred integration:
+
+```bash
+python src/main.py --config=qmix_warehouse_improved --env-config=unity_warehouse with t_max=1000
+```
+
+Expected output:
+```
+INFO - qmix - Started run with ID "1"
+```
+
+### Virtual Environment Issues
+
+**Symptoms:**
+- Packages installed but not detected
+- `pip` points to system Python instead of virtual environment
+
+**Diagnosis:**
+
+Check which Python/pip is active:
+
+```bash
+which python
+which pip
+```
+
+Expected output should point to your virtual environment:
+```
+.../epymarl_env/bin/python
+.../epymarl_env/bin/pip
+```
+
+**Solution:**
+
+If incorrect, reactivate the virtual environment:
+
+```bash
+source epymarl_env/bin/activate  # Linux/macOS
+# or
+epymarl_env\Scripts\activate     # Windows
+```
+
+Verify activation by checking the prompt shows `(epymarl_env)`.
+
+### Unity/Python Training Freezing
+
+**Symptoms:**
+- Unity Editor becomes unresponsive after 3-4 hours (~350k steps)
+- Training stops progressing
+- High memory usage
+
+**Solutions:**
+
+1. **Use Unity Standalone Builds** for long training runs:
+   - Build Settings → Build
+   - Run the standalone executable instead of Editor
+   - Configure worker ID if running multiple instances
+
+2. **Enable Checkpointing**:
+   - Set `save_model_interval: 100000` in config
+   - Resume training from checkpoints if interrupted
+
+3. **Monitor System Resources**:
+   ```bash
+   # Linux
+   htop
+
+   # Monitor Unity process
+   ps aux | grep Unity
+   ```
+
+4. **Split Training Sessions**:
+   - Train in 100k-200k step increments
+   - Use `checkpoint_path` and `load_step` to resume
+
+### Missing Dependencies
+
+**Symptoms:**
+- Import errors for specific packages
+- Module not found errors
+
+**Solution:**
+
+Reinstall all dependencies:
+
+```bash
+cd epymarl
+pip install --upgrade pip
+pip install -r requirements.txt
+pip install -r env_requirements.txt
+```
+
+For specific package issues, check versions:
+
+```bash
+pip list | grep <package-name>
+```
+
+### Common Error Messages
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `UnityTimeOutException` | Unity not running or wrong port | Start Unity first, verify port 5004 |
+| `sacred.config.ConfigError` | Missing config file | Check path to YAML config files |
+| `torch.cuda.OutOfMemoryError` | GPU memory exhausted | Reduce `batch_size` or use CPU |
+| `RuntimeError: CUDA not available` | PyTorch CPU-only install | Install PyTorch with CUDA support |
+
 ## Training
 
 ### Quick Start
