@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dre Simmons">
+
+<title>Week 5 Deliverable – MARL-QMIX-Warehouse-Robots</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="W5D_Simmons_files/libs/clipboard/clipboard.min.js"></script>
+<script src="W5D_Simmons_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="W5D_Simmons_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="W5D_Simmons_files/libs/quarto-html/popper.min.js"></script>
+<script src="W5D_Simmons_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="W5D_Simmons_files/libs/quarto-html/anchor.min.js"></script>
+<link href="W5D_Simmons_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="W5D_Simmons_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="W5D_Simmons_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="W5D_Simmons_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="W5D_Simmons_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 5 Deliverable – MARL-QMIX-Warehouse-Robots</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dre Simmons </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="week-5-summary-and-deliverable-context" class="level1">
+<h1><strong>Week 5 Summary and Deliverable Context</strong></h1>
+<p>Week 5 required the preparation of <strong>code documentation</strong> for the MARL-QMIX-Warehouse-Robots project. This deliverable involves clearly documenting the structure, dependencies, installation process, training pipeline, and functional behavior of the codebase so that other developers and researchers can understand, reproduce, and extend the project.</p>
+<p>In support of that objective, this document provides:</p>
+<ul>
+<li>A technical overview of the project architecture<br>
+</li>
+<li>Documentation of all required installations (Unity, ML-Agents 4.0, Sacred, Python dependencies)<br>
+</li>
+<li>Troubleshooting guidance for installation and runtime failures<br>
+</li>
+<li>Explanation of how the training code interacts with Unity<br>
+</li>
+<li>Descriptions of major configuration files, network components, and environment wrappers<br>
+</li>
+<li>A breakdown of experimental results and diagnostics<br>
+</li>
+<li>A reflection section highlighting issues, limitations, and next steps</li>
+</ul>
+<p>This QMD therefore serves as both the <strong>Week 5 code documentation deliverable</strong> and a detailed technical report summarizing the current state of the project.</p>
+<hr>
+</section>
+<section id="project-overview" class="level1">
+<h1><strong>Project Overview</strong></h1>
+<p>The MARL-QMIX-Warehouse-Robots project focuses on multi-agent reinforcement learning (MARL) within a cooperative warehouse environment built in Unity. The system trains multiple autonomous robots using the QMIX value-factorization algorithm. The project integrates Unity ML-Agents for simulation and EPyMARL for multi-agent learning.</p>
+<section id="key-features" class="level3">
+<h3 class="anchored" data-anchor-id="key-features"><strong>Key Features</strong></h3>
+<ul>
+<li>Centralized training with decentralized execution<br>
+</li>
+<li>QMIX mixing network for cooperative MARL<br>
+</li>
+<li>Unity ML-Agents 4.0 for simulation and environment communication<br>
+</li>
+<li>Procedurally generated warehouse layouts<br>
+</li>
+<li>Discrete grid-based navigation and agent action space<br>
+</li>
+<li>Sacred logging for reproducible experiments</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="repository-structure" class="level1">
+<h1><strong>Repository Structure</strong></h1>
+<pre><code>MARL-QMIX-Warehouse-Robots/
+├── epymarl/
+│   ├── src/
+│   │   ├── config/algs/
+│   │   │   └── qmix_warehouse_improved.yaml
+│   │   ├── envs/
+│   │   │   ├── unity_wrapper.py
+│   │   │   └── warehouse_env.py
+│   │   ├── learners/
+│   │   ├── modules/
+│   │   └── main.py
+│   ├── requirements.txt
+│   └── env_requirements.txt
+├── WarehouseProjectURP/
+│   ├── Assets/Scenes/Warehouse.unity
+│   ├── Assets/Scripts/
+│   └── Packages/
+├── com.unity.robotics.warehouse.base/
+└── com.unity.robotics.warehouse.urp/</code></pre>
+<hr>
+</section>
+<section id="installing-unity-ml-agents-4.0-and-sacred" class="level1">
+<h1><strong>Installing Unity, ML-Agents 4.0, and Sacred</strong></h1>
+<section id="installing-unity" class="level2">
+<h2 class="anchored" data-anchor-id="installing-unity"><strong>1. Installing Unity</strong></h2>
+<p>Unity is required to execute the warehouse simulation and connect it to the EPyMARL training pipeline.</p>
+<section id="install-unity-hub" class="level3">
+<h3 class="anchored" data-anchor-id="install-unity-hub"><strong>1.1 Install Unity Hub</strong></h3>
+<ol type="1">
+<li>Navigate to: https://unity.com/download<br>
+</li>
+<li>Download and install Unity Hub<br>
+</li>
+<li>Launch Unity Hub</li>
+</ol>
+</section>
+<section id="install-a-compatible-unity-editor-version" class="level3">
+<h3 class="anchored" data-anchor-id="install-a-compatible-unity-editor-version"><strong>1.2 Install a Compatible Unity Editor Version</strong></h3>
+<p>The project supports <strong>Unity 2021.1+</strong>, with best results on <strong>Unity 6 (2023 LTS)</strong>.</p>
+<p>Install via: 1. Unity Hub → <strong>Installs</strong> → <strong>Add</strong><br>
+2. Select Unity 2021.1 / 2021.3 LTS / Unity 6<br>
+3. Add modules: - Windows/macOS Build Support<br>
+- Linux Build Support (optional)<br>
+- IL2CPP<br>
+- Documentation (optional)</p>
+</section>
+<section id="add-the-warehouse-project" class="level3">
+<h3 class="anchored" data-anchor-id="add-the-warehouse-project"><strong>1.3 Add the Warehouse Project</strong></h3>
+<ol type="1">
+<li><p>Unity Hub → <strong>Projects → Add</strong><br>
+</p></li>
+<li><p>Select:</p>
+<pre><code>WarehouseProjectURP/</code></pre></li>
+<li><p>Open the project and allow for asset compilation</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="installing-unity-ml-agents-4.0" class="level2">
+<h2 class="anchored" data-anchor-id="installing-unity-ml-agents-4.0"><strong>2. Installing Unity ML-Agents 4.0</strong></h2>
+<section id="unity-side-installation" class="level3">
+<h3 class="anchored" data-anchor-id="unity-side-installation"><strong>2.1 Unity-side Installation</strong></h3>
+<p>Inside Unity: 1. <strong>Window → Package Manager</strong><br>
+2. Verify installation of: - ML Agents<br>
+- Barracuda<br>
+- Input System (optional)</p>
+</section>
+<section id="python-side-installation" class="level3">
+<h3 class="anchored" data-anchor-id="python-side-installation"><strong>2.2 Python-side Installation</strong></h3>
+<p>ML-Agents 4.0 corresponds to Python package version <strong>0.30.0</strong>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install mlagents==0.30.0</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install mlagents-envs==0.30.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="communication-port-verification" class="level3">
+<h3 class="anchored" data-anchor-id="communication-port-verification"><strong>2.3 Communication Port Verification</strong></h3>
+<p>Unity must show:</p>
+<pre><code>[INFO] Listening on port 5004</code></pre>
+<p>Python must show:</p>
+<pre><code>UnityEnvironment initialized</code></pre>
+<hr>
+</section>
+</section>
+<section id="installing-sacred" class="level2">
+<h2 class="anchored" data-anchor-id="installing-sacred"><strong>3. Installing Sacred</strong></h2>
+<p>Sacred provides experiment tracking and reproducible logging.</p>
+<section id="install-sacred" class="level3">
+<h3 class="anchored" data-anchor-id="install-sacred"><strong>3.1 Install Sacred</strong></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install sacred==0.8.7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sacred-logging-directory" class="level3">
+<h3 class="anchored" data-anchor-id="sacred-logging-directory"><strong>3.2 Sacred Logging Directory</strong></h3>
+<p>Logs are stored in:</p>
+<pre><code>epymarl/results/sacred/</code></pre>
+</section>
+<section id="test-integration" class="level3">
+<h3 class="anchored" data-anchor-id="test-integration"><strong>3.3 Test Integration</strong></h3>
+<p>Run:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/main.py <span class="at">--config</span><span class="op">=</span>qmix_warehouse_improved <span class="at">--env-config</span><span class="op">=</span>unity_warehouse with t_max=1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Expected:</p>
+<pre><code>INFO - qmix - Started run with ID "1"</code></pre>
+<hr>
+</section>
+</section>
+</section>
+<section id="python-environment-setup" class="level1">
+<h1><strong>Python Environment Setup</strong></h1>
+<section id="create-virtual-environment" class="level3">
+<h3 class="anchored" data-anchor-id="create-virtual-environment"><strong>Create Virtual Environment</strong></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv epymarl_env</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> epymarl_env/bin/activate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="install-dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="install-dependencies"><strong>Install Dependencies</strong></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> pip</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> env_requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Key dependencies include: - torch<br>
+- sacred<br>
+- numpy<br>
+- pyyaml<br>
+- mlagents<br>
+- mlagents-envs</p>
+<hr>
+</section>
+</section>
+<section id="troubleshooting-installation-and-runtime-issues" class="level1">
+<h1><strong>Troubleshooting Installation and Runtime Issues</strong></h1>
+<p>The installation of Unity ML-Agents 4.0 and Sacred can occasionally produce environment conflicts, import errors, or version mismatches. The following guidance summarizes common failure cases and corrective actions.</p>
+<section id="ml-agents-installation-issues" class="level2">
+<h2 class="anchored" data-anchor-id="ml-agents-installation-issues"><strong>1. ML-Agents Installation Issues</strong></h2>
+<section id="version-mismatch-errors" class="level3">
+<h3 class="anchored" data-anchor-id="version-mismatch-errors"><strong>1.1 Version Mismatch Errors</strong></h3>
+<p><strong>Symptoms:</strong> - <code>ImportError: No module named 'mlagents'</code><br>
+- Unity editor communication failures<br>
+- Training script hanging while waiting on the environment</p>
+<p><strong>Corrective Action:</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> uninstall mlagents mlagents-envs <span class="at">-y</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install mlagents==0.30.0</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install mlagents-envs==0.30.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="port-not-found-environment-not-connecting" class="level3">
+<h3 class="anchored" data-anchor-id="port-not-found-environment-not-connecting"><strong>1.2 Port Not Found / Environment Not Connecting</strong></h3>
+<p><strong>Symptoms:</strong> - Python timeout errors<br>
+- Unity does not display “Listening on port 5004”</p>
+<p><strong>Corrective Steps:</strong> 1. Close all Unity instances<br>
+2. Reopen the Warehouse project<br>
+3. Press Play and confirm port 5004<br>
+4. Start Python script only after Unity is listening</p>
+<p>To kill a blocked port:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> lsof <span class="at">-i</span> :5004</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">kill</span> <span class="at">-9</span> <span class="op">&lt;</span>PID<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="barracuda-inference-errors" class="level3">
+<h3 class="anchored" data-anchor-id="barracuda-inference-errors"><strong>1.3 Barracuda Inference Errors</strong></h3>
+<p><strong>Symptoms:</strong><br>
+Unity error messages referencing the inference engine or model loading</p>
+<p><strong>Corrective Action:</strong><br>
+Reinstall <strong>Barracuda</strong> in Unity’s Package Manager with a matching version.</p>
+<hr>
+</section>
+</section>
+<section id="sacred-installation-issues" class="level2">
+<h2 class="anchored" data-anchor-id="sacred-installation-issues"><strong>2. Sacred Installation Issues</strong></h2>
+<section id="sacred-fails-to-import" class="level3">
+<h3 class="anchored" data-anchor-id="sacred-fails-to-import"><strong>2.1 Sacred Fails to Import</strong></h3>
+<p><strong>Corrective Action:</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> uninstall sacred <span class="at">-y</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install sacred==0.8.7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sacred-logging-errors" class="level3">
+<h3 class="anchored" data-anchor-id="sacred-logging-errors"><strong>2.2 Sacred Logging Errors</strong></h3>
+<p><strong>Symptoms:</strong> - <code>KeyError: 'config'</code><br>
+- Missing or incomplete run directories</p>
+<p><strong>Corrective Steps:</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/main.py <span class="at">--config</span><span class="op">=</span>qmix_warehouse_improved <span class="at">--env-config</span><span class="op">=</span>unity_warehouse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ensure directory exists:</p>
+<pre><code>epymarl/results/sacred/</code></pre>
+<p>Fix permissions if needed:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod <span class="at">-R</span> 777 epymarl/results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="virtual-environment-conflicts" class="level2">
+<h2 class="anchored" data-anchor-id="virtual-environment-conflicts"><strong>3. Virtual Environment Conflicts</strong></h2>
+<p><strong>Symptoms:</strong> - Packages installed but not detected<br>
+- <code>pip</code> points to system Python</p>
+<p><strong>Check paths:</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> python</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Expected:</p>
+<pre><code>.../epymarl_env/bin/python</code></pre>
+<p>If incorrect:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> epymarl_env/bin/activate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="unity-or-python-training-freezing" class="level2">
+<h2 class="anchored" data-anchor-id="unity-or-python-training-freezing"><strong>4. Unity or Python Training Freezing</strong></h2>
+<p><strong>Corrective Measures:</strong> - Use a Unity <strong>standalone build</strong> for long runs<br>
+- Restart Unity after long sessions<br>
+- Enable checkpointing (<code>save_model_interval: 100000</code>)</p>
+<hr>
+</section>
+<section id="missing-dependencies" class="level2">
+<h2 class="anchored" data-anchor-id="missing-dependencies"><strong>5. Missing Dependencies</strong></h2>
+<p><strong>Corrective Action:</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> env_requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="training-instructions" class="level1">
+<h1><strong>Training Instructions</strong></h1>
+<section id="start-python-training" class="level3">
+<h3 class="anchored" data-anchor-id="start-python-training"><strong>Start Python Training</strong></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/main.py <span class="at">--config</span><span class="op">=</span>qmix_warehouse_improved <span class="at">--env-config</span><span class="op">=</span>unity_warehouse with t_max=500000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="start-unity-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="start-unity-simulation"><strong>Start Unity Simulation</strong></h3>
+<ul>
+<li>Open the Warehouse scene<br>
+</li>
+<li>Press Play</li>
+</ul>
+</section>
+<section id="monitor-logs" class="level3">
+<h3 class="anchored" data-anchor-id="monitor-logs"><strong>Monitor Logs</strong></h3>
+<p>Example:</p>
+<pre><code>return_mean: 25.42
+epsilon: 0.95</code></pre>
+<hr>
+</section>
+</section>
+<section id="configuration-documentation" class="level1">
+<h1><strong>Configuration Documentation</strong></h1>
+<p>Configuration file:</p>
+<pre><code>epymarl/src/config/algs/qmix_warehouse_improved.yaml</code></pre>
+<section id="hyperparameters" class="level3">
+<h3 class="anchored" data-anchor-id="hyperparameters"><strong>Hyperparameters</strong></h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lr</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.001</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">batch_size</span><span class="kw">:</span><span class="at"> </span><span class="dv">16</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">buffer_size</span><span class="kw">:</span><span class="at"> </span><span class="dv">5000</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">target_update_interval</span><span class="kw">:</span><span class="at"> </span><span class="dv">200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exploration" class="level3">
+<h3 class="anchored" data-anchor-id="exploration"><strong>Exploration</strong></h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">epsilon_start</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">epsilon_finish</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.1</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">epsilon_anneal_time</span><span class="kw">:</span><span class="at"> </span><span class="dv">200000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="neural-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="neural-architecture"><strong>Neural Architecture</strong></h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">agent</span><span class="kw">:</span><span class="at"> </span><span class="st">"rnn"</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnn_hidden_dim</span><span class="kw">:</span><span class="at"> </span><span class="dv">64</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mixer</span><span class="kw">:</span><span class="at"> </span><span class="st">"qmix"</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mixing_embed_dim</span><span class="kw">:</span><span class="at"> </span><span class="dv">32</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hypernet_layers</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hypernet_embed</span><span class="kw">:</span><span class="at"> </span><span class="dv">64</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="environment-documentation" class="level1">
+<h1><strong>Environment Documentation</strong></h1>
+<section id="action-space" class="level3">
+<h3 class="anchored" data-anchor-id="action-space"><strong>Action Space</strong></h3>
+<ul>
+<li>0 — Turn Left<br>
+</li>
+<li>1 — Turn Right<br>
+</li>
+<li>2 — Move Forward<br>
+</li>
+<li>3 — Load/Unload Shelf<br>
+</li>
+<li>4 — No-op</li>
+</ul>
+</section>
+<section id="reward-structure" class="level3">
+<h3 class="anchored" data-anchor-id="reward-structure"><strong>Reward Structure</strong></h3>
+<ul>
+<li>Positive reward for shelf delivery<br>
+</li>
+<li>Collision penalty<br>
+</li>
+<li>Small step penalty</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="training-results-week-5" class="level1">
+<h1><strong>Training Results (Week 5)</strong></h1>
+<section id="training-run-93" class="level3">
+<h3 class="anchored" data-anchor-id="training-run-93"><strong>Training Run #93</strong></h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Final Training Return</td>
+<td>207.96</td>
+</tr>
+<tr class="even">
+<td>Final Test Return</td>
+<td>49.29</td>
+</tr>
+<tr class="odd">
+<td>Steps Completed</td>
+<td>350,199 / 500,000</td>
+</tr>
+<tr class="even">
+<td>Final Q-value</td>
+<td>2.398</td>
+</tr>
+<tr class="odd">
+<td>Final Epsilon</td>
+<td>0.10</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="learning-curve" class="level3">
+<h3 class="anchored" data-anchor-id="learning-curve"><strong>Learning Curve</strong></h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Steps</th>
+<th>Return</th>
+<th>Test Return</th>
+<th>Epsilon</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10k</td>
+<td>13.6</td>
+<td>0.03</td>
+<td>0.95</td>
+</tr>
+<tr class="even">
+<td>100k</td>
+<td>50.6</td>
+<td>0.05</td>
+<td>0.55</td>
+</tr>
+<tr class="odd">
+<td>200k</td>
+<td>156.8</td>
+<td>0.03</td>
+<td>0.10</td>
+</tr>
+<tr class="even">
+<td>300k</td>
+<td>228.4</td>
+<td>0.08</td>
+<td>0.10</td>
+</tr>
+<tr class="odd">
+<td>350k</td>
+<td>207.96</td>
+<td>49.29</td>
+<td>0.10</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="critical-observations" class="level1">
+<h1><strong>Critical Observations</strong></h1>
+<ul>
+<li>Agents perform well under exploration (ε = 0.1–1.0).<br>
+</li>
+<li>Behavior collapses under pure greedy policy execution (ε = 0).<br>
+</li>
+<li>The large exploration–evaluation gap indicates reliance on random behavior, not policy learning.</li>
+</ul>
+<hr>
+</section>
+<section id="hypothesized-causes" class="level1">
+<h1><strong>Hypothesized Causes</strong></h1>
+<ul>
+<li>Sparse rewards<br>
+</li>
+<li>Insufficient observations<br>
+</li>
+<li>QMIX monotonic mixing limitation<br>
+</li>
+<li>Early epsilon annealing<br>
+</li>
+<li>High environmental complexity</li>
+</ul>
+<hr>
+</section>
+<section id="future-directions" class="level1">
+<h1><strong>Future Directions</strong></h1>
+<ul>
+<li>Reward shaping<br>
+</li>
+<li>Curriculum learning<br>
+</li>
+<li>Expanded observation space<br>
+</li>
+<li>Curiosity-driven exploration<br>
+</li>
+<li>Alternative MARL algorithms (VDN, Weighted QMIX)</li>
+</ul>
+<hr>
+</section>
+<section id="reflection-week-5" class="level1">
+<h1><strong>Reflection (Week 5)</strong></h1>
+<p>Week 5 focused on documenting the MARL-QMIX-Warehouse-Robots codebase and analyzing system behavior during extended training. The documented divergence between training and evaluation performance highlights the difficulty of value-based coordination in sparse-reward, multi-agent environments. The code documentation presented here clarifies the structure of the repository, configuration files, installation procedures, dependency management, and operational workflow required to run the MARL system. It also identifies key limitations and areas that require modification—such as reward design, observation space, and exploration strategy—to enable successful policy learning in future iterations.</p>
+<hr>
+</section>
+<section id="references" class="level1">
+<h1><strong>References</strong></h1>
+<ol type="1">
+<li>Rashid, T., Samvelyan, M., Schroeder, C., Farquhar, G., Foerster, J., &amp; Whiteson, S. (2018). <em>QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning.</em> ICML.<br>
+</li>
+<li>Unity Technologies. (2023). <em>Unity ML-Agents Toolkit Documentation.</em><br>
+</li>
+<li>Samvelyan, M. et al.&nbsp;(2019). <em>The StarCraft Multi-Agent Challenge.</em> AAMAS.<br>
+</li>
+<li>Vinyals, O. et al.&nbsp;(2019). <em>Grandmaster Level in StarCraft II using Multi-Agent Reinforcement Learning.</em> Nature.<br>
+</li>
+<li>EPyMARL Documentation (2025). https://github.com/uoe-agents/epymarl</li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

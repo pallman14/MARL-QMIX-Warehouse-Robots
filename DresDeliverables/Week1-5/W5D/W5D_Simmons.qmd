@@ -1,0 +1,444 @@
+---
+title: "Week 5 Deliverable – MARL-QMIX-Warehouse-Robots"
+author: "Dre Simmons"
+format: html
+---
+
+# **Week 5 Summary and Deliverable Context**
+
+Week 5 required the preparation of **code documentation** for the MARL-QMIX-Warehouse-Robots project. This deliverable involves clearly documenting the structure, dependencies, installation process, training pipeline, and functional behavior of the codebase so that other developers and researchers can understand, reproduce, and extend the project.
+
+In support of that objective, this document provides:
+
+- A technical overview of the project architecture  
+- Documentation of all required installations (Unity, ML-Agents 4.0, Sacred, Python dependencies)  
+- Troubleshooting guidance for installation and runtime failures  
+- Explanation of how the training code interacts with Unity  
+- Descriptions of major configuration files, network components, and environment wrappers  
+- A breakdown of experimental results and diagnostics  
+- A reflection section highlighting issues, limitations, and next steps  
+
+This QMD therefore serves as both the **Week 5 code documentation deliverable** and a detailed technical report summarizing the current state of the project.
+
+---
+
+# **Project Overview**
+
+The MARL-QMIX-Warehouse-Robots project focuses on multi-agent reinforcement learning (MARL) within a cooperative warehouse environment built in Unity. The system trains multiple autonomous robots using the QMIX value-factorization algorithm. The project integrates Unity ML-Agents for simulation and EPyMARL for multi-agent learning.
+
+### **Key Features**
+- Centralized training with decentralized execution  
+- QMIX mixing network for cooperative MARL  
+- Unity ML-Agents 4.0 for simulation and environment communication  
+- Procedurally generated warehouse layouts  
+- Discrete grid-based navigation and agent action space  
+- Sacred logging for reproducible experiments  
+
+---
+
+# **Repository Structure**
+
+```
+MARL-QMIX-Warehouse-Robots/
+├── epymarl/
+│   ├── src/
+│   │   ├── config/algs/
+│   │   │   └── qmix_warehouse_improved.yaml
+│   │   ├── envs/
+│   │   │   ├── unity_wrapper.py
+│   │   │   └── warehouse_env.py
+│   │   ├── learners/
+│   │   ├── modules/
+│   │   └── main.py
+│   ├── requirements.txt
+│   └── env_requirements.txt
+├── WarehouseProjectURP/
+│   ├── Assets/Scenes/Warehouse.unity
+│   ├── Assets/Scripts/
+│   └── Packages/
+├── com.unity.robotics.warehouse.base/
+└── com.unity.robotics.warehouse.urp/
+```
+
+---
+
+# **Installing Unity, ML-Agents 4.0, and Sacred**
+
+## **1. Installing Unity**
+
+Unity is required to execute the warehouse simulation and connect it to the EPyMARL training pipeline.
+
+### **1.1 Install Unity Hub**
+1. Navigate to: https://unity.com/download  
+2. Download and install Unity Hub  
+3. Launch Unity Hub  
+
+### **1.2 Install a Compatible Unity Editor Version**
+The project supports **Unity 2021.1+**, with best results on **Unity 6 (2023 LTS)**.
+
+Install via:
+1. Unity Hub → **Installs** → **Add**  
+2. Select Unity 2021.1 / 2021.3 LTS / Unity 6  
+3. Add modules:
+   - Windows/macOS Build Support  
+   - Linux Build Support (optional)  
+   - IL2CPP  
+   - Documentation (optional)  
+
+### **1.3 Add the Warehouse Project**
+1. Unity Hub → **Projects → Add**  
+2. Select:
+   ```
+   WarehouseProjectURP/
+   ```  
+3. Open the project and allow for asset compilation  
+
+---
+
+## **2. Installing Unity ML-Agents 4.0**
+
+### **2.1 Unity-side Installation**
+Inside Unity:
+1. **Window → Package Manager**  
+2. Verify installation of:
+   - ML Agents  
+   - Barracuda  
+   - Input System (optional)  
+
+### **2.2 Python-side Installation**
+ML-Agents 4.0 corresponds to Python package version **0.30.0**:
+
+```bash
+pip install mlagents==0.30.0
+pip install mlagents-envs==0.30.0
+```
+
+### **2.3 Communication Port Verification**
+Unity must show:
+```
+[INFO] Listening on port 5004
+```  
+Python must show:
+```
+UnityEnvironment initialized
+```
+
+---
+
+## **3. Installing Sacred**
+
+Sacred provides experiment tracking and reproducible logging.
+
+### **3.1 Install Sacred**
+```bash
+pip install sacred==0.8.7
+```
+
+### **3.2 Sacred Logging Directory**
+Logs are stored in:
+```
+epymarl/results/sacred/
+```
+
+### **3.3 Test Integration**
+Run:
+```bash
+python src/main.py --config=qmix_warehouse_improved --env-config=unity_warehouse with t_max=1000
+```
+
+Expected:
+```
+INFO - qmix - Started run with ID "1"
+```
+
+---
+
+# **Python Environment Setup**
+
+### **Create Virtual Environment**
+```bash
+python3 -m venv epymarl_env
+source epymarl_env/bin/activate
+```
+
+### **Install Dependencies**
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+pip install -r env_requirements.txt
+```
+
+Key dependencies include:
+- torch  
+- sacred  
+- numpy  
+- pyyaml  
+- mlagents  
+- mlagents-envs  
+
+---
+
+# **Troubleshooting Installation and Runtime Issues**
+
+The installation of Unity ML-Agents 4.0 and Sacred can occasionally produce environment conflicts, import errors, or version mismatches. The following guidance summarizes common failure cases and corrective actions.
+
+## **1. ML-Agents Installation Issues**
+
+### **1.1 Version Mismatch Errors**
+
+**Symptoms:**
+- `ImportError: No module named 'mlagents'`  
+- Unity editor communication failures  
+- Training script hanging while waiting on the environment  
+
+**Corrective Action:**
+```bash
+pip uninstall mlagents mlagents-envs -y
+pip install mlagents==0.30.0
+pip install mlagents-envs==0.30.0
+```
+
+---
+
+### **1.2 Port Not Found / Environment Not Connecting**
+
+**Symptoms:**
+- Python timeout errors  
+- Unity does not display “Listening on port 5004”  
+
+**Corrective Steps:**
+1. Close all Unity instances  
+2. Reopen the Warehouse project  
+3. Press Play and confirm port 5004  
+4. Start Python script only after Unity is listening  
+
+To kill a blocked port:
+```bash
+sudo lsof -i :5004
+kill -9 <PID>
+```
+
+---
+
+### **1.3 Barracuda Inference Errors**
+
+**Symptoms:**  
+Unity error messages referencing the inference engine or model loading
+
+**Corrective Action:**  
+Reinstall **Barracuda** in Unity’s Package Manager with a matching version.
+
+---
+
+## **2. Sacred Installation Issues**
+
+### **2.1 Sacred Fails to Import**
+
+**Corrective Action:**
+```bash
+pip uninstall sacred -y
+pip install sacred==0.8.7
+```
+
+### **2.2 Sacred Logging Errors**
+
+**Symptoms:**
+- `KeyError: 'config'`  
+- Missing or incomplete run directories  
+
+**Corrective Steps:**
+```bash
+python src/main.py --config=qmix_warehouse_improved --env-config=unity_warehouse
+```
+
+Ensure directory exists:
+```
+epymarl/results/sacred/
+```
+
+Fix permissions if needed:
+```bash
+sudo chmod -R 777 epymarl/results
+```
+
+---
+
+## **3. Virtual Environment Conflicts**
+
+**Symptoms:**
+- Packages installed but not detected  
+- `pip` points to system Python  
+
+**Check paths:**
+```bash
+which python
+which pip
+```
+
+Expected:
+```
+.../epymarl_env/bin/python
+```
+
+If incorrect:
+```bash
+source epymarl_env/bin/activate
+```
+
+---
+
+## **4. Unity or Python Training Freezing**
+
+**Corrective Measures:**
+- Use a Unity **standalone build** for long runs  
+- Restart Unity after long sessions  
+- Enable checkpointing (`save_model_interval: 100000`)  
+
+---
+
+## **5. Missing Dependencies**
+
+**Corrective Action:**
+```bash
+pip install -r requirements.txt
+pip install -r env_requirements.txt
+```
+
+---
+
+# **Training Instructions**
+
+### **Start Python Training**
+```bash
+python src/main.py --config=qmix_warehouse_improved --env-config=unity_warehouse with t_max=500000
+```
+
+### **Start Unity Simulation**
+- Open the Warehouse scene  
+- Press Play  
+
+### **Monitor Logs**
+Example:
+```
+return_mean: 25.42
+epsilon: 0.95
+```
+
+---
+
+# **Configuration Documentation**
+
+Configuration file:
+```
+epymarl/src/config/algs/qmix_warehouse_improved.yaml
+```
+
+### **Hyperparameters**
+```yaml
+lr: 0.001
+batch_size: 16
+buffer_size: 5000
+target_update_interval: 200
+```
+
+### **Exploration**
+```yaml
+epsilon_start: 1.0
+epsilon_finish: 0.1
+epsilon_anneal_time: 200000
+```
+
+### **Neural Architecture**
+```yaml
+agent: "rnn"
+rnn_hidden_dim: 64
+mixer: "qmix"
+mixing_embed_dim: 32
+hypernet_layers: 2
+hypernet_embed: 64
+```
+
+---
+
+# **Environment Documentation**
+
+### **Action Space**
+- 0 — Turn Left  
+- 1 — Turn Right  
+- 2 — Move Forward  
+- 3 — Load/Unload Shelf  
+- 4 — No-op  
+
+### **Reward Structure**
+- Positive reward for shelf delivery  
+- Collision penalty  
+- Small step penalty  
+
+---
+
+# **Training Results (Week 5)**
+
+### **Training Run #93**
+
+| Metric | Value |
+|--------|--------|
+| Final Training Return | 207.96 |
+| Final Test Return | 49.29 |
+| Steps Completed | 350,199 / 500,000 |
+| Final Q-value | 2.398 |
+| Final Epsilon | 0.10 |
+
+### **Learning Curve**
+
+| Steps | Return | Test Return | Epsilon |
+|-------|---------|-------------|---------|
+| 10k | 13.6 | 0.03 | 0.95 |
+| 100k | 50.6 | 0.05 | 0.55 |
+| 200k | 156.8 | 0.03 | 0.10 |
+| 300k | 228.4 | 0.08 | 0.10 |
+| 350k | 207.96 | 49.29 | 0.10 |
+
+---
+
+# **Critical Observations**
+
+- Agents perform well under exploration (ε = 0.1–1.0).  
+- Behavior collapses under pure greedy policy execution (ε = 0).  
+- The large exploration–evaluation gap indicates reliance on random behavior, not policy learning.  
+
+---
+
+# **Hypothesized Causes**
+
+- Sparse rewards  
+- Insufficient observations  
+- QMIX monotonic mixing limitation  
+- Early epsilon annealing  
+- High environmental complexity  
+
+---
+
+# **Future Directions**
+
+- Reward shaping  
+- Curriculum learning  
+- Expanded observation space  
+- Curiosity-driven exploration  
+- Alternative MARL algorithms (VDN, Weighted QMIX)  
+
+---
+
+# **Reflection (Week 5)**
+
+Week 5 focused on documenting the MARL-QMIX-Warehouse-Robots codebase and analyzing system behavior during extended training. The documented divergence between training and evaluation performance highlights the difficulty of value-based coordination in sparse-reward, multi-agent environments. The code documentation presented here clarifies the structure of the repository, configuration files, installation procedures, dependency management, and operational workflow required to run the MARL system. It also identifies key limitations and areas that require modification—such as reward design, observation space, and exploration strategy—to enable successful policy learning in future iterations.
+
+---
+
+# **References**
+
+1. Rashid, T., Samvelyan, M., Schroeder, C., Farquhar, G., Foerster, J., & Whiteson, S. (2018). *QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning.* ICML.  
+2. Unity Technologies. (2023). *Unity ML-Agents Toolkit Documentation.*  
+3. Samvelyan, M. et al. (2019). *The StarCraft Multi-Agent Challenge.* AAMAS.  
+4. Vinyals, O. et al. (2019). *Grandmaster Level in StarCraft II using Multi-Agent Reinforcement Learning.* Nature.  
+5. EPyMARL Documentation (2025). https://github.com/uoe-agents/epymarl  
+
