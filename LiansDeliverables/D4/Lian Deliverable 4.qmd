@@ -2,7 +2,7 @@
 title: "RL: Multi-Agent Warehouse Robots"
 subtitle: "Deliverable 4 – QMIX comparison "
 author: "Lian Thang"
-date: today
+date: "2025-11-13"
 format: html
 execute:
   kernel: ai-env
