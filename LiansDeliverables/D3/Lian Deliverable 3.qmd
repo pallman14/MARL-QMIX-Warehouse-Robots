@@ -1,0 +1,83 @@
+---
+title: "RL: Multi-Agent Warehouse Robots"
+subtitle: "Deliverable 3 – Multi-Agent Soft Actor-Critic (MASAC) on Robotic Warehouse (RWARE) environment"
+author: "Lian Thang"
+date: today
+format: html
+execute:
+  kernel: ai-env
+  interpreter: /Users/z/ai-env/bin/python3
+---
+
+# Intro 
+
+Deliverable 3 explore cpu and gpu run time, cpu parallel and gpu parallel run time.
+In Titan the default partition use was $#SBATCH --partition=sb$. SB was a 16 CPU,
+128 GB memory, and 280 nodes. But it didn't have GPU. 
+
+While research I came to the conculsion to switch to GPU. 
+
+Using 
+
+```{bash}
+sinfo -o "%P %G %c %m %D %N"
+```
+
+I was able to see the partition Titan have. 
+```{bash}
+PARTITION GRES CPUS MEMORY NODES NODELIST
+bw* (null) 40+ 128000 38 c[001-034,315-318]
+il (null) 48 256000 1 c319
+sb (null) 16 128000 280 c[035-314]
+t4 gpu:t4:4 64 256000 1 g000
+gpu gpu:a30:4 64 512000 8 g[001-008]
+osg (null) 16+ 128000 318 c[001-318]
+```
+
+Because GPUs were available and greatly accelerate batch forward/backward passes for neural networks, I switched to a GPU partition for the final experiments.
+
+# Parallelization
+
+I opt for a synchronous parallel using internal synchronization wrapper
+SyncVectorEnv. This would let all environment steps be grouped and run, and the
+main thread waits for the slowest environment to finish before proceeding to the
+next step. This would in theroy dramatically increases the throughput of the training data, allowing it to fill the replay buffer much faster.
+
+# Test 
+
+| Test Case | Episodes | num_envs | Focus |
+|------------|--------|--------|-------------|
+| Sequential CPU | 50 | 1 | CPU overhead, single-instance processing |
+| Parallel CPU | 50 | 8 | Parallelization Gain (CPU cores used efficiently) | 
+| Sequential GPU | 50 | 1 | GPU Acceleration (single forward pass speed) |
+| Parallel GPU | 50 | 8 | Final Optimized Speed (best-case scenario) |
+
+## Measured times (from runs)
+
+| Test Case | Episodes | num_envs | Time |
+|------------|--------|--------|-------------|
+| Sequential CPU | 50 | 1 | 1:02:39 |
+| Parallel CPU | 50 | 8 | 09:49 | 
+| Sequential GPU | 50 | 1 | 06:43 |
+| Parallel GPU | 50 | 8 | 01:06 |
+
+
+## Summary
+
+GPU acceleration + parallel environments provide dramatic reductions in wall-clock
+time for MASAC on RWARE. For the measured runs: sequential CPU (50 ep) took 01:02:39
+(3759 s), while parallel GPU (50 ep, 8 envs) took 01:06 (66 s), which is a ~57×
+reduction in wall-clock time.
+
+---
+
+### References
+
+
+* https://pmc.ncbi.nlm.nih.gov/articles/PMC11059992/
+
+* https://github.com/JohannesAck/tf2multiagentrl
+
+* https://github.com/semitable/robotic-warehouse
+
+* OpenAI. (2024). ChatGPT (Oct 23 version) [Large language model]. https://chat.openai.com/chat
