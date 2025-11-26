@@ -287,6 +287,74 @@ For specific package issues, check versions:
 pip list | grep <package-name>
 ```
 
+### Unity Package Dependencies Issues
+
+**Symptoms:**
+- Unity console shows "Project has invalid dependencies"
+- Errors about missing `com.unity.perception` or `com.unity.simulation.capture`
+- Compiler errors: `The type or namespace name 'Perception' does not exist`
+
+**Root Cause:**
+The Unity packages (`com.unity.perception` and `com.unity.simulation.capture`) are included in the repository but may not be pulled correctly.
+
+**Solution:**
+
+1. **Pull Latest Changes**:
+   ```bash
+   cd /path/to/MARL-QMIX-Warehouse-Robots
+   git pull origin main
+   ```
+
+2. **Verify Packages Exist Locally**:
+   ```bash
+   # Check if package directories exist
+   ls -la com.unity.perception/
+   ls -la com.unity.simulation.capture/
+
+   # Verify package.json files are present
+   ls -la com.unity.perception/package.json
+   ls -la com.unity.simulation.capture/package.json
+   ```
+
+3. **If Packages Are Missing**:
+   - The repository uses local file references for these packages
+   - Packages should be in the root directory of the repository
+   - If `git pull` doesn't fetch them, they may have been excluded by `.gitignore` (they shouldn't be)
+   - Check your `.gitignore` file to ensure `*.json` files aren't excluded
+
+4. **Refresh Unity**:
+   After pulling, completely close Unity and reopen it:
+   ```bash
+   # macOS/Linux: Kill Unity processes
+   pkill -9 Unity
+
+   # Windows: Close Unity through Task Manager
+   ```
+   Then reopen the Unity project at: `Robotics-Warehouse-main/WarehouseProjectURP/`
+
+5. **Clear Unity Package Cache** (if packages still not recognized):
+   ```bash
+   # Close Unity first, then:
+   rm -rf Library/PackageCache
+   rm -rf Library/Artifacts
+   ```
+   Reopen Unity and let it reimport all packages.
+
+6. **Verify manifest.json** (last resort):
+   Open `WarehouseProjectURP/Packages/manifest.json` and verify these entries exist:
+   ```json
+   {
+     "dependencies": {
+       "com.unity.perception": "file:../../com.unity.perception",
+       "com.unity.simulation.capture": "file:../../com.unity.simulation.capture",
+       ...
+     }
+   }
+   ```
+   The paths should be relative to the `Packages/` directory (two levels up from manifest location).
+
+**Note:** These packages contain 831 files (~100k lines) and are required for the warehouse environment randomization and simulation capture.
+
 ### Common Error Messages
 
 | Error | Cause | Solution |
@@ -295,6 +363,8 @@ pip list | grep <package-name>
 | `sacred.config.ConfigError` | Missing config file | Check path to YAML config files |
 | `torch.cuda.OutOfMemoryError` | GPU memory exhausted | Reduce `batch_size` or use CPU |
 | `RuntimeError: CUDA not available` | PyTorch CPU-only install | Install PyTorch with CUDA support |
+| `Project has invalid dependencies` | Missing Unity packages | Pull latest changes, verify `com.unity.perception` and `com.unity.simulation.capture` directories exist |
+| `Perception does not exist in namespace` | Unity packages not loaded | Close/reopen Unity, clear package cache if needed |
 
 ## Training
 
