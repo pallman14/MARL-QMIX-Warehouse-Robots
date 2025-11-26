@@ -500,6 +500,12 @@ Model checkpoints saved at intervals (default: every 100k steps):
 
 ### Dre's Deliverables
 
+- [Deliverable 1]()
+- [Deliverable 2]()
+- [Deliverable 3]()
+- [Deliverable 4]()
+- [Deliverable 5]()
+
 ### Lian's Deliverables
 
 - [Deliverable 1](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D1/Lian%20Deliverable%201.html)
@@ -511,7 +517,19 @@ Model checkpoints saved at intervals (default: every 100k steps):
 
 ### Price's Deliverables
 
+- [Deliverable 1]()
+- [Deliverable 2]()
+- [Deliverable 3]()
+- [Deliverable 4]()
+- [Deliverable 5]()
+
 ### Salmon's Deliverables
+
+- [Deliverable 1]()
+- [Deliverable 2]()
+- [Deliverable 3]()
+- [Deliverable 4]()
+- [Deliverable 5]()
 
 ## Citation
 
