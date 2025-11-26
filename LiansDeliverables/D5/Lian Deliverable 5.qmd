@@ -1,0 +1,61 @@
+---
+title: "RL: Multi-Agent Warehouse Robots"
+subtitle: "Deliverable 5 – QMIX Final plot "
+author: "Lian Thang"
+date: "2025-11-20"
+format: html
+execute:
+  kernel: ai-env
+  interpreter: /Users/z/ai-env/bin/python3
+---
+
+This report presents the performance evaluation of the QMIX multi-agent reinforcement learning model trained on 
+the Unity-based warehouse environment. The objective of this analysis is to assess the learning stability, 
+convergence behavior, and overall policy quality through two core metrics:
+
+- **Training Return Mean (`return_mean`)**  
+- **Evaluation Return Mean (`test_return_mean`)**
+
+Both metrics were extracted from the Sacred experiment logs and visualized for clarity.
+
+# QMIX Training & Test Return
+
+The plot below compares the learning curve during training with periodic evaluation episodes.  
+The training return increases steadily and stabilizes with occasional variance, while evaluation returns appear 
+toward the final stage, showing a large improvement spike. It also show the previous week metrics and how
+it compares to this week with changes parameters and increase trainning. 
+
+![](sacred_logs/comparison/compare_ep_length_mean_vs_steps.png)
+![](sacred_logs/comparison/compare_epsilon_vs_steps.png)
+![](sacred_logs/comparison/compare_loss_vs_steps.png)
+![](sacred_logs/comparison/compare_q_taken_mean_vs_steps.png)
+![](sacred_logs/comparison/compare_return_mean_vs_steps.png)
+![](sacred_logs/comparison/compare_return_mean_vs_time.png)
+![](sacred_logs/comparison/compare_return_std_vs_steps.png)
+![](sacred_logs/comparison/compare_td_error_abs_vs_steps.png)
+
+
+
+
+
+
+
+
+# Summary
+
+The QMIX agent demonstrates strong learning progression throughout training, with the following notable observations:
+
+- **Stable upward trend** in `return_mean`, confirming effective joint action-value decomposition under QMIX.  
+- **Late-stage surge** in `test_return_mean`, indicating the final policy generalizes well when evaluated outside the training loop.
+- **Variance near convergence** suggests exploration and state-space complexity influence final policy stability.
+
+Overall, the QMIX model exhibits reliable multi-agent coordination behavior suitable for the warehouse robot control scenario.
+
+
+
+---
+
+### References
+
+
+* OpenAI. (2024). ChatGPT (Oct 23 version) [Large language model]. https://chat.openai.com/chat
