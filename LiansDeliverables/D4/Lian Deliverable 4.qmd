@@ -49,6 +49,7 @@ Training
 ![](mpe_qmix_evaluation_plot.png)
 
 ![](mpe_qmix_environment_episode.gif)
+
 In the MPE QMIX is not really learning. 
 
 # RWARE 
