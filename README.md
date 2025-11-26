@@ -502,11 +502,14 @@ Model checkpoints saved at intervals (default: every 100k steps):
 
 ### Lian's Deliverables
 
-- [Deliverable 1](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D1/Lian%20Deliverable%201.html){target="_blank"}
-- [Deliverable 2](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D2/Lian%20Deliverable%202.html){target="_blank"}
-- [Deliverable 3](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D3/Lian%20Deliverable%203.html){target="_blank"}
-- [Deliverable 4](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D4/Lian%20Deliverable%204.html){target="_blank"}
-- [Deliverable 5](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D5/Lian%20Deliverable%205.html){target="_blank"}
+<ul>
+  <li><a href="https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D1/Lian%20Deliverable%201.html" target="_blank">Deliverable 1</a></li>
+  <li><a href="https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D2/Lian%20Deliverable%202.html" target="_blank">Deliverable 2</a></li>
+  <li><a href="https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D3/Lian%20Deliverable%203.html" target="_blank">Deliverable 3</a></li>
+  <li><a href="https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D4/Lian%20Deliverable%204.html" target="_blank">Deliverable 4</a></li>
+  <li><a href="https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/LiansDeliverables/D5/Lian%20Deliverable%205.html" target="_blank">Deliverable 5</a></li>
+</ul>
+
 
 ### Price's Deliverables
 
