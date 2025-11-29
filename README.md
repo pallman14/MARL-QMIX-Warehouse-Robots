@@ -4,7 +4,7 @@ Multi-Agent Reinforcement Learning using QMIX algorithm for training cooperative
 
 ## Overview
 
-This project implements multi-agent reinforcement learning (MARL) for autonomous warehouse robots using the QMIX (Q-Mixing) algorithm. Robots learn to coordinate pick-and-place tasks in a procedurally generated Unity warehouse environment.
+The MARL-QMIX-Warehouse-Robots project focuses on multi-agent reinforcement learning (MARL) within a cooperative warehouse environment built in Unity. The system trains multiple autonomous robots using the QMIX value-factorization algorithm. The project integrates Unity ML-Agents for simulation and EPyMARL for multi-agent learning.
 
 ### Key Features
 
@@ -56,19 +56,177 @@ MARL-QMIX-Warehouse-Robots/
 
 ### Setup Steps
 
+## Installing Python (First-Time Setup)
+
+This project uses **Python 3.9** and has been tested with that version.  
+If you’ve never installed Python before, follow the steps below for your operating system.
+
+---
+
+### 1. Check if Python is already installed
+
+Open a terminal (or Command Prompt on Windows) and run:
+
+**macOS / Linux Users:**
+```bash
+python3 --version
+```
+**Windows Users:**
+```bash
+py --version
+```
+If you see something like Python 3.9.x, you’re good to go and can skip to "Clone Repository” below.
+If you get an error or see a version lower than 3.8, follow the install steps next:
+
+--- 
+
+**Install Python on macOS**
+Go to: https://www.python.org/downloads/
+Download the latest Python 3.9.x installer for macOS.
+
+Open the .pkg file and run through the installer using the default options.
+When it finishes, close and re-open your Terminal, then run:
+
+```bash
+python3 --version
+```
+
+You should see something like python 3.9.x, if you do then python is installed correctly.
+
+**Install Python on Windows**
+Go to: https://www.python.org/downloads/
+Download the latest Python 3.9.x installer for Windows.
+
+Run the installer and make sure to check the box:
+“Add Python 3.9 to PATH”
+Choose “Install Now” and let it finish.
+Open Command Prompt and run:
+
+```bash
+py --version
+```
+
+You should see python 3.9.x. If you do, Python is installed correctly.
+
+**NOTE: This project must be run with Python 3.8, 3.9, or 3.10.**
+- Versions 3.11+ (including 3.12, 3.13, 3.14) are not supported and will cause installation failures.
+
+**Why these versions are required**
+Several core libraries used in this project only provide stable builds for Python 3.8–3.10, including:
+- Unity ML-Agents (mlagents_envs 0.30.0) — officially supports Python 3.8–3.10 only.
+- SMAC, SMACv2, SMACLITE, matrix-games — multi-agent RL environments built for Python 3.8–3.10.
+- PyTorch — ARM-compatible wheels for this project’s version are stable on Python 3.9–3.10.
+- sk-video — contains legacy Python 2 syntax and breaks on Python > 3.10.
+- gym / gymnasium / pysc2 — older RL environments that depend on numpy versions incompatible with Python 3.11+.
+
+Because these packages do not publish wheels for newer versions of Python, attempting to install on Python 3.11+ results in:
+- missing dependencies
+- syntax errors
+- incompatible numpy/scipy versions
+- ML-Agents failing to import 
+
+---
+
+#### 1. Install Unity Hub + Unity Editor (Step-by-Step Guide - With Processor Check)
+
+This project includes a full Unity environment (`WarehouseProjectURP`), so you must install the correct Unity editor for your computer’s processor. Unity provides separate installers for:
+
+- **Intel (x86_64) Macs**
+- **Apple Silicon (ARM64 / M1 / M2 / M3) Macs**
+- **Windows PCs**
+
+Follow these steps exactly.
+
+---
+
+## 1. Check Your Computer’s Processor (IMPORTANT)
+
+Before downloading Unity, determine which processor you have.
+
+### macOS:
+Click the Apple logo → **About This Mac**
+
+Look for:
+
+- **Chip: Apple M1 / M2 / M3** → *You have Apple Silicon (ARM64)*
+- **Processor: Intel** → *You have an Intel Mac*
+
+### Windows:
+Settings → System → About → Processor  
+(It will say Intel, AMD, etc.)
+
+You MUST download the correct Unity version for your architecture.
+
+---
+
+## 2. Go to the Unity Download Page
+
+Open this link:
+
+👉 **https://unity.com/download**
+
+You’ll see a big button:
+
+**Download Unity Hub**
+
+Click it.
+
+---
+
+## 3. Install Unity Hub
+
+Unity Hub manages Unity versions and projects.
+
+### macOS:
+- If your Mac is **Apple Silicon** → Unity Hub will auto-detect and install the ARM64 version.
+- If your Mac is **Intel** → It will install the Intel version automatically.
+
+Just follow the installer instructions.
+
+### Windows:
+Run the `.exe` installer and complete setup.
+
+---
+
+## 4. Open Unity Hub
+
+When Unity Hub opens:
+
+- Sign in (or create a free account)
+- Go to the **Installs** tab
+
+---
+
+## 5. Install the Correct Unity Version for This Project
+
+Unity projects require a specific Unity version.
+
+### A. Find the required version
+
+Open this file in the repository:
+
+
+
 #### 1. Clone Repository
+
+Open up a terminal and enter the following command lines:
 
 ```bash
 git clone git@github.com:pallman14/MARL-QMIX-Warehouse-Robots.git
 cd MARL-QMIX-Warehouse-Robots
 ```
 
+NOTE: This will clone the repository from Github; once installed, it will change the directory to MARL-QMIX-Warehouse-Robots folder.  
+
 #### 2. Create Python Virtual Environment
+
+Once you are in the MARL-QMIX-Warehouse-Robots folder, create a virtual enviornment with the following command lines:
 
 ```bash
 python3 -m venv epymarl_env
 source epymarl_env/bin/activate  # On Windows: epymarl_env\Scripts\activate
 ```
+NOTE: We create a virual environment to isolate spaces for each project, preventing package and version conflicts between them. This ensures that each project can have its own specific set of dependencies, making development more reliable and projects easier to reproduce and share.
 
 #### 3. Install Python Dependencies
 
@@ -78,7 +236,6 @@ pip install --upgrade pip
 pip install -r requirements.txt
 pip install -r env_requirements.txt
 ```
-
 **Key Dependencies:**
 - `torch==2.9.0` (or appropriate version for your system)
 - `mlagents==4.0.0`
