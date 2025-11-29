@@ -56,7 +56,7 @@ MARL-QMIX-Warehouse-Robots/
 
 ### Setup Steps
 
-## Installing Python (First-Time Setup)
+#### STEP 1. Installing Python (First-Time Setup) - If not needed, skip down to 'Install Unity Hub + Unity Editor'
 
 This project uses **Python 3.9** and has been tested with that version.  
 If you’ve never installed Python before, follow the steps below for your operating system.
@@ -126,9 +126,10 @@ Because these packages do not publish wheels for newer versions of Python, attem
 
 ---
 
-#### Install Unity Hub + Unity Editor (Step-by-Step Guide - With Processor Check)
+#### STEP 2. Install Unity Hub + Unity Editor (Step-by-Step Guide - With Processor Check)
 
-This project includes a full Unity environment (`WarehouseProjectURP`), so you must install the correct Unity editor for your computer’s processor. Unity provides separate installers for:
+- This project includes a full Unity environment (`WarehouseProjectURP`). This folder only exists after you clone the repo (this will occur during steps 3).
+- You must install the correct Unity editor for your computer’s processor. Unity provides separate installers for:
 
 - **Intel (x86_64) Macs**
 - **Apple Silicon (ARM64 / M1 / M2 / M3) Macs**
@@ -198,12 +199,16 @@ When Unity Hub opens:
 
 ## 5. Install the Correct Unity Version for This Project
 
-Unity projects require a specific Unity version. In this case it would be version Unity 6.2 (6000.2.10f1).
+Unity projects require a specific Unity version. In this case it would be version Unity 6.x (6000.x). If you install a version that is not compatible, you will get a warning.
 
-Proceed to the next steps 
+**Let Unity finish installing the editor.**
+
+At this stage, you’ve installed Unity Hub and a Unity Editor, but you still don’t have the 'MARL-QMIX-Warehouse-Robots' folder yet. That comes next when you clone the repository. 
 
 
-#### 1. Clone Repository
+#### STEP 3. Clone Repository (Create the Project Folder)
+
+Now we pull the GitHub project to your machine. This step creates the 'MARL-QMIX-Warehouse-Robots' folder that we’ll later open in Unity.
 
 Open up a terminal and enter the following command lines:
 
@@ -211,12 +216,12 @@ Open up a terminal and enter the following command lines:
 git clone https://git@github.com:pallman14/MARL-QMIX-Warehouse-Robots.git
 cd MARL-QMIX-Warehouse-Robots
 ```
+After this, your filesystem will contain `MARL-QMIX-Warehouse-Robots` and will open that directory.
 
-NOTE: This will clone the repository from Github; once installed, it will change the directory to MARL-QMIX-Warehouse-Robots folder.  
 
-#### 2. Create Python Virtual Environment
+#### STEP 4. Create Python Virtual Environment
 
-Once you are in the MARL-QMIX-Warehouse-Robots folder, create a virtual enviornment with the following command lines:
+Once in the MARL-QMIX-Warehouse-Robots folder, we create a virtual enviornment:
 
 ```bash
 python3 -m venv epymarl_env
@@ -224,7 +229,7 @@ source epymarl_env/bin/activate  # On Windows: epymarl_env\Scripts\activate
 ```
 NOTE: We create a virual environment to isolate spaces for each project, preventing package and version conflicts between them. This ensures that each project can have its own specific set of dependencies, making development more reliable and projects easier to reproduce and share.
 
-#### 3. Install Python Dependencies
+#### 5. Install Python Dependencies
 
 ```bash
 cd epymarl
@@ -232,21 +237,63 @@ pip install --upgrade pip
 pip install -r requirements.txt
 pip install -r env_requirements.txt
 ```
-**Key Dependencies:**
-- `torch==2.9.0` (or appropriate version for your system)
-- `mlagents==0.30.0`
-- `sacred==0.8.7`
-- `numpy==2.1.2`
-- `pyyaml==5.3.1`
+**NOTE:**
+This installs all necessary:
+- Core MARL libraries (PyTorch, gym/gymnasium, Sacred)
+- Environment libraries (RWARE, SMAC, SMACv2, pysc2, etc.)
+- Unity Python API (mlagents_envs==0.30.0 if used/required)
 
-#### 4. Open Unity Project
+#### STEP5. Add the Unity Project to Unity Hub
 
 1. Open Unity Hub
-2. Add project: `WarehouseProjectURP/`
-3. Open with Unity 2021.1+ (Unity 6.0 recommended)
-4. Wait for package import and compilation
+2. On the left-side click `Projects` 
+3. On the right-side click `Add` and select `Add project from disk`
+4. Go to `MARL-QMIX-Warehouse-Robots` if not there already, double-click to go inside folder and single-click to highlight `WarehouseProjectURP` and then click open.
+5. Install the correct editor (Unity 6) - go with recommended version
+6. Wait for package import and compilation
+7. Open the Unity project by clicking `WarehouseProjectURP` under name to ensure no package errors occur. You will most likely see the following: This project contains one or more deprecated packages. Do you want to open Package Manager? in this case click dimiss forever
+8. Once everything is installed and verified, do not close out Unity, instead move to the runtime sequence below.
 
-## Troubleshooting
+
+
+#### RUNTIME SEQUENCE
+
+Open terminal/command prompt and run:
+
+```bash
+cd MARL-QMIX-Warehouse-Robots/epymarl
+source ../epymarl_env/bin/activate
+python src/main.py --config=qmix_warehouse_improved --env-config=unity_warehouse with t_max=500000
+```
+
+You should see this message:
+`[INFO] Listening on port 5004. Start training by pressing the Play button in the Unity Editor.`
+
+This means Python is waiting for unity to connect.
+
+Do NOT open Unity and Press Play before this step. Unity must wait for Python.
+
+## Step 2 - Open Unity SECOND
+1. Open Unity Hub
+2. Launch project:
+MARL-QMIX-Warehouse-Robots/WarehouseProjectURP/
+3. Inside Unity, make sure the `Assets` folder on the bottom left under `Project` is open then double click `Scenes` and then click `Warehouse`
+
+## Step 3 - Statt Unity Play Mode LAST
+Click `Play` toward the top in Unity after Python is already running.
+
+You will now see:
+- Unity logs:
+  "Listening on port 5004"
+- Python logs:
+  "Environment connected. Starting training..."
+  
+Training will now run:
+
+You can put the terminal and Unity side by side so you can see the log from the terminal as the training is in progress. In the terminal you can focus your attention on the return mean and the target mean and if you want to see the amount of packages delivered you can click `Console` in Unity and in the search bar type `delivered to`. 
+
+
+#### Troubleshooting
 
 This section documents common installation and runtime issues encountered during setup and training.
 
