@@ -49,7 +49,7 @@ MARL-QMIX-Warehouse-Robots/
 ### Prerequisites
 
 - **Python**: 3.8-3.10
-- **Unity**: 2021.1+ (tested with Unity 6.0)
+- **Unity**: Unity 6
 - **OS**: Linux, macOS, or Windows
 - **RAM**: 8GB+ recommended
 - **CUDA** (optional): For GPU training
@@ -63,9 +63,9 @@ If you’ve never installed Python before, follow the steps below for your opera
 
 ---
 
-### 1. Check if Python is already installed
+### Check if Python is already installed
 
-Open a terminal (or Command Prompt on Windows) and run:
+Open a terminal on Mac (or Command Prompt on Windows) and run:
 
 **macOS / Linux Users:**
 ```bash
@@ -116,7 +116,6 @@ Several core libraries used in this project only provide stable builds for Pytho
 - Unity ML-Agents (mlagents_envs 0.30.0) — officially supports Python 3.8–3.10 only.
 - SMAC, SMACv2, SMACLITE, matrix-games — multi-agent RL environments built for Python 3.8–3.10.
 - PyTorch — ARM-compatible wheels for this project’s version are stable on Python 3.9–3.10.
-- sk-video — contains legacy Python 2 syntax and breaks on Python > 3.10.
 - gym / gymnasium / pysc2 — older RL environments that depend on numpy versions incompatible with Python 3.11+.
 
 Because these packages do not publish wheels for newer versions of Python, attempting to install on Python 3.11+ results in:
@@ -127,7 +126,7 @@ Because these packages do not publish wheels for newer versions of Python, attem
 
 ---
 
-#### 1. Install Unity Hub + Unity Editor (Step-by-Step Guide - With Processor Check)
+#### Install Unity Hub + Unity Editor (Step-by-Step Guide - With Processor Check)
 
 This project includes a full Unity environment (`WarehouseProjectURP`), so you must install the correct Unity editor for your computer’s processor. Unity provides separate installers for:
 
@@ -199,12 +198,9 @@ When Unity Hub opens:
 
 ## 5. Install the Correct Unity Version for This Project
 
-Unity projects require a specific Unity version.
+Unity projects require a specific Unity version. In this case it would be version Unity 6.2 (6000.2.10f1).
 
-### A. Find the required version
-
-Open this file in the repository:
-
+Proceed to the next steps 
 
 
 #### 1. Clone Repository
@@ -212,7 +208,7 @@ Open this file in the repository:
 Open up a terminal and enter the following command lines:
 
 ```bash
-git clone git@github.com:pallman14/MARL-QMIX-Warehouse-Robots.git
+git clone https://git@github.com:pallman14/MARL-QMIX-Warehouse-Robots.git
 cd MARL-QMIX-Warehouse-Robots
 ```
 
@@ -238,7 +234,7 @@ pip install -r env_requirements.txt
 ```
 **Key Dependencies:**
 - `torch==2.9.0` (or appropriate version for your system)
-- `mlagents==4.0.0`
+- `mlagents==0.30.0`
 - `sacred==0.8.7`
 - `numpy==2.1.2`
 - `pyyaml==5.3.1`
