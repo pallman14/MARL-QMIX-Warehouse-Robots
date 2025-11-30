@@ -279,7 +279,7 @@ Do NOT open Unity and Press Play before this step. Unity must wait for Python.
 MARL-QMIX-Warehouse-Robots/WarehouseProjectURP/
 3. Inside Unity, make sure the `Assets` folder on the bottom left under `Project` is open then double click `Scenes` and then click `Warehouse`
 
-## Step 3 - Statt Unity Play Mode LAST
+## Step 3 - Start Unity Play Mode LAST
 Click `Play` toward the top in Unity after Python is already running.
 
 You will now see:
