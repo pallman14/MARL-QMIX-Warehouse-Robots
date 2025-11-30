@@ -446,6 +446,97 @@ window.Quarto = {
 </section>
 <section id="unity" class="level1">
 <h1>Unity</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 18%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose / Why Important</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch_size</td>
+<td>16</td>
+<td>Number of samples per learner update; small batch → faster but noisier learning.</td>
+</tr>
+<tr class="even">
+<td>buffer_size</td>
+<td>2000</td>
+<td>Replay buffer capacity storing past experiences.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Initial exploration rate (full exploration).</td>
+</tr>
+<tr class="even">
+<td>epsilon_finish</td>
+<td>0.1</td>
+<td>Minimum exploration value when training stabilizes.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_anneal_time</td>
+<td>500000</td>
+<td>Timesteps over which epsilon decays from 1.0 → 0.1.</td>
+</tr>
+<tr class="even">
+<td>episode_limit</td>
+<td>500</td>
+<td>Maximum steps per episode.</td>
+</tr>
+<tr class="odd">
+<td>env_args.no_graphics</td>
+<td>false</td>
+<td>Runs Unity with graphics enabled.</td>
+</tr>
+<tr class="even">
+<td>env_args.time_scale</td>
+<td>20.0</td>
+<td>Unity simulation runs 20× faster than real time.</td>
+</tr>
+<tr class="odd">
+<td>t_max</td>
+<td>1000000</td>
+<td>Total number of training timesteps.</td>
+</tr>
+<tr class="even">
+<td>gamma</td>
+<td>0.99</td>
+<td>Standard discount factor prioritizing long-term rewards.</td>
+</tr>
+<tr class="odd">
+<td>lr (learning rate)</td>
+<td>0.0005</td>
+<td>Learning rate for optimizer controlling update speed.</td>
+</tr>
+<tr class="even">
+<td>mixer</td>
+<td>qmix</td>
+<td>QMIX mixing network for cooperative value decomposition.</td>
+</tr>
+<tr class="odd">
+<td>agent</td>
+<td>rnn</td>
+<td>Recurrent agent network to handle partial observability.</td>
+</tr>
+<tr class="even">
+<td>save_model</td>
+<td>true</td>
+<td>Model checkpoints are saved during training.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p><img src="Unity_run50_logs/5001/5001_return_mean_vs_steps.png" class="img-fluid"> ### Metric: Mean Return - The <strong>Mean Return</strong> (Y-axis) is the average cumulative reward per episode, indicating task success. A higher value is better. - The training was allowed to run for up to <strong><span class="math inline">\(10^6\)</span> steps</strong>, which is a common benchmark limit.</p>
 <section id="training-return-mean-blue-line" class="level3">
 <h3 class="anchored" data-anchor-id="training-return-mean-blue-line">Training Return Mean (Blue Line)</h3>
