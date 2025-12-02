@@ -3,10 +3,8 @@ title: "RL: Multi-Agent Warehouse Robots"
 subtitle: "Deliverable 3 – Multi-Agent Soft Actor-Critic (MASAC) on Robotic Warehouse (RWARE) environment"
 author: "Lian Thang"
 date: today
-format: html
 execute:
-  kernel: ai-env
-  interpreter: /Users/z/ai-env/bin/python3
+  enabled: false
 ---
 
 # Intro 
