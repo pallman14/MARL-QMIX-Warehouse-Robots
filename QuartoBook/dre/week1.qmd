@@ -1,1 +1,173 @@
-../../DresDeliverables/Week1-5/W1D/W1D_Simmons.qmd
+---
+title: "Week 1 Deliverable – QMIX on MPE"
+author: "Dre Simmons"
+date: "2025-10-23"
+format: html
+---
+
+# Week 1 – MPE Training & QMIX Implementation
+
+## 1. Environment Setup
+
+- Python 3.10 environment created via Conda
+- Installed PyTorch, NumPy, Matplotlib, TensorBoard
+- PettingZoo environment installed and verified with simple_spread_v3
+- Confirmed reproducibility with test scripts
+
+> The environment preparation ensures our QMIX training achieves stable, consistent results.
+
+---
+
+## 2. Task Objective
+
+Train a multi-agent reinforcement learning model on the PettingZoo MPE **simple_spread** environment:
+
+- **Agents:** 3 cooperative agents
+- **Landmarks:** 3 targets to cover
+- **Observations:** 18-dimensional continuous vector per agent (includes positions, velocities, etc.)
+- **Actions:** 5 discrete actions: NOOP, UP, DOWN, LEFT, RIGHT
+- **Rewards:** Dense negative distance to landmarks, incentivizing coverage and penalizing collisions
+
+Goal: Agents learn to spread and cover targets efficiently with minimum collisions.
+
+---
+
+## 3. Algorithm Choice: QMIX
+
+QMIX is a value-based MARL method that enables *centralized training with decentralized execution (CTDE)* by:
+
+- Learning individual agent Q-networks to represent each agent’s policy decisions
+- Combining individual Q-values through a mixing network conditioned on the global state
+- Enforcing a monotonicity constraint so improving any agent’s local Q-value leads to improved global Q-value
+
+This decouples multi-agent coordination by leveraging global information only during training.
+
+---
+
+## 4. Model Architecture
+
+### Agent Q-Networks
+
+Each agent has its own deep neural network estimating Q-values from agent-specific observations:
+
+```python
+import torch
+import torch.nn as nn
+
+class AgentQNetwork(nn.Module):
+    def __init__(self, obs_dim, n_actions):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(obs_dim, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+            nn.Linear(128, n_actions)
+        )
+
+    def forward(self, x):
+        return self.net(x)  # Q-values for all possible actions
+```
+
+- Input: agent's local observation vector (size 18)
+- Output: Q-values per discrete action (5)
+
+### Mixing Network
+
+Combines per-agent Q-values into a global Q-value conditioned on the full state, enforcing monotonicity through positive weight constraints:
+
+```python
+class MixingNetwork(nn.Module):
+    def __init__(self, n_agents, state_dim):
+        super().__init__()
+        self.hyper_w_1 = nn.Linear(state_dim, n_agents * 64)
+        self.hyper_w_2 = nn.Linear(state_dim, 64)
+        self.hyper_b_1 = nn.Linear(state_dim, 64)
+        self.hyper_b_2 = nn.Linear(state_dim, 1)
+
+    def forward(self, agent_qs, state):
+        bs = agent_qs.size(0)
+        state = state.view(bs, -1)
+        w1 = torch.abs(self.hyper_w_1(state)).view(bs, -1, 64)  # weights positive
+        b1 = self.hyper_b_1(state).view(bs, 1, 64)
+        hidden = torch.relu(torch.bmm(agent_qs.unsqueeze(1), w1) + b1)
+        w2 = torch.abs(self.hyper_w_2(state)).view(bs, 64, 1)
+        b2 = self.hyper_b_2(state).view(bs, 1, 1)
+        q_total = torch.bmm(hidden, w2) + b2
+        return q_total.view(-1, 1)
+```
+
+---
+
+## 5. Training Pipeline
+
+1. **Reset environment per episode**; agents observe the environment state.
+2. Agents do **ε-greedy action selection**:
+   - Mostly selecting actions with highest Q-values
+   - Sometimes random (for exploration)
+3. Environment steps forward with chosen actions, returning next observations, rewards, and done flags.
+4. Transitions (obs, actions, rewards, next obs, dones) saved to replay buffer.
+5. Random batches sampled from buffer train networks via gradient descent.
+6. Target networks are updated slowly for stability (soft updates).
+7. Epsilon decays over episodes from 1.0 to 0.05 to reduce exploration gradually.
+
+**Training Step Example:**
+
+```python
+for ep in range(episodes):
+    obs = env.reset(seed=ep)
+    total_reward = 0
+    for step in range(max_cycles):
+        obs_list = list(obs)
+        actions = agent.select_actions(obs_list, epsilon)
+        assert len(actions) == len(env.agents)
+        action_dict = {a: actions[i] for i,a in enumerate(env.agents)}
+        next_obs, rewards, terminations, truncations, _ = env.step(action_dict)
+        next_obs_list = list(next_obs)
+        reward_list = list(rewards)
+        done_list = [terminations[i] or truncations[i] for i in range(len(env.agents))]
+        state = np.concatenate(obs_list)
+        next_state = np.concatenate(next_obs_list)
+        buffer.push(state, np.array(actions), np.array(reward_list), next_state, np.array(done_list))
+        loss = agent.train_step(buffer)
+        total_reward += np.mean(reward_list)
+        obs = next_obs
+        if any(done_list):
+            break
+    epsilon = max(min_epsilon, epsilon * epsilon_decay)
+```
+
+---
+
+## 6. Evaluation Plan
+
+- Run 10 to 20 deterministic episodes (ε=0, always pick best action).
+- Report:
+  - Average reward per episode.
+  - Episode length.
+  - Minimum and average distance to landmarks covered.
+  - Number of collisions between agents.
+- Baseline random agent performance to contextualize success.
+
+---
+
+## 7. Deliverables
+
+- Bug-free, working QMIX implementation on MPE simple_spread.
+- Training curves visualizing reward improvements and losses.
+- Deterministic evaluation report showing multi-agent coordination.
+- Clear documentation covering:
+  - Algorithm details.
+  - Network architecture.
+  - Key hyperparameters.
+  - Bug fixes and resolved issues.
+
+---
+
+## 8. References
+
+1. Rashid, Tabish, et al. "QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning." ICML (2018).
+2. PettingZoo Multi-Agent RL Environments. https://www.pettingzoo.ml
+3. PyTorch: https://pytorch.org/
+4. Lowe, Ryan, et al. "Multi-agent actor-critic for mixed cooperative-competitive environments." NeurIPS (2017).
+5. OpenAI. ChatGPT — conversational assistance for brainstorming, drafting, code scaffolding, and debugging.

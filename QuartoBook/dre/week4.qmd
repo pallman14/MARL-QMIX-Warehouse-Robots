@@ -1,1 +1,54 @@
-../../DresDeliverables/Week1-5/W4D/W4D_Simmons.qmd
+---
+title: "Week 4 Deliverable - QMIX Training and Configuration in Unity"
+author: "Dre Simmons"
+date: "2025-11-14"
+format: html
+---
+
+## Project Overview
+Our project focuses on training multi-agent warehouse robots using reinforcement learning to navigate a Unity-based warehouse environment, identify packages that are ready for pickup, and deliver them to the correct locations. The goal is to replicate realistic multi-agent coordination behaviors using cooperative RL algorithms.
+
+## Week 4 Accomplishments
+
+### Environment Development
+- **Worked collaboratively on improving the Unity Warehouse Simulation:**  
+  Assisted in refining elements of the environment so agents received useful observations and the reward structure aligned with the behaviors we wanted to train.
+
+- **Helped review the package-readiness system:**  
+  Verified that blue-highlighted packages were correctly recognized by the agents and that the environment’s logic triggered at appropriate times.
+
+### Algorithm Integration
+- **QMIX Integration Support:**  
+  Contributed to validating that the QMIX implementation was functioning correctly inside the Unity environment, including confirming data flow between individual Q-values and the mixing network.
+
+- **Hyperparameter Adjustments (My Primary Focus):**  
+  My main contribution this week was working on tuning and evaluating several hyperparameters to improve stability and learning performance, including:
+  - Learning rate  
+  - Batch size  
+  - Replay buffer size  
+  - Exploration schedule (ε-decay)  
+  - Hidden-layer dimensions  
+
+- **Assisted in transferring RWARE hyperparameters:**  
+Helped adapt previously successful settings from the RWARE domain to better match the Unity environment’s observation space and reward dynamics.
+
+## Training Results
+I participated in running and monitoring the extended QMIX training sessions alongside my teammate.
+
+### Long-Run QMIX Training (Planned: 1,000,000 Timesteps)
+- The training process was jointly executed.  
+- The run stopped prematurely around **530,000 timesteps** (approximately 8.5 hours) due to a system crash.
+
+### Observed Learning Progress
+- **Test return increased** from 0.00 to about **0.19**  
+- **Training loss decreased** by roughly **97%**  
+- **Agents began showing coordinated behaviors**, including:
+  - Detecting “ready” packages  
+  - Moving toward and picking up packages  
+  - Delivering packages to designated drop-off zones  
+
+## Next Steps
+- Continue training to reach the full 1,000,000 timesteps  
+- Evaluate whether further hyperparameter refinement is needed  
+- Support recording a video demonstration for the project results  
+- Contribute to the write-up on hyperparameters, training behavior, and experimental methodology  

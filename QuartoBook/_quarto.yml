@@ -17,33 +17,48 @@ book:
 
     - part: "Week 1: MPE Environment Training"
       chapters:
-        - price/week1.qmd
-        - lian/week1.qmd
-        - dre/week1.qmd
+        - text: "Price Allman - Week 1"
+          href: price/week1.qmd
+        - text: "Lian Thang - Week 1"
+          href: lian/week1.qmd
+        - text: "Dre Simmons - Week 1"
+          href: dre/week1.qmd
 
     - part: "Week 2: RWARE Environment Training"
       chapters:
-        - price/week2.qmd
-        - lian/week2.qmd
-        - dre/week2.qmd
+        - text: "Price Allman - Week 2"
+          href: price/week2.qmd
+        - text: "Lian Thang - Week 2"
+          href: lian/week2.qmd
+        - text: "Dre Simmons - Week 2"
+          href: dre/week2.qmd
 
     - part: "Week 3: Unity Integration & Hard RWARE"
       chapters:
-        - price/week3.qmd
-        - lian/week3.qmd
-        - dre/week3.qmd
+        - text: "Price Allman - Week 3"
+          href: price/week3.qmd
+        - text: "Lian Thang - Week 3"
+          href: lian/week3.qmd
+        - text: "Dre Simmons - Week 3"
+          href: dre/week3.qmd
 
     - part: "Week 4: Extended Training & Analysis"
       chapters:
-        - price/week4.qmd
-        - lian/week4.qmd
-        - dre/week4.qmd
+        - text: "Price Allman - Week 4"
+          href: price/week4.qmd
+        - text: "Lian Thang - Week 4"
+          href: lian/week4.qmd
+        - text: "Dre Simmons - Week 4"
+          href: dre/week4.qmd
 
     - part: "Week 5: Final Analysis & Deliverables"
       chapters:
-        - price/week5.qmd
-        - lian/week5.qmd
-        - dre/week5.qmd
+        - text: "Price Allman - Week 5"
+          href: price/week5.qmd
+        - text: "Lian Thang - Week 5"
+          href: lian/week5.qmd
+        - text: "Dre Simmons - Week 5"
+          href: dre/week5.qmd
 
 bibliography: references.bib
 

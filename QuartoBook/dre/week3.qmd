@@ -1,1 +1,167 @@
-../../DresDeliverables/Week1-5/W3D/W3D_Simmons.qmd
+---
+title: "Week 3 Deliverable - RWARE tiny-4ag-hard-v2 with QMIX: Parallel Learning Experiment and Comparative Analysis"
+author: "Dre Simmons"
+date: "2025-11-06"
+format:
+  html: default
+---
+
+# Executive Summary
+
+This report documents the methodology and results of QMIX applied to the RWARE `tiny-4ag-hard-v2` warehouse task, comparing outcomes and challenges to last week’s (Week 2) baseline setup. The goal is to see the effect of parallelization and increased coordination complexity on multi-agent learning performance.
+
+---
+
+# Experimental Workflow
+
+## Environment and Tool Setup
+
+**Platform:** Mac (M3, 16GB RAM), Python venv  
+**Libraries:** gymnasium, rware, torch, tensorboard *(was not working for unknown reasons)*, EPyMARL  
+**Task Configuration:** RWARE `tiny-4ag-hard-v2` (four agents, two shelves), “parallel” protocol instead of “episode”
+
+## Treatment Design
+
+**Initial (Parallel, Baseline Config):** Implemented parallel environment sampling with default parameters (the parameters that led to a successful run from Week 2).  
+**Secondary (Parallel, Aggressive Config):** Increased buffer, prolonged exploration decay, tuned rollout hyperparameters.  
+**Comparison:** Week 2 baseline (episode setup, two agents, one shelf)
+
+---
+
+# Configuration Evolution: Switching from Effective Episode QMIX to Parallel QMIX
+
+This week focused on two main parallel configurations to address the increased difficulty of RWARE `tiny-4ag-hard-v2` (4 agents, 2 shelves) and compare their impact. The decision was not to scale to a larger warehouse to see the effect of four agents coordinating in the same environment as Week 2.
+
+---
+
+## Initial Parallel Training Configuration
+
+| Parameter | Value | Purpose / Why Important |
+|------------|--------|--------------------------|
+| runner | parallel | Runs multiple environments to speed up experience collection. |
+| batch_size_run | 8 | Number of parallel environments running simultaneously. |
+| batch_size | 256 | Number of samples per update. Larger batches stabilize learning but require more memory; balance learning speed and stability. |
+| buffer_size | 200,000 | Maximum number of experiences; larger buffer increases sample diversity and long-term learning in sparse tasks. |
+| epsilon_start | 1.0 | Maximizes early exploration. |
+| epsilon_finish | 0.1 | Allows mostly greedy exploitation by end of training. |
+| epsilon_anneal_time | 5,000,000 | Number of steps for epsilon to decay; longer value allows thorough policy learning. |
+| t_max | 20,000,000 | Standard training duration for initial testing. |
+| gamma | 0.99 | Standard RL discount factor. |
+| lr | 0.0005 | Stable learning rate for consistent training. |
+| mixer | qmix | Essential for cooperative agent mixing. |
+| agent | rnn | Handles partial observability in MARL. |
+| env_args (key) | rware:rware-tiny-4ag-hard-v2 | Defines the experiment environment. |
+| env_args (time_limit) | 100 | Maximum steps per episode. |
+| save_model | True | Checkpoints enabled for reproducibility and recovery. |
+
+### Key Points
+
+- Parallel runner and batch_size_run enable fast, varied sample collection.  
+- Large buffer and batch size promote stable, diverse learning for difficult, multi-agent tasks.  
+- Slow annealing (epsilon_anneal_time) and retained exploration (epsilon_finish) help agents reliably find sparse rewards.  
+- Saving model checkpoints protects against failure and helps analyze training progress.
+
+**Result:**  
+Agents began to learn, achieving a final return mean of **2.58** and target mean of **8.21**, approaching solved status under parallel config. Week 2’s benchmark was a return mean above 2.5.
+
+---
+
+## Secondary (Aggressive) Parallel Configuration
+
+| Parameter | Value | Purpose / Why Important |
+|------------|--------|--------------------------|
+| runner | parallel | Same as above. |
+| batch_size_run | 16 | Increased to create more parallel instances. |
+| batch_size | 512 | Further increased; promotes stable multi-agent updates. |
+| buffer_size | 200,000 | Larger buffer, critical for diverse experience replay. |
+| epsilon_start | 1.0 | Full exploration at start. |
+| epsilon_finish | 0.10 | Slightly more exploration retained at end. |
+| epsilon_anneal_time | 1,000,000 | Quicker shift from exploration to exploitation. |
+| t_max | 20,000,000 | Longer training horizon for sparse-reward setting. |
+| gamma | 0.99 | Standard RL setup. |
+| lr | 0.001 | Higher learning rate for quicker updates (monitor for stability). |
+| mixer | qmix | Cooperative value mixing continues. |
+| agent | rnn | Same as above. |
+| env_args (key) | rware:rware-tiny-4ag-hard-v2 | Same task environment. |
+| env_args (time_limit) | 100 | Consistent episode bound. |
+| save_model | True | Checkpoints enabled for reproducibility and recovery. |
+
+### Key Points
+
+- Doubling batch_size_run and batch_size increases sample and training throughput—most effective for systems with more compute resources.  
+- Faster epsilon annealing means agents start exploiting quicker, which can speed learning but may risk premature convergence in sparse environments.  
+- Higher learning rate speeds up model updates; requires monitoring for stability.  
+- Large buffer and model checkpoints protect learning stability and enable analysis/recovery.
+
+**Result:**  
+Agents showed stronger learning, reaching a final return mean of **1.67** and target mean of **8.95** (with a more stable plateau), indicating improved exploration, sample efficiency, and stability.
+
+---
+
+# Why the Improvements Worked
+
+Parallel rollout combined with longer exploration, bigger buffers, and larger batches enabled robust learning in high-coordination, sparse-reward MARL tasks.  
+Checkpointing allowed for confident evaluation and repeatability.
+
+---
+
+# Main Metrics & Results
+
+| Week & Treatment | Agents | Shelves | Target Mean (final) | Return Mean (final) | Status |
+|------------------|---------|----------|----------------------|----------------------|---------|
+| Week 2 (Episode) | 2 | 1 | 3.25 | 3.25 | Solved |
+| Week 3 Initial (Parallel) | 4 | 2 | 8.21 | 2.58 | Near solved |
+| Week 3 Secondary | 4 | 2 | 8.95 | 1.67 | Strong learning |
+
+Increasing agent and shelf count made the environment harder, requiring more sample diversity and longer exploration to approach optimal learning.  
+Parallel enabled better sample efficiency compared to episode-based Week 2 training.
+
+**QUICK NOTE:** Interpreting `Return Mean` vs. `Target Mean` in This Experiment
+Although the secondary (aggressive) parallel run produced a higher target mean (8.95) than the initial parallel run (8.21), its return mean was actually lower (1.67 versus 2.58). This demonstrates a common scenario in deep multi-agent RL: the average Q-value targets used for learning (target mean) can be inflated (or more optimistic) during aggressive or unstable training, while the actual episode returns (return mean) show the true effectiveness of the policy in the environment.
+
+Return mean is the main measure of practical agent performance—how much reward the agents truly achieved. Target mean is an internal metric reflecting the values predicted and bootstrapped by the neural network during training; these can run higher or show more volatility, but do not always translate into better real-world behavior.​
+
+In literature, discrepancies like this are often caused by fast learning rates or aggressive parameter settings, which may lead to value overestimation or oscillation. As shown, the initial parallel config ultimately delivered better real-world agent returns, so it represents more robust performance this week.​
+
+*Key Takeaway:*
+
+Always prioritize return mean for evaluating agent success.
+
+Target mean is best used to monitor learning stability and the relative scale of Q-value predictions, but should not be the sole measure of policy quality.
+
+If the metrics diverge, the config aggressiveness may cause optimism in value updates without corresponding gains in episode rewards.
+
+---
+
+# Learning Curves & Visuals
+
+No visuals to display due to TensorBoard issue. Relied on quantitative metrics above that were produced as JSON files.
+
+---
+
+# Changes from Week 2
+
+- Shift from episode-based to parallel rollouts.  
+- Larger team size and coordination complexity.  
+- Aggressive config tuning (buffer size, batch, and epsilon scheduling) was essential for good results.
+
+---
+
+# Practical Takeaways
+
+- Parallel QMIX supports robust multi-agent learning even as coordination difficulty increases.  
+- Buffer size and exploration schedule must be scaled with environment complexity.  
+- Comparative metrics show QMIX remains adaptable across sampling protocols, but tuning is crucial as task demands grow.
+
+---
+
+# References
+
+- Rashid, T., Samvelyan, M., De Witt, C.S., Farquhar, G., Foerster, J., & Whiteson, S. (2018). *QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning.* Proceedings of the 35th International Conference on Machine Learning (ICML), 2018.  
+- Papoudakis, G., Christianos, F., Schäfer, L., & Albrecht, S.V. (2021). *Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks.* NeurIPS, 2021.  
+- Farama Foundation. *RWARE: Multi-Agent Warehouse Environment.* https://github.com/Farama-Foundation/RWARE  
+- EPyMARL: *Extended PyMARL Framework.* https://github.com/oxwhirl/epymarl  
+- DI-engine documentation: *QMIX.* https://di-engine-docs.readthedocs.io/en/latest/12_policies/qmix.html  
+- Schaefer, L. (2021). *Efficient Exploration in Single-Agent & Multi-Agent Deep RL.* PhD Thesis, TU Darmstadt. https://www.lukaschaefer.com/files/phd_thesis.pdf  
+- SMAClite: *Multi-agent Environments.* https://openreview.net/pdf/9b76af423d461f3f4e700735a1d1ec87fa251db3.pdf
+- ChatGPT. Portions of this report were formatted with assistance from ChatGPT

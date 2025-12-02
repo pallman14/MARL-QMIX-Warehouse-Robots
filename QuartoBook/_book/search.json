@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MARL Warehouse Robots - Team Deliverables",
+    "section": "",
+    "text": "MARL Warehouse Robots - Team Project Deliverables",
+    "crumbs": [
+      "MARL Warehouse Robots - Team Project Deliverables"
+    ]
+  },
+  {
+    "objectID": "index.html#project-overview",
+    "href": "index.html#project-overview",
+    "title": "MARL Warehouse Robots - Team Deliverables",
+    "section": "Project Overview",
+    "text": "Project Overview\nThis book compiles the weekly deliverables from our team’s 5-week multi-agent reinforcement learning (MARL) project focused on training cooperative warehouse robots.\nProject Goal: Train multi-agent warehouse robots using reinforcement learning to coordinate package retrieval and delivery in increasingly complex environments.\nTeam Members: - Price Allman: Unity integration, QMIX implementation, learning failure analysis - Lian Thang: Visualization, comparative analysis, CPU/GPU performance studies - Dre Simmons: Code documentation, implementation guides, setup instructions - Salmon Riaz: Research paper compilation and integration",
+    "crumbs": [
+      "MARL Warehouse Robots - Team Project Deliverables"
+    ]
+  },
+  {
+    "objectID": "index.html#project-timeline",
+    "href": "index.html#project-timeline",
+    "title": "MARL Warehouse Robots - Team Deliverables",
+    "section": "Project Timeline",
+    "text": "Project Timeline\n\nWeek 1: MPE Environment Training\nAll team members trained on Multi-Particle Environment (MPE) Simple Spread to establish baseline MARL skills with dense rewards.\nKey Algorithms: IPPO-LSTM, Behavioral Cloning warm-start\n\n\nWeek 2: RWARE Environment Training\nTransition to Robotic Warehouse (RWARE) environment with sparse rewards and grid-based coordination.\nKey Focus: Algorithm comparison (Vanilla vs Advanced IPPO), sample efficiency analysis\n\n\nWeek 3: Unity Integration & Hard RWARE\n\nPrice: Integrated QMIX with Unity ML-Agents 4.0\nDre: Hard RWARE training\nLian: CPU/GPU performance comparison\n\n\n\nWeek 4: Extended Training\n\nPrice: Deployed enhanced Unity warehouse with package queue system\nPartial training run (530k/1M steps)\nEmerging package delivery behaviors observed\n\n\n\nWeek 5: Final Analysis & Deliverables\n\nPrice: Critical learning failure analysis - discovered agents rely on exploration, not learned policies\nLian: Created comparative visualizations across all experiments\nDre: Finalized code documentation\nSalmon: Research paper integration",
+    "crumbs": [
+      "MARL Warehouse Robots - Team Project Deliverables"
+    ]
+  },
+  {
+    "objectID": "index.html#key-findings",
+    "href": "index.html#key-findings",
+    "title": "MARL Warehouse Robots - Team Deliverables",
+    "section": "Key Findings",
+    "text": "Key Findings\n\nEnvironment Complexity Hierarchy: MPE (dense, simple) → RWARE (sparse, grid) → Unity (sparse, physics)\nAlgorithm Performance:\n\nAdvanced IPPO: 3× better than vanilla, 4× more sample efficient\nQMIX with Unity: Achieved high training returns (207.96) but failed to learn actual policies\n\nCritical Discovery (Week 5): Pure greedy evaluation (ε=0.0) revealed true learned performance\n\nTraining with exploration: 207.96 return\nPure greedy: 0.21 return (near-zero!)\nAdding 10% exploration: 191-253 return (904-1207× improvement!)\n\nRoot Causes of Learning Failure:\n\nSparse rewards insufficient for credit assignment\nRandom exploration masked learning failure in training metrics\nHardware constraints (CPU-only, 16GB RAM) limited training duration",
+    "crumbs": [
+      "MARL Warehouse Robots - Team Project Deliverables"
+    ]
+  },
+  {
+    "objectID": "index.html#lessons-learned",
+    "href": "index.html#lessons-learned",
+    "title": "MARL Warehouse Robots - Team Deliverables",
+    "section": "Lessons Learned",
+    "text": "Lessons Learned\n\nAlways test with ε=0.0: Pure greedy evaluation reveals true learned performance\nHigh training returns ≠ successful learning: Exploration can mask learning failures\nHardware matters: Serious MARL research requires GPU computing and extended training\nSystematic debugging pays off: Hypothesis-driven testing (ε=0.0 vs ε=0.1) exposed root cause",
+    "crumbs": [
+      "MARL Warehouse Robots - Team Project Deliverables"
+    ]
+  },
+  {
+    "objectID": "index.html#repository",
+    "href": "index.html#repository",
+    "title": "MARL Warehouse Robots - Team Deliverables",
+    "section": "Repository",
+    "text": "Repository\nFull code, documentation, and training checkpoints: MARL-QMIX-Warehouse-Robots",
+    "crumbs": [
+      "MARL Warehouse Robots - Team Project Deliverables"
+    ]
+  }
+]
