@@ -1,0 +1,57 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "MARL Warehouse Robots - Team Deliverables"
+  subtitle: "Multi-Agent Reinforcement Learning for Cooperative Warehouse Automation"
+  author:
+    - "Price Allman"
+    - "Lian Thang"
+    - "Dre Simmons"
+    - "Salmon Riaz"
+  date: "December 2025"
+
+  chapters:
+    - index.qmd
+
+    - part: "Week 1: MPE Environment Training"
+      chapters:
+        - price/week1.qmd
+        - lian/week1.qmd
+        - dre/week1.qmd
+
+    - part: "Week 2: RWARE Environment Training"
+      chapters:
+        - price/week2.qmd
+        - lian/week2.qmd
+        - dre/week2.qmd
+
+    - part: "Week 3: Unity Integration & Hard RWARE"
+      chapters:
+        - price/week3.qmd
+        - lian/week3.qmd
+        - dre/week3.qmd
+
+    - part: "Week 4: Extended Training & Analysis"
+      chapters:
+        - price/week4.qmd
+        - lian/week4.qmd
+        - dre/week4.qmd
+
+    - part: "Week 5: Final Analysis & Deliverables"
+      chapters:
+        - price/week5.qmd
+        - lian/week5.qmd
+        - dre/week5.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-summary: "Show code"
+    embed-resources: false

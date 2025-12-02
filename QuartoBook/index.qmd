@@ -1,0 +1,72 @@
+# MARL Warehouse Robots - Team Project Deliverables {.unnumbered}
+
+## Project Overview
+
+This book compiles the weekly deliverables from our team's 5-week multi-agent reinforcement learning (MARL) project focused on training cooperative warehouse robots.
+
+**Project Goal:** Train multi-agent warehouse robots using reinforcement learning to coordinate package retrieval and delivery in increasingly complex environments.
+
+**Team Members:**
+- **Price Allman**: Unity integration, QMIX implementation, learning failure analysis
+- **Lian Thang**: Visualization, comparative analysis, CPU/GPU performance studies
+- **Dre Simmons**: Code documentation, implementation guides, setup instructions
+- **Salmon Riaz**: Research paper compilation and integration
+
+## Project Timeline
+
+### Week 1: MPE Environment Training
+All team members trained on Multi-Particle Environment (MPE) Simple Spread to establish baseline MARL skills with dense rewards.
+
+**Key Algorithms:** IPPO-LSTM, Behavioral Cloning warm-start
+
+### Week 2: RWARE Environment Training
+Transition to Robotic Warehouse (RWARE) environment with sparse rewards and grid-based coordination.
+
+**Key Focus:** Algorithm comparison (Vanilla vs Advanced IPPO), sample efficiency analysis
+
+### Week 3: Unity Integration & Hard RWARE
+- **Price**: Integrated QMIX with Unity ML-Agents 4.0
+- **Dre**: Hard RWARE training
+- **Lian**: CPU/GPU performance comparison
+
+### Week 4: Extended Training
+- **Price**: Deployed enhanced Unity warehouse with package queue system
+- Partial training run (530k/1M steps)
+- Emerging package delivery behaviors observed
+
+### Week 5: Final Analysis & Deliverables
+- **Price**: Critical learning failure analysis - discovered agents rely on exploration, not learned policies
+- **Lian**: Created comparative visualizations across all experiments
+- **Dre**: Finalized code documentation
+- **Salmon**: Research paper integration
+
+## Key Findings
+
+1. **Environment Complexity Hierarchy**: MPE (dense, simple) → RWARE (sparse, grid) → Unity (sparse, physics)
+
+2. **Algorithm Performance**:
+   - Advanced IPPO: 3× better than vanilla, 4× more sample efficient
+   - QMIX with Unity: Achieved high training returns (207.96) but failed to learn actual policies
+
+3. **Critical Discovery** (Week 5): Pure greedy evaluation (ε=0.0) revealed true learned performance
+   - Training with exploration: 207.96 return
+   - **Pure greedy: 0.21 return** (near-zero!)
+   - Adding 10% exploration: 191-253 return (904-1207× improvement!)
+
+4. **Root Causes of Learning Failure**:
+   - Sparse rewards insufficient for credit assignment
+   - Random exploration masked learning failure in training metrics
+   - Hardware constraints (CPU-only, 16GB RAM) limited training duration
+
+## Lessons Learned
+
+- **Always test with ε=0.0**: Pure greedy evaluation reveals true learned performance
+- **High training returns ≠ successful learning**: Exploration can mask learning failures
+- **Hardware matters**: Serious MARL research requires GPU computing and extended training
+- **Systematic debugging pays off**: Hypothesis-driven testing (ε=0.0 vs ε=0.1) exposed root cause
+
+---
+
+## Repository
+
+Full code, documentation, and training checkpoints: [MARL-QMIX-Warehouse-Robots](https://github.com/pallman14/MARL-QMIX-Warehouse-Robots)

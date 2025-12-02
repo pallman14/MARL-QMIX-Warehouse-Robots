@@ -1,0 +1,13 @@
+---
+title: "Week 3 Deliverable"
+author: "Price Allman"
+format: html
+---
+
+## QMIX Integration
+
+The QMIX (Monotonic Value Function Factorization) algorithm is integrated into the Unity warehouse environment through a centralized training, decentralized execution (CTDE) architecture. Each QMIXWarehouseAgent observes local information (nearby agents, packages, and delivery zones) and outputs individual Q-values for six discrete actions (move, turn, pickup/drop). During training, a Python-based mixer network combines these individual Q-values with the global environment state to compute a team Q-value, enabling proper credit assignment across cooperative agents. The system uses Unity ML-Agents for communication between the C# simulation and the EPyMARL training framework, with agents learning to coordinate package delivery through shared team rewards while maintaining decentralized execution policies.
+
+## Environment Demonstration
+
+![Warehouse simulation with LIDAR sensor debug visualization and multiple agents coordinating package delivery](training_last_10sec.gif)

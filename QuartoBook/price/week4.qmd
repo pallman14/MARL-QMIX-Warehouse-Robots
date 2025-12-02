@@ -1,0 +1,42 @@
+---
+title: "Week 4 Deliverable"
+author: "Price Allman"
+format: html
+---
+
+## Project Overview
+
+Training Multi-Agent Warehouse Robots using Reinforcement Learning to maneuver a warehouse environment and help retrieve packages for shipment.
+
+## Week 4 Accomplishments
+
+### Environment Development
+
+- **Enhanced Unity Warehouse Environment**: Upgraded the simulation to provide a more realistic and professional multi-agent coordination platform.
+
+- **Package-Readiness Queue System**: Implemented a visual queue system where blue-highlighted packages indicate items ready for pickup and delivery.
+
+### Algorithm Integration
+
+- **QMIX Implementation**: Successfully adapted and integrated the QMIX algorithm into the Unity environment to support end-to-end learning for multi-agent package retrieval and delivery tasks.
+
+- **Hyperparameter Transfer**: Leveraged previously successful hyperparameters from RWARE experiments to accelerate convergence and improve training performance.
+
+## Training Results
+
+Initiated an extensive 1,000,000-timestep QMIX training session:
+
+- **Training Duration**: Interrupted at approximately 530,000 timesteps (~8.5 hours of runtime) due to system crash
+- **Performance Improvements**:
+  - Test return improved from 0 to 0.19
+  - Training loss decreased by approximately 97.5%
+- **Behavioral Progress**: Agents demonstrated emerging competence in:
+  - Identifying ready packages
+  - Picking up packages
+  - Successfully delivering packages to designated locations
+
+## Next Steps
+
+- Complete the full 1,000,000-timestep training run
+- Record and present video demonstration of learned multi-agent coordination behaviors
+- Finalize research paper documenting methodology, experiments, and contributions
