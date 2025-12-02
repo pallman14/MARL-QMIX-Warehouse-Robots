@@ -196,13 +196,13 @@ Agents reliably and robustly learned to solve the task.
 
 ## Main Learning Curve
 
-![QMIX Agents: Return Mean Over Training](return_mean-3.svg)
+![QMIX Agents: Return Mean Over Training](return_mean-3.png)
 
 _The return mean starts near zero, then sharply rises and stabilizes at a level well above the "solved" threshold. This plateau confirms that the multi-agent QMIX policy learned successful coordination and robust long-term strategies._
 
 ## Target/Loss Diagnostic
 
-![QMIX Network: Target Mean/Loss During Training](target_mean-3.svg)
+![QMIX Network: Target Mean/Loss During Training](target_mean-3.png)
 
 _The target value shows an initial peak followed by a steady downward trend and eventual stabilization, indicating the QMIX agent’s networks rapidly improved their predictions and then maintained stable, low error as training completed._
 
