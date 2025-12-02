@@ -2,8 +2,6 @@
 title: "Week 2 Deliverable - RWARE tiny-2ag-v2 with QMIX: A Complete Multi-Agent Learning Experiment"
 author: "Dre Simmons"
 date: "2025-10-29"
-format:
-  html: default
 ---
 
 # Executive Summary

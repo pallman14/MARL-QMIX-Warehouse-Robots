@@ -3,13 +3,6 @@ title: "QMIX Multi-Agent RL for Warehouse Robots"
 subtitle: "Week 5 Deliverable - Training Analysis & Performance Investigation"
 author: "Price Allman"
 date: "November 20, 2025"
-format:
-  html:
-    toc: true
-    toc-depth: 3
-    code-fold: true
-    theme: cosmo
-    embed-resources: true
 ---
 
 ## Executive Summary

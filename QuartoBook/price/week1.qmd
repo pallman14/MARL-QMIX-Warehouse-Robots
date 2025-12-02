@@ -2,15 +2,6 @@
 title: "Week 1 Deliverable: MPE Simple Spread Training Report"
 author: "Price Allman"
 date: "October 23, 2025"
-format:
-  html:
-    toc: true
-    toc-depth: 3
-    code-fold: true
-    theme: cosmo
-  pdf:
-    toc: true
-    number-sections: true
 ---
 
 # Executive Summary
