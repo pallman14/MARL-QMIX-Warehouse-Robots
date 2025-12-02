@@ -132,6 +132,24 @@ y-axis is the target_mean
 
 # Unity
 
+| Parameter               | Value                     | Purpose / Why Important                                                                 |
+|-------------------------|---------------------------|-------------------------------------------------------------------------------------------|
+| batch_size              | 16                        | Number of samples per learner update; small batch → faster but noisier learning.         |
+| buffer_size             | 2000                      | Replay buffer capacity storing past experiences.                                          |
+| epsilon_start           | 1.0                       | Initial exploration rate (full exploration).                                              |
+| epsilon_finish          | 0.1                       | Minimum exploration value when training stabilizes.                                       |
+| epsilon_anneal_time     | 500000                    | Timesteps over which epsilon decays from 1.0 → 0.1.                                       |
+| episode_limit           | 500                       | Maximum steps per episode.                                                                |
+| env_args.no_graphics    | false                     | Runs Unity with graphics enabled.                                                         |
+| env_args.time_scale     | 20.0                      | Unity simulation runs 20× faster than real time.                                          |
+| t_max                   | 1000000                   | Total number of training timesteps.                                                       |
+| gamma                   | 0.99                      | Standard discount factor prioritizing long-term rewards.                                  |
+| lr (learning rate)      | 0.0005                    | Learning rate for optimizer controlling update speed.                                     |
+| mixer                   | qmix                      | QMIX mixing network for cooperative value decomposition.                                  |
+| agent                   | rnn                       | Recurrent agent network to handle partial observability.                                  |
+| save_model              | true                      | Model checkpoints are saved during training.                                              |
+                |
+
 ![](Unity_run50_logs/5001/5001_return_mean_vs_steps.png)
 ###  Metric: Mean Return
 - The **Mean Return** (Y-axis) is the average cumulative reward per episode, indicating task success. A higher value is better.

@@ -24,7 +24,7 @@ sacred
 seaborn
 scipy
 six
-sk-video
+# sk-video # Removed: incompatible with Python 3.x due to legacy print syntax
 snakeviz
 tensorboard-logger
 torch
@@ -34,3 +34,4 @@ urllib3
 websocket-client
 whichcraft
 wrapt
+mlagent_envs==0.30.0

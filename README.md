@@ -4,7 +4,7 @@ Multi-Agent Reinforcement Learning using QMIX algorithm for training cooperative
 
 ## Overview
 
-This project implements multi-agent reinforcement learning (MARL) for autonomous warehouse robots using the QMIX (Q-Mixing) algorithm. Robots learn to coordinate pick-and-place tasks in a procedurally generated Unity warehouse environment.
+The MARL-QMIX-Warehouse-Robots project focuses on multi-agent reinforcement learning (MARL) within a cooperative warehouse environment built in Unity. The system trains multiple autonomous robots using the QMIX value-factorization algorithm. The project integrates Unity ML-Agents for simulation and EPyMARL for multi-agent learning.
 
 ### Key Features
 
@@ -49,28 +49,187 @@ MARL-QMIX-Warehouse-Robots/
 ### Prerequisites
 
 - **Python**: 3.8-3.10
-- **Unity**: 2021.1+ (tested with Unity 6.0)
+- **Unity**: Unity 6
 - **OS**: Linux, macOS, or Windows
 - **RAM**: 8GB+ recommended
 - **CUDA** (optional): For GPU training
 
 ### Setup Steps
 
-#### 1. Clone Repository
+#### STEP 1. Installing Python (First-Time Setup) - If not needed, skip down to 'Install Unity Hub + Unity Editor'
+
+This project uses **Python 3.9** and has been tested with that version.  
+If you’ve never installed Python before, follow the steps below for your operating system.
+
+---
+
+### Check if Python is already installed
+
+Open a terminal on Mac (or Command Prompt on Windows) and run:
+
+**macOS / Linux Users:**
+```bash
+python3 --version
+```
+**Windows Users:**
+```bash
+py --version
+```
+If you see something like Python 3.9.x, you’re good to go and can skip to "Clone Repository” below.
+If you get an error or see a version lower than 3.8, follow the install steps next:
+
+--- 
+
+**Install Python on macOS**
+Go to: https://www.python.org/downloads/
+Download the latest Python 3.9.x installer for macOS.
+
+Open the .pkg file and run through the installer using the default options.
+When it finishes, close and re-open your Terminal, then run:
 
 ```bash
-git clone git@github.com:pallman14/MARL-QMIX-Warehouse-Robots.git
-cd MARL-QMIX-Warehouse-Robots
+python3 --version
 ```
 
-#### 2. Create Python Virtual Environment
+You should see something like python 3.9.x, if you do then python is installed correctly.
+
+**Install Python on Windows**
+Go to: https://www.python.org/downloads/
+Download the latest Python 3.9.x installer for Windows.
+
+Run the installer and make sure to check the box:
+“Add Python 3.9 to PATH”
+Choose “Install Now” and let it finish.
+Open Command Prompt and run:
+
+```bash
+py --version
+```
+
+You should see python 3.9.x. If you do, Python is installed correctly.
+
+**NOTE: This project must be run with Python 3.8, 3.9, or 3.10.**
+- Versions 3.11+ (including 3.12, 3.13, 3.14) are not supported and will cause installation failures.
+
+**Why these versions are required**
+Several core libraries used in this project only provide stable builds for Python 3.8–3.10, including:
+- Unity ML-Agents (mlagents_envs 0.30.0) — officially supports Python 3.8–3.10 only.
+- SMAC, SMACv2, SMACLITE, matrix-games — multi-agent RL environments built for Python 3.8–3.10.
+- PyTorch — ARM-compatible wheels for this project’s version are stable on Python 3.9–3.10.
+- gym / gymnasium / pysc2 — older RL environments that depend on numpy versions incompatible with Python 3.11+.
+
+Because these packages do not publish wheels for newer versions of Python, attempting to install on Python 3.11+ results in:
+- missing dependencies
+- syntax errors
+- incompatible numpy/scipy versions
+- ML-Agents failing to import 
+
+---
+
+#### STEP 2. Install Unity Hub + Unity Editor (Step-by-Step Guide - With Processor Check)
+
+- This project includes a full Unity environment (`WarehouseProjectURP`). This folder only exists after you clone the repo (this will occur during steps 3).
+- You must install the correct Unity editor for your computer’s processor. Unity provides separate installers for:
+
+- **Intel (x86_64) Macs**
+- **Apple Silicon (ARM64 / M1 / M2 / M3) Macs**
+- **Windows PCs**
+
+Follow these steps exactly.
+
+---
+
+## 1. Check Your Computer’s Processor (IMPORTANT)
+
+Before downloading Unity, determine which processor you have.
+
+### macOS:
+Click the Apple logo → **About This Mac**
+
+Look for:
+
+- **Chip: Apple M1 / M2 / M3** → *You have Apple Silicon (ARM64)*
+- **Processor: Intel** → *You have an Intel Mac*
+
+### Windows:
+Settings → System → About → Processor  
+(It will say Intel, AMD, etc.)
+
+You MUST download the correct Unity version for your architecture.
+
+---
+
+## 2. Go to the Unity Download Page
+
+Open this link:
+
+👉 **https://unity.com/download**
+
+You’ll see a big button:
+
+**Download Unity Hub**
+
+Click it.
+
+---
+
+## 3. Install Unity Hub
+
+Unity Hub manages Unity versions and projects.
+
+### macOS:
+- If your Mac is **Apple Silicon** → Unity Hub will auto-detect and install the ARM64 version.
+- If your Mac is **Intel** → It will install the Intel version automatically.
+
+Just follow the installer instructions.
+
+### Windows:
+Run the `.exe` installer and complete setup.
+
+---
+
+## 4. Open Unity Hub
+
+When Unity Hub opens:
+
+- Sign in (or create a free account)
+- Go to the **Installs** tab
+
+---
+
+## 5. Install the Correct Unity Version for This Project
+
+Unity projects require a specific Unity version. In this case it would be version Unity 6.x (6000.x). If you install a version that is not compatible, you will get a warning.
+
+**Let Unity finish installing the editor.**
+
+At this stage, you’ve installed Unity Hub and a Unity Editor, but you still don’t have the 'MARL-QMIX-Warehouse-Robots' folder yet. That comes next when you clone the repository. 
+
+
+#### STEP 3. Clone Repository (Create the Project Folder)
+
+Now we pull the GitHub project to your machine. This step creates the 'MARL-QMIX-Warehouse-Robots' folder that we’ll later open in Unity.
+
+Open up a terminal and enter the following command lines:
+
+```bash
+git clone https://git@github.com:pallman14/MARL-QMIX-Warehouse-Robots.git
+cd MARL-QMIX-Warehouse-Robots
+```
+After this, your filesystem will contain `MARL-QMIX-Warehouse-Robots` and will open that directory.
+
+
+#### STEP 4. Create Python Virtual Environment
+
+Once in the MARL-QMIX-Warehouse-Robots folder, we create a virtual enviornment:
 
 ```bash
 python3 -m venv epymarl_env
 source epymarl_env/bin/activate  # On Windows: epymarl_env\Scripts\activate
 ```
+NOTE: We create a virual environment to isolate spaces for each project, preventing package and version conflicts between them. This ensures that each project can have its own specific set of dependencies, making development more reliable and projects easier to reproduce and share.
 
-#### 3. Install Python Dependencies
+#### 5. Install Python Dependencies
 
 ```bash
 cd epymarl
@@ -78,22 +237,63 @@ pip install --upgrade pip
 pip install -r requirements.txt
 pip install -r env_requirements.txt
 ```
+**NOTE:**
+This installs all necessary:
+- Core MARL libraries (PyTorch, gym/gymnasium, Sacred)
+- Environment libraries (RWARE, SMAC, SMACv2, pysc2, etc.)
+- Unity Python API (mlagents_envs==0.30.0 if used/required)
 
-**Key Dependencies:**
-- `torch==2.9.0` (or appropriate version for your system)
-- `mlagents==4.0.0`
-- `sacred==0.8.7`
-- `numpy==2.1.2`
-- `pyyaml==5.3.1`
-
-#### 4. Open Unity Project
+#### STEP5. Add the Unity Project to Unity Hub
 
 1. Open Unity Hub
-2. Add project: `WarehouseProjectURP/`
-3. Open with Unity 2021.1+ (Unity 6.0 recommended)
-4. Wait for package import and compilation
+2. On the left-side click `Projects` 
+3. On the right-side click `Add` and select `Add project from disk`
+4. Go to `MARL-QMIX-Warehouse-Robots` if not there already, double-click to go inside folder and single-click to highlight `WarehouseProjectURP` and then click open.
+5. Install the correct editor (Unity 6) - go with recommended version
+6. Wait for package import and compilation
+7. Open the Unity project by clicking `WarehouseProjectURP` under name to ensure no package errors occur. You will most likely see the following: This project contains one or more deprecated packages. Do you want to open Package Manager? in this case click dimiss forever
+8. Once everything is installed and verified, do not close out Unity, instead move to the runtime sequence below.
 
-## Troubleshooting
+
+
+#### RUNTIME SEQUENCE
+
+Open terminal/command prompt and run:
+
+```bash
+cd MARL-QMIX-Warehouse-Robots/epymarl
+source ../epymarl_env/bin/activate
+python src/main.py --config=qmix_warehouse_improved --env-config=unity_warehouse with t_max=500000
+```
+
+You should see this message:
+`[INFO] Listening on port 5004. Start training by pressing the Play button in the Unity Editor.`
+
+This means Python is waiting for unity to connect.
+
+Do NOT open Unity and Press Play before this step. Unity must wait for Python.
+
+## Step 2 - Open Unity SECOND
+1. Open Unity Hub
+2. Launch project:
+MARL-QMIX-Warehouse-Robots/WarehouseProjectURP/
+3. Inside Unity, make sure the `Assets` folder on the bottom left under `Project` is open then double click `Scenes` and then click `Warehouse`
+
+## Step 3 - Start Unity Play Mode LAST
+Click `Play` toward the top in Unity after Python is already running.
+
+You will now see:
+- Unity logs:
+  "Listening on port 5004"
+- Python logs:
+  "Environment connected. Starting training..."
+  
+Training will now run:
+
+You can put the terminal and Unity side by side so you can see the log from the terminal as the training is in progress. In the terminal you can focus your attention on the return mean and the target mean and if you want to see the amount of packages delivered you can click `Console` in Unity and in the search bar type `delivered to`. 
+
+
+#### Troubleshooting
 
 This section documents common installation and runtime issues encountered during setup and training.
 

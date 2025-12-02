@@ -87,9 +87,250 @@ ul.task-list li input[type="checkbox"] {
 <p>Both metrics were extracted from the Sacred experiment logs and visualized for clarity.</p>
 <section id="qmix-training-test-return" class="level1">
 <h1>QMIX Training &amp; Test Return</h1>
+<section id="initial" class="level2">
+<h2 class="anchored" data-anchor-id="initial">Initial</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 18%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose / Why Important</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch_size</td>
+<td>16</td>
+<td>Number of samples per learner update; small batch → faster but noisier learning.</td>
+</tr>
+<tr class="even">
+<td>buffer_size</td>
+<td>2000</td>
+<td>Replay buffer capacity storing past experiences.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Initial exploration rate (full exploration).</td>
+</tr>
+<tr class="even">
+<td>epsilon_finish</td>
+<td>0.1</td>
+<td>Minimum exploration value when training stabilizes.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_anneal_time</td>
+<td>500000</td>
+<td>Timesteps over which epsilon decays from 1.0 → 0.1.</td>
+</tr>
+<tr class="even">
+<td>episode_limit</td>
+<td>500</td>
+<td>Maximum steps per episode.</td>
+</tr>
+<tr class="odd">
+<td>env_args.no_graphics</td>
+<td>false</td>
+<td>Runs Unity with graphics enabled.</td>
+</tr>
+<tr class="even">
+<td>env_args.time_scale</td>
+<td>20.0</td>
+<td>Unity simulation runs 20× faster than real time.</td>
+</tr>
+<tr class="odd">
+<td>t_max</td>
+<td>1000000</td>
+<td>Total number of training timesteps.</td>
+</tr>
+<tr class="even">
+<td>gamma</td>
+<td>0.99</td>
+<td>Standard discount factor prioritizing long-term rewards.</td>
+</tr>
+<tr class="odd">
+<td>lr (learning rate)</td>
+<td>0.0005</td>
+<td>Learning rate for optimizer controlling update speed.</td>
+</tr>
+<tr class="even">
+<td>mixer</td>
+<td>qmix</td>
+<td>QMIX mixing network for cooperative value decomposition.</td>
+</tr>
+<tr class="odd">
+<td>agent</td>
+<td>rnn</td>
+<td>Recurrent agent network to handle partial observability.</td>
+</tr>
+<tr class="even">
+<td>save_model</td>
+<td>true</td>
+<td>Model checkpoints are saved during training.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="opitzimed" class="level2">
+<h2 class="anchored" data-anchor-id="opitzimed">Opitzimed</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 18%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose / Why Important</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch_size</td>
+<td>16</td>
+<td>Number of samples per learner update; small batch → faster but noisier learning.</td>
+</tr>
+<tr class="even">
+<td>buffer_size</td>
+<td>5000</td>
+<td>Replay buffer capacity storing past experiences.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Initial exploration rate (full exploration).</td>
+</tr>
+<tr class="even">
+<td>epsilon_finish</td>
+<td>0.1</td>
+<td>Minimum exploration value when training stabilizes.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_anneal_time</td>
+<td>200000</td>
+<td>Timesteps over which epsilon decays from 1.0 → 0.1.</td>
+</tr>
+<tr class="even">
+<td>episode_limit</td>
+<td>300</td>
+<td>Maximum steps per episode.</td>
+</tr>
+<tr class="odd">
+<td>env_args.no_graphics</td>
+<td>true</td>
+<td>Runs Unity headless → faster performance.</td>
+</tr>
+<tr class="even">
+<td>env_args.time_scale</td>
+<td>50.0</td>
+<td>Unity simulation runs 50× faster than real time.</td>
+</tr>
+<tr class="odd">
+<td>t_max</td>
+<td>500000</td>
+<td>Total number of training timesteps.</td>
+</tr>
+<tr class="even">
+<td>gamma</td>
+<td>0.99</td>
+<td>Standard discount factor prioritizing long-term rewards.</td>
+</tr>
+<tr class="odd">
+<td>lr (learning rate)</td>
+<td>0.001</td>
+<td>Learning rate for optimizer controlling update speed.</td>
+</tr>
+<tr class="even">
+<td>mixer</td>
+<td>qmix</td>
+<td>QMIX mixing network for cooperative value decomposition.</td>
+</tr>
+<tr class="odd">
+<td>agent</td>
+<td>rnn</td>
+<td>Recurrent agent network to handle partial observability.</td>
+</tr>
+<tr class="even">
+<td>save_model</td>
+<td>true</td>
+<td>Model checkpoints are saved during training.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="what-changed" class="level2">
+<h2 class="anchored" data-anchor-id="what-changed">What changed</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Old Value</th>
+<th>New Value</th>
+<th>Meaning of Change</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>buffer_size</td>
+<td>2000</td>
+<td>5000</td>
+<td>Larger replay buffer → more diverse samples, more stable learning.</td>
+</tr>
+<tr class="even">
+<td>epsilon_anneal_time</td>
+<td>500000</td>
+<td>200000</td>
+<td>Exploration decays faster → becomes greedy earlier.</td>
+</tr>
+<tr class="odd">
+<td>episode_limit</td>
+<td>500</td>
+<td>300</td>
+<td>Shorter episodes → agents must complete tasks faster.</td>
+</tr>
+<tr class="even">
+<td>env_args.no_graphics</td>
+<td>false</td>
+<td>true</td>
+<td>Now headless mode → significantly faster Unity simulation.</td>
+</tr>
+<tr class="odd">
+<td>env_args.time_scale</td>
+<td>20.0</td>
+<td>50.0</td>
+<td>Simulation now 2.5× faster.</td>
+</tr>
+<tr class="even">
+<td>t_max</td>
+<td>1000000</td>
+<td>500000</td>
+<td>Training time cut in half.</td>
+</tr>
+<tr class="odd">
+<td>lr (learning rate)</td>
+<td>0.0005</td>
+<td>0.001</td>
+<td>Higher learning rate → faster but potentially less stable.</td>
+</tr>
+</tbody>
+</table>
 <p>The plot below compares the learning curve during training with periodic evaluation episodes.<br>
 The training return increases steadily and stabilizes with occasional variance, while evaluation returns appear toward the final stage, showing a large improvement spike. It also show the previous week metrics and how it compares to this week with changes parameters and increase trainning.</p>
 <p><img src="sacred_logs/comparison/compare_ep_length_mean_vs_steps.png" class="img-fluid"> <img src="sacred_logs/comparison/compare_epsilon_vs_steps.png" class="img-fluid"> <img src="sacred_logs/comparison/compare_loss_vs_steps.png" class="img-fluid"> <img src="sacred_logs/comparison/compare_q_taken_mean_vs_steps.png" class="img-fluid"> <img src="sacred_logs/comparison/compare_return_mean_vs_steps.png" class="img-fluid"> <img src="sacred_logs/comparison/compare_return_mean_vs_time.png" class="img-fluid"> <img src="sacred_logs/comparison/compare_return_std_vs_steps.png" class="img-fluid"> <img src="sacred_logs/comparison/compare_td_error_abs_vs_steps.png" class="img-fluid"></p>
+</section>
 </section>
 <section id="summary" class="level1">
 <h1>Summary</h1>
