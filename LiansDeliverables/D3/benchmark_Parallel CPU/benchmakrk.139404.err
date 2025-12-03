@@ -1,79 +1,0 @@
-[2025-11-06 22:29:07] Starting training on rware-tiny-2ag-v2 with seed 42...
-[2025-11-06 22:29:07] Using device: cpu
-[2025-11-06 22:29:07] ============================================================
-[2025-11-06 22:29:07] MASAC Training with Parallel Environments (Manual Vector Fix V37)
-[2025-11-06 22:29:07]   Environment ID: rware-tiny-2ag-v2
-[2025-11-06 22:29:07]   Starting at Episode: 0
-[2025-11-06 22:29:07]   Target Total Episodes: 50
-[2025-11-06 22:29:07]   Max steps: 200
-[2025-11-06 22:29:07]   Vectorized Envs: 8 (Manual List)
-[2025-11-06 22:29:07]   Load Checkpoint: None
-[2025-11-06 22:29:07] ==================================================================
-[2025-11-06 22:29:07] 💡 Environment Specs: Agents=2, Obs Dim=71, Act Dim=5, State Dim=142
-[2025-11-06 22:29:07] Initializing 8 manual environments in a Python list...
-[2025-11-06 22:29:07] ✅ Manual environments initialized and reset.
-Training MASAC on rware-tiny-2ag-v2:   0%|          | 0/50 [00:00<?, ?it/s]/home/gcsc563_08/.conda/envs/masac_rware/lib/python3.8/site-packages/gymnasium/utils/passive_env_checker.py:245: UserWarning: [33mWARN: The reward returned by `step()` must be a float, int, np.integer or np.floating, actual type: <class 'list'>[0m
-  logger.warn(
-[2025-11-06 22:29:11] [1/50] Env 0: Reward = 0.00, Alpha = 1.0000, ETA: 0:01:36
-Training MASAC on rware-tiny-2ag-v2:   2%|▏         | 1/50 [00:01<01:36,  1.97s/it][2025-11-06 22:29:11] [2/50] Env 1: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:47
-[2025-11-06 22:29:11] [3/50] Env 2: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:31
-[2025-11-06 22:29:11] [4/50] Env 3: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:22
-[2025-11-06 22:29:11] [5/50] Env 4: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:17
-[2025-11-06 22:29:11] [6/50] Env 5: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:14
-[2025-11-06 22:29:11] [7/50] Env 6: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:12
-[2025-11-06 22:29:11] [8/50] Env 7: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:10
-[2025-11-06 22:29:14] [9/50] Env 0: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:18
-Training MASAC on rware-tiny-2ag-v2:  18%|█▊        | 9/50 [00:04<00:16,  2.50it/s][2025-11-06 22:29:14] [10/50] Env 1: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:16
-[2025-11-06 22:29:14] [11/50] Env 2: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:14
-[2025-11-06 22:29:14] [12/50] Env 3: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:12
-[2025-11-06 22:29:14] [13/50] Env 4: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:11
-[2025-11-06 22:29:14] [14/50] Env 5: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:10
-[2025-11-06 22:29:14] [15/50] Env 6: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:09
-[2025-11-06 22:29:14] [16/50] Env 7: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:08
-[2025-11-06 22:29:16] [17/50] Env 0: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:12
-Training MASAC on rware-tiny-2ag-v2:  34%|███▍      | 17/50 [00:06<00:10,  3.06it/s][2025-11-06 22:29:16] [18/50] Env 1: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:11
-[2025-11-06 22:29:16] [19/50] Env 2: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:10
-[2025-11-06 22:29:16] [20/50] Env 3: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:09
-[2025-11-06 22:29:16] [21/50] Env 4: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:08
-[2025-11-06 22:29:16] [22/50] Env 5: Reward = 1.00, Alpha = 1.0000, ETA: 0:00:07
-[2025-11-06 22:29:16] [23/50] Env 6: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:07
-[2025-11-06 22:29:16] [24/50] Env 7: Reward = 0.00, Alpha = 1.0000, ETA: 0:00:06
-[2025-11-06 22:31:35] [25/50] Env 0: Reward = 0.00, Alpha = 0.9162, ETA: 0:02:25
-Training MASAC on rware-tiny-2ag-v2:  50%|█████     | 25/50 [02:25<03:19,  8.00s/it][2025-11-06 22:31:35] [26/50] Env 1: Reward = 0.00, Alpha = 0.9162, ETA: 0:02:14
-[2025-11-06 22:31:35] [27/50] Env 2: Reward = 0.00, Alpha = 0.9162, ETA: 0:02:04
-[2025-11-06 22:31:35] [28/50] Env 3: Reward = 0.00, Alpha = 0.9162, ETA: 0:01:54
-[2025-11-06 22:31:35] [29/50] Env 4: Reward = 0.00, Alpha = 0.9162, ETA: 0:01:45
-[2025-11-06 22:31:35] [30/50] Env 5: Reward = 0.00, Alpha = 0.9162, ETA: 0:01:37
-[2025-11-06 22:31:35] [31/50] Env 6: Reward = 0.00, Alpha = 0.9162, ETA: 0:01:29
-[2025-11-06 22:31:35] [32/50] Env 7: Reward = 0.00, Alpha = 0.9162, ETA: 0:01:22
-[2025-11-06 22:34:04] [33/50] Env 0: Reward = 0.00, Alpha = 0.8290, ETA: 0:02:31
-Training MASAC on rware-tiny-2ag-v2:  66%|██████▌   | 33/50 [04:54<03:26, 12.14s/it][2025-11-06 22:34:04] [34/50] Env 1: Reward = 0.00, Alpha = 0.8290, ETA: 0:02:18
-[2025-11-06 22:34:04] [35/50] Env 2: Reward = 0.00, Alpha = 0.8290, ETA: 0:02:06
-[2025-11-06 22:34:04] [36/50] Env 3: Reward = 0.00, Alpha = 0.8290, ETA: 0:01:54
-[2025-11-06 22:34:04] [37/50] Env 4: Reward = 0.00, Alpha = 0.8290, ETA: 0:01:43
-[2025-11-06 22:34:04] [38/50] Env 5: Reward = 0.00, Alpha = 0.8290, ETA: 0:01:33
-[2025-11-06 22:34:04] [39/50] Env 6: Reward = 0.00, Alpha = 0.8290, ETA: 0:01:23
-[2025-11-06 22:34:04] [40/50] Env 7: Reward = 0.00, Alpha = 0.8290, ETA: 0:01:13
-[2025-11-06 22:36:24] [41/50] Env 0: Reward = 0.00, Alpha = 0.7501, ETA: 0:01:35
-Training MASAC on rware-tiny-2ag-v2:  82%|████████▏ | 41/50 [07:14<02:06, 14.06s/it][2025-11-06 22:36:24] [42/50] Env 1: Reward = 0.00, Alpha = 0.7501, ETA: 0:01:22
-[2025-11-06 22:36:24] [43/50] Env 2: Reward = 0.00, Alpha = 0.7501, ETA: 0:01:10
-[2025-11-06 22:36:24] [44/50] Env 3: Reward = 0.00, Alpha = 0.7501, ETA: 0:00:59
-[2025-11-06 22:36:24] [45/50] Env 4: Reward = 0.00, Alpha = 0.7501, ETA: 0:00:48
-[2025-11-06 22:36:24] [46/50] Env 5: Reward = 0.00, Alpha = 0.7501, ETA: 0:00:37
-[2025-11-06 22:36:24] [47/50] Env 6: Reward = 0.00, Alpha = 0.7501, ETA: 0:00:27
-[2025-11-06 22:36:24] [48/50] Env 7: Reward = 0.00, Alpha = 0.7501, ETA: 0:00:18
-[2025-11-06 22:38:59] [49/50] Env 0: Reward = 0.00, Alpha = 0.6788, ETA: 0:00:12
-Training MASAC on rware-tiny-2ag-v2:  98%|█████████▊| 49/50 [09:49<00:15, 15.83s/it][2025-11-06 22:38:59] [50/50] Env 1: Reward = 0.00, Alpha = 0.6788, ETA: 0:00:00
-Training MASAC on rware-tiny-2ag-v2: 100%|██████████| 50/50 [09:49<00:00, 11.78s/it]
-[2025-11-06 22:38:59] 💾 Final model state saved: checkpoints/masac_rware_final_state.pt
-[2025-11-06 22:38:59] Generating rollout GIF...
-[2025-11-06 22:38:59] Could not render initial frame for GIF: 
-    Error occured while running `from pyglet.gl import *`
-    HINT: make sure you have OpenGL install. On Ubuntu, you can run 'apt-get install python-opengl'.
-    If you're running on a server, you may need a virtual frame buffer; something like this should work:
-    'xvfb-run -s "-screen 0 1400x900x24" python <your_script.py>'
-    . Skipping GIF generation.
-[2025-11-06 22:39:00] 📊 Saved training curves to logs/training_curves.png
-[2025-11-06 22:39:00] ============================================================
-[2025-11-06 22:39:00] Training completed! Final average reward (last 100 episodes): 0.020
-[2025-11-06 22:39:00] ============================================================
