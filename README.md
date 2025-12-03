@@ -218,7 +218,14 @@ cd MARL-QMIX-Warehouse-Robots
 ```
 After this, your filesystem will contain `MARL-QMIX-Warehouse-Robots` and will open that directory.
 
+**If you want to clone only the project files needed to save storage space, do the following:**
 
+```bash
+git clone --no-checkout --depth=1 --filter=blob:none https://github.com/pallman14/MARL-QMIX-Warehouse-Robots.git MARL-QMIX-Warehouse-Robots
+cd MARL-QMIX-Warehouse-Robots
+git sparse-checkout set WarehouseProjectURP com.unity.perception com.unity.robotics.warehouse.base com.unity.robotics.warehouse.urp com.unity.simulation.capture epymarl .gitignore README.md
+git checkout
+```
 #### STEP 4. Create Python Virtual Environment
 
 Once in the MARL-QMIX-Warehouse-Robots folder, we create a virtual enviornment:
