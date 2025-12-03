@@ -770,11 +770,11 @@ Model checkpoints saved at intervals (default: every 100k steps):
 
 ### Dre's Deliverables
 
-- [Deliverable 1]()
-- [Deliverable 2]()
-- [Deliverable 3]()
-- [Deliverable 4]()
-- [Deliverable 5]()
+- [Deliverable 1](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/DresDeliverables/Week1-5/W1D/W1D_Simmons.html)
+- [Deliverable 2](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/DresDeliverables/Week1-5/W2D/W2D_Simmons.html)
+- [Deliverable 3](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/DresDeliverables/Week1-5/W3D/W3D_Simmons.html)
+- [Deliverable 4](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/DresDeliverables/Week1-5/W4D/W4D_Simmons.html)
+- [Deliverable 5](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/DresDeliverables/Week1-5/W5D/W5D_Simmons.html)
 
 ### Lian's Deliverables
 
@@ -787,19 +787,19 @@ Model checkpoints saved at intervals (default: every 100k steps):
 
 ### Price's Deliverables
 
-- [Deliverable 1]()
-- [Deliverable 2]()
-- [Deliverable 3]()
-- [Deliverable 4]()
-- [Deliverable 5]()
+- [Deliverable 1](https://htmlpreview.github.io/?)
+- [Deliverable 2](https://htmlpreview.github.io/?)
+- [Deliverable 3](https://htmlpreview.github.io/?)
+- [Deliverable 4](https://htmlpreview.github.io/?)
+- [Deliverable 5](https://htmlpreview.github.io/?)
 
 ### Salmon's Deliverables
 
-- [Deliverable 1]()
-- [Deliverable 2]()
-- [Deliverable 3]()
-- [Deliverable 4]()
-- [Deliverable 5]()
+- [Deliverable 1](https://htmlpreview.github.io/?)
+- [Deliverable 2](https://htmlpreview.github.io/?)
+- [Deliverable 3](https://htmlpreview.github.io/?)
+- [Deliverable 4](https://htmlpreview.github.io/?)
+- [Deliverable 5](https://htmlpreview.github.io/?)
 
 ## Citation
 
