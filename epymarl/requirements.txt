@@ -34,4 +34,4 @@ urllib3
 websocket-client
 whichcraft
 wrapt
-mlagent_envs==0.30.0
+mlagents-envs==0.30.0
