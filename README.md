@@ -14,6 +14,12 @@ The MARL-QMIX-Warehouse-Robots project focuses on multi-agent reinforcement lear
 - **Procedural Generation**: Randomized warehouse layouts with configurable dimensions
 - **Grid-Based Navigation**: Discrete action space for robot movement and interaction
 
+## Quarto Book
+
+View the complete team deliverables compiled in a Quarto Book format:
+
+**[MARL Warehouse Robots - Team Deliverables Book](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/)**
+
 ### Performance
 
 **Note**: Initial training runs show a significant gap between training and test performance, indicating the agents have not yet learned an effective policy. Current best run (#93) achieved **207.96 training return** but only **0.21 test return** in pure greedy evaluation, suggesting the high training returns come primarily from epsilon-greedy exploration rather than learned behavior. This is an active area of investigation - see [Known Issues](#training-vs-test-performance-gap) for details.
@@ -773,12 +779,6 @@ Model checkpoints saved at intervals (default: every 100k steps):
 - `mixer.th` - QMIX mixer network weights
 - `opt.th` - Optimizer state
 
-## Quarto Book
-
-View the complete team deliverables compiled in a Quarto Book format:
-
-- [MARL Warehouse Robots - Team Deliverables Book](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/index.html)
-
 ## Deliverables
 
 ### Dre's Deliverables
@@ -800,19 +800,19 @@ View the complete team deliverables compiled in a Quarto Book format:
 
 ### Price's Deliverables
 
-- [Deliverable 1](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week1.html)
-- [Deliverable 2](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week2.html)
-- [Deliverable 3](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week3.html)
-- [Deliverable 4](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week4.html)
-- [Deliverable 5](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week5.html)
+- [Deliverable 1](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/price/week1.html)
+- [Deliverable 2](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/price/week2.html)
+- [Deliverable 3](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/price/week3.html)
+- [Deliverable 4](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/price/week4.html)
+- [Deliverable 5](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/price/week5.html)
 
 ### Salmon's Deliverables
 
-- [Deliverable 1](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week1.html)
-- [Deliverable 2](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week2.html)
-- [Deliverable 3](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week3.html)
-- [Deliverable 4](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week4.html)
-- [Deliverable 5](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week5.html)
+- [Deliverable 1](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week1.html)
+- [Deliverable 2](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week2.html)
+- [Deliverable 3](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week3.html)
+- [Deliverable 4](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week4.html)
+- [Deliverable 5](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week5.html)
 
 ## Citation
 
