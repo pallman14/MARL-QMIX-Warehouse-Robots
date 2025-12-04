@@ -838,3 +838,7 @@ This project builds upon:
 - EPyMARL framework by University of Edinburgh
 - Unity ML-Agents by Unity Technologies
 - QMIX algorithm by Rashid et al. (2018)
+
+## AI Assistance Disclosure
+
+This project utilized Large Language Model (LLM) assistance for code explanation, overall clarification of complex MARL concepts, and help with our lousy writing skills. All code implementation, experiments, and research decisions were made by the team members.

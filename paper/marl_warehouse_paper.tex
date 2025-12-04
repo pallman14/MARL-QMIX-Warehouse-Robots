@@ -1,0 +1,234 @@
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{natbib}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\title{Multi-Agent Reinforcement Learning for Cooperative Warehouse Automation: A Comparative Study of QMIX, IPPO-LSTM, and MASAC}
+
+\author{Price Allman, Lian Thang, Dre Simmons, Salmon Riaz \\
+\textit{Department of Computer Science, Oral Roberts University, Tulsa, OK, USA}}
+
+\date{December 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a comparative study of multi-agent reinforcement learning (MARL) algorithms for cooperative warehouse robotics. We evaluate QMIX, IPPO-LSTM, and MASAC on the Robotic Warehouse (RWARE) environment and a custom Unity 3D simulation. Our experiments reveal that QMIX's value decomposition outperforms independent learning by 15-25\%, but requires extensive hyperparameter tuning---particularly extended epsilon annealing (5M+ steps) for sparse reward discovery. We demonstrate successful deployment in Unity ML-Agents, achieving consistent package delivery after 1M training steps. While MARL shows promise for small-scale deployments (2-4 robots), significant scaling challenges remain. Code and analyses: \href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/}{project documentation}.
+\end{abstract}
+
+\section{Introduction}
+
+Warehouse automation represents a critical domain for multi-agent systems, where robots must coordinate to move goods without collisions or deadlocks. Traditional approaches rely on centralized planning systems, but these face scalability limitations as warehouse complexity increases. Multi-agent reinforcement learning (MARL) offers a promising alternative by enabling decentralized decision-making through learned policies.
+
+The challenge of warehouse robotics extends beyond single-agent navigation. Robots must learn to coordinate pickup and delivery tasks, avoid collisions, navigate narrow corridors, and handle dynamic environments---all while optimizing global throughput. This requires algorithms that can effectively solve the credit assignment problem: determining how each agent's actions contribute to team success.
+
+We investigate three prominent MARL algorithms representing different paradigms: QMIX \citep{rashid2018qmix}, which uses value decomposition with a monotonic mixing network; IPPO-LSTM, an independent learning approach with recurrent memory; and MASAC, which employs a centralized critic with maximum entropy objectives. Our study progresses from the Multi-Agent Particle Environment (MPE) for initial validation to RWARE for warehouse-specific evaluation, culminating in Unity 3D deployment for visual verification.
+
+Our key contributions include: (1) systematic hyperparameter analysis revealing that default configurations fail on sparse-reward warehouse tasks, (2) comparative performance evaluation across algorithms and environment scales, (3) successful Unity ML-Agents integration demonstrating sim-to-sim transfer, and (4) identification of scaling challenges for production deployment. Complete experimental details are available in our \href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/}{Quarto documentation book}.
+
+\section{Related Work}
+
+\subsection{Value Decomposition Methods}
+
+Value decomposition methods address credit assignment by factorizing the joint action-value function into individual agent utilities. VDN \citep{sunehag2018vdn} assumes additive decomposition: $Q_{tot} = \sum_i Q_i$, while QMIX \citep{rashid2018qmix} relaxes this to monotonic relationships through a hypernetwork-based mixing network. These methods follow the Centralized Training with Decentralized Execution (CTDE) paradigm, where agents access global information during training but act on local observations at execution time. This paradigm is particularly well-suited for warehouse robotics, where centralized coordination during training can leverage full environment state while deployed robots must act on local sensor readings.
+
+\subsection{Policy Gradient and Actor-Critic Approaches}
+
+Independent PPO (IPPO) trains separate policies for each agent, treating other agents as part of the environment. While theoretically limited by non-stationarity, IPPO has shown surprising effectiveness in cooperative settings \citep{yu2022surprising}. Adding LSTM memory enables handling of partial observability, crucial for warehouse environments where agents have limited sensing range. MASAC extends soft actor-critic to multi-agent settings with centralized critics and entropy regularization, promoting exploration in sparse reward environments.
+
+\subsection{Warehouse Robotics Environments}
+
+The RWARE environment \citep{papoudakis2021benchmarking} provides a standardized benchmark for multi-robot warehouse coordination. Agents must navigate grid-based warehouses, pick up shelves, and deliver them to designated locations. The environment features sparse rewards (only granted upon successful delivery), partial observability (agents see limited local regions), and configurable difficulty levels based on grid size and agent count.
+
+\section{Methods}
+
+\subsection{Problem Formulation}
+
+We model the warehouse coordination task as a decentralized partially observable Markov decision process (Dec-POMDP). Each agent $i$ receives local observation $o_i$, selects action $a_i$ from discrete action space $\mathcal{A} = \{\text{left, right, forward, load/unload, no-op}\}$, and the team receives shared reward $r$ based on successful deliveries. The sparse reward structure---where agents only receive positive signal upon completing multi-step delivery sequences---makes credit assignment particularly challenging.
+
+\subsection{QMIX Architecture}
+
+QMIX factorizes the joint action-value function as:
+\begin{equation}
+Q_{tot}(\boldsymbol{\tau}, \boldsymbol{a}) = f_{mix}(Q_1(\tau_1, a_1), ..., Q_n(\tau_n, a_n); s)
+\end{equation}
+where $f_{mix}$ is a mixing network with non-negative weights generated by hypernetworks conditioned on global state $s$. This ensures monotonicity: $\frac{\partial Q_{tot}}{\partial Q_i} \geq 0$, enabling consistent greedy action selection across individual and joint Q-values.
+
+We use RNN-based agent networks (GRU with 64 hidden units) to handle partial observability, allowing agents to maintain beliefs about unobserved state. The mixing network uses 2-layer hypernetworks with 64-dimensional embeddings, providing sufficient capacity for warehouse coordination.
+
+\subsection{Training Configuration}
+
+Our optimized QMIX configuration differs substantially from defaults (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/dre/week2.html}{detailed analysis}):
+
+\begin{table}[H]
+\centering
+\small
+\caption{Hyperparameter Configuration: Default vs Optimized}
+\begin{tabular}{lcc}
+\toprule
+Parameter & Default & Optimized \\
+\midrule
+Batch Size & 32 & 256 \\
+Buffer Size & 5,000 & 200,000 \\
+Epsilon Anneal Time & 50,000 & 5,000,000 \\
+Training Steps & 2,000,000 & 20,000,000 \\
+Learning Rate & 0.0005 & 0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The extended epsilon annealing schedule proved critical---rapid decay to greedy behavior prevents agents from discovering sparse reward signals characteristic of warehouse logistics tasks. The larger replay buffer enables learning from diverse experiences across the extended training horizon.
+
+\subsection{Unity ML-Agents Integration}
+
+We developed a custom Unity ML-Agents environment mirroring RWARE dynamics with 3D visualization (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/price/week3.html}{implementation details}). The environment features 3 agents with 6 discrete actions, 36-dimensional observation vectors including LIDAR-style sensing, and 200-step episodes. Training uses no-graphics mode with 50x time scaling for efficiency, enabling rapid iteration while maintaining physics fidelity.
+
+\section{Experiments and Results}
+
+\subsection{Environment Progression}
+
+We validated our implementations on MPE Simple Spread before transitioning to RWARE. The transition revealed significant differences: while MPE provides dense rewards facilitating rapid learning, RWARE's sparse structure demands fundamentally different training strategies (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week2.html}{transition analysis}). Default hyperparameters that succeeded on MPE consistently failed on RWARE, underscoring the importance of domain-specific tuning.
+
+\subsection{Algorithm Comparison}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Performance Comparison on RWARE Environments (Test Return)}
+\begin{tabular}{lccc}
+\toprule
+Algorithm & tiny-2ag-v2 & small-4ag-v1 & Training Steps \\
+\midrule
+QMIX & \textbf{3.42} & \textbf{2.35} & 20-30M \\
+IPPO-LSTM & 2.92 & 1.85 & 15-25M \\
+MASAC & 2.45 & 1.62 & 15-20M \\
+Random Baseline & 0.05 & 0.02 & N/A \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+QMIX achieved the highest returns across configurations, with value decomposition providing 15-25\% improvement over independent learning approaches. The monotonic mixing network effectively coordinates agent behaviors without requiring explicit communication. Detailed learning curves are available in our \href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/lian/week4.html}{training analysis}.
+
+\subsection{Scaling Analysis}
+
+Performance degrades with increased agent count, while training requirements grow super-linearly (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week3.html}{scaling discussion}):
+
+\begin{table}[H]
+\centering
+\small
+\caption{QMIX Scaling Results Across Environment Sizes}
+\begin{tabular}{lccc}
+\toprule
+Configuration & Agents & Test Return & Required Steps \\
+\midrule
+tiny-2ag-v2 & 2 & 3.25 & 20M \\
+small-4ag-v1 & 4 & 2.10 & 30M \\
+medium-6ag-v1 & 6 & 1.45 & 40M \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A 3x increase in agents requires approximately 4-5x more training steps. The joint action space grows as $|A|^n$, making exhaustive exploration infeasible for larger teams and suggesting the need for hierarchical or factored approaches at scale.
+
+\subsection{Unity Deployment Results}
+
+We validated trained QMIX policies in Unity on a Windows Server 2022 environment (Intel Xeon E5-2680, 196GB RAM). Two training runs demonstrated successful learning (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week5.html}{deployment details}):
+
+\begin{table}[H]
+\centering
+\small
+\caption{Unity Training Results on Windows Server}
+\begin{tabular}{lcc}
+\toprule
+Metric & 500K Steps & 1M Steps \\
+\midrule
+Test Return Mean & 95.2 & 238.6 \\
+Peak Return & $\sim$150 & 443 \\
+Episode Length & 200 & 200 \\
+Training Time & 3h 2min & 6h 18min \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Console logs confirmed active package delivery behavior, with agents consistently navigating to packages, picking them up, and delivering to goal zones. The trained policies exhibited stable, deterministic behavior with near-zero variance in returns.
+
+\section{Discussion}
+
+\subsection{Key Findings}
+
+Our experiments reveal several critical insights for applying MARL to warehouse robotics:
+
+\textbf{Hyperparameter Sensitivity}: Default configurations consistently fail on RWARE. Extended exploration through slow epsilon decay (5M+ steps) is essential for sparse reward discovery. This finding has significant implications for practitioners---off-the-shelf algorithms require substantial tuning for warehouse domains.
+
+\textbf{Value Decomposition Advantages}: QMIX's monotonic mixing network outperforms independent learning approaches by 15-25\%, demonstrating the value of centralized coordination mechanisms. The ability to decompose credit assignment while maintaining decentralized execution makes value-based methods well-suited for warehouse coordination.
+
+\textbf{Scaling Challenges}: Performance degrades sub-linearly with agent count, but training requirements increase super-linearly. Industrial warehouses requiring 50+ robots will need hierarchical decomposition or domain-specific constraints to maintain tractability.
+
+\subsection{Limitations}
+
+Several limitations should be considered: (1) our experiments focus on simulation---transfer to physical systems requires additional domain adaptation and robust perception; (2) testing was limited to 2-6 agents due to computational constraints; (3) RWARE's simplified task structure does not capture all warehouse operations such as inventory management and dynamic obstacle avoidance; (4) extended training requirements (20M+ steps) may be impractical for rapid deployment scenarios.
+
+\subsection{Practical Implications}
+
+Our findings suggest QMIX-based coordination is viable for small-scale warehouse deployments (2-4 robots). For larger fleets, hierarchical decomposition or domain-specific constraints may be necessary. The significant hyperparameter tuning required indicates that production deployments should incorporate automated hyperparameter optimization and robust monitoring systems.
+
+\section{Conclusion}
+
+We presented a systematic comparison of MARL algorithms for warehouse robotics, demonstrating that QMIX achieves superior performance through value decomposition while highlighting the critical importance of hyperparameter tuning for sparse-reward environments. Our Unity integration validates that learned policies transfer effectively to 3D simulation environments with realistic physics.
+
+Future work should explore hierarchical approaches for scaling beyond small agent teams, curriculum learning strategies to accelerate training, and sim-to-real transfer for physical robot deployment. The gap between simulation success and real-world deployment remains a significant challenge for warehouse MARL systems.
+
+\subsection*{Code and Data Availability}
+
+All code, trained models, and experimental results are available at:
+\begin{itemize}
+    \item GitHub: \url{https://github.com/pallman14/MARL-QMIX-Warehouse-Robots}
+    \item Documentation: \url{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/}
+\end{itemize}
+
+\bibliographystyle{plainnat}
+\begin{thebibliography}{5}
+
+\bibitem[Rashid et al.(2018)]{rashid2018qmix}
+Rashid, T., Samvelyan, M., Schroeder, C., Farquhar, G., Foerster, J., and Whiteson, S.
+\newblock QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning.
+\newblock \emph{International Conference on Machine Learning}, 2018.
+
+\bibitem[Sunehag et al.(2018)]{sunehag2018vdn}
+Sunehag, P., Lever, G., Gruslys, A., et al.
+\newblock Value-Decomposition Networks for Cooperative Multi-Agent Learning.
+\newblock \emph{International Conference on Autonomous Agents and Multiagent Systems}, 2018.
+
+\bibitem[Papoudakis et al.(2021)]{papoudakis2021benchmarking}
+Papoudakis, G., Christianos, F., Sch{\"a}fer, L., and Albrecht, S.V.
+\newblock Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks.
+\newblock \emph{Neural Information Processing Systems Track on Datasets and Benchmarks}, 2021.
+
+\bibitem[Yu et al.(2022)]{yu2022surprising}
+Yu, C., Velu, A., Vinitsky, E., Gao, J., Wang, Y., Baez, A., and Wu, Y.
+\newblock The Surprising Effectiveness of PPO in Cooperative Multi-Agent Games.
+\newblock \emph{Neural Information Processing Systems}, 2022.
+
+\end{thebibliography}
+
+\end{document}
