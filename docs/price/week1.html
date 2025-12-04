@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Price Allman">
+<meta name="dcterms.date" content="2025-10-23">
+
+<title>1&nbsp; Week 1 Deliverable: MPE Simple Spread Training Report – MARL Warehouse Robots - Team Deliverables</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lian/week1.html" rel="next">
+<link href="../index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week1.html">Week 1: MPE Environment Training</a></li><li class="breadcrumb-item"><a href="../price/week1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">MARL Warehouse Robots - Team Deliverables</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MARL Warehouse Robots - Team Project Deliverables</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 1: MPE Environment Training</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lian Thang - Week 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 1</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 2: RWARE Environment Training</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Price Allman - Week 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lian Thang - Week 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 3: Unity Integration &amp; Hard RWARE</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Price Allman - Week 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lian Thang - Week 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 3</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 4: Extended Training &amp; Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Price Allman - Week 4</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lian Thang - Week 4</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 4</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 4</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 5: Final Analysis &amp; Deliverables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Price Allman - Week 5</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lian Thang - Week 5</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 5</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 5</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">2</span> Executive Summary</a></li>
+  <li><a href="#implementation-technique" id="toc-implementation-technique" class="nav-link" data-scroll-target="#implementation-technique"><span class="header-section-number">3</span> 1. Implementation Technique</a>
+  <ul class="collapse">
+  <li><a href="#algorithm-choice-ippo-lstm" id="toc-algorithm-choice-ippo-lstm" class="nav-link" data-scroll-target="#algorithm-choice-ippo-lstm"><span class="header-section-number">3.1</span> 1.1 Algorithm Choice: IPPO-LSTM</a></li>
+  <li><a href="#architecture-details" id="toc-architecture-details" class="nav-link" data-scroll-target="#architecture-details"><span class="header-section-number">3.2</span> 1.2 Architecture Details</a>
+  <ul class="collapse">
+  <li><a href="#neural-network-structure" id="toc-neural-network-structure" class="nav-link" data-scroll-target="#neural-network-structure"><span class="header-section-number">3.2.1</span> Neural Network Structure</a></li>
+  <li><a href="#why-lstm-understanding-memory-in-multi-agent-rl" id="toc-why-lstm-understanding-memory-in-multi-agent-rl" class="nav-link" data-scroll-target="#why-lstm-understanding-memory-in-multi-agent-rl"><span class="header-section-number">3.2.2</span> Why LSTM? Understanding Memory in Multi-Agent RL</a></li>
+  <li><a href="#observation-space" id="toc-observation-space" class="nav-link" data-scroll-target="#observation-space"><span class="header-section-number">3.2.3</span> Observation Space</a></li>
+  <li><a href="#action-space" id="toc-action-space" class="nav-link" data-scroll-target="#action-space"><span class="header-section-number">3.2.4</span> Action Space</a></li>
+  </ul></li>
+  <li><a href="#key-hyperparameters" id="toc-key-hyperparameters" class="nav-link" data-scroll-target="#key-hyperparameters"><span class="header-section-number">3.3</span> 1.3 Key Hyperparameters</a></li>
+  <li><a href="#techniques-used" id="toc-techniques-used" class="nav-link" data-scroll-target="#techniques-used"><span class="header-section-number">3.4</span> 1.4 Techniques Used</a>
+  <ul class="collapse">
+  <li><a href="#behavioral-cloning-warm-start" id="toc-behavioral-cloning-warm-start" class="nav-link" data-scroll-target="#behavioral-cloning-warm-start"><span class="header-section-number">3.4.1</span> 1. Behavioral Cloning Warm-Start</a></li>
+  <li><a href="#exponential-moving-average-ema-evaluation-networks" id="toc-exponential-moving-average-ema-evaluation-networks" class="nav-link" data-scroll-target="#exponential-moving-average-ema-evaluation-networks"><span class="header-section-number">3.4.2</span> 2. Exponential Moving Average (EMA) Evaluation Networks</a></li>
+  <li><a href="#entropy-floor-enforcement" id="toc-entropy-floor-enforcement" class="nav-link" data-scroll-target="#entropy-floor-enforcement"><span class="header-section-number">3.4.3</span> 3. Entropy Floor Enforcement</a></li>
+  <li><a href="#deterministic-noise-injection" id="toc-deterministic-noise-injection" class="nav-link" data-scroll-target="#deterministic-noise-injection"><span class="header-section-number">3.4.4</span> 4. Deterministic Noise Injection</a></li>
+  <li><a href="#kl-regularization" id="toc-kl-regularization" class="nav-link" data-scroll-target="#kl-regularization"><span class="header-section-number">3.4.5</span> 5. KL Regularization</a></li>
+  </ul></li>
+  <li><a href="#bugs-encountered-and-fixed" id="toc-bugs-encountered-and-fixed" class="nav-link" data-scroll-target="#bugs-encountered-and-fixed"><span class="header-section-number">3.5</span> 1.5 Bugs Encountered and Fixed</a>
+  <ul class="collapse">
+  <li><a href="#bug-1-entropy-collapse" id="toc-bug-1-entropy-collapse" class="nav-link" data-scroll-target="#bug-1-entropy-collapse"><span class="header-section-number">3.5.1</span> Bug #1: Entropy Collapse</a></li>
+  <li><a href="#bug-2-bootstrap-value-calculation" id="toc-bug-2-bootstrap-value-calculation" class="nav-link" data-scroll-target="#bug-2-bootstrap-value-calculation"><span class="header-section-number">3.5.2</span> Bug #2: Bootstrap Value Calculation</a></li>
+  <li><a href="#bug-3-observation-normalization-distribution-shift" id="toc-bug-3-observation-normalization-distribution-shift" class="nav-link" data-scroll-target="#bug-3-observation-normalization-distribution-shift"><span class="header-section-number">3.5.3</span> Bug #3: Observation Normalization Distribution Shift</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#training-statistics" id="toc-training-statistics" class="nav-link" data-scroll-target="#training-statistics"><span class="header-section-number">4</span> 2. Training Statistics</a>
+  <ul class="collapse">
+  <li><a href="#training-configuration" id="toc-training-configuration" class="nav-link" data-scroll-target="#training-configuration"><span class="header-section-number">4.1</span> 2.1 Training Configuration</a></li>
+  <li><a href="#training-duration" id="toc-training-duration" class="nav-link" data-scroll-target="#training-duration"><span class="header-section-number">4.2</span> 2.2 Training Duration</a></li>
+  <li><a href="#training-performance-metrics" id="toc-training-performance-metrics" class="nav-link" data-scroll-target="#training-performance-metrics"><span class="header-section-number">4.3</span> 2.3 Training Performance Metrics</a></li>
+  <li><a href="#training-curves" id="toc-training-curves" class="nav-link" data-scroll-target="#training-curves"><span class="header-section-number">4.4</span> 2.4 Training Curves</a></li>
+  </ul></li>
+  <li><a href="#evaluation-statistics" id="toc-evaluation-statistics" class="nav-link" data-scroll-target="#evaluation-statistics"><span class="header-section-number">5</span> 3. Evaluation Statistics</a>
+  <ul class="collapse">
+  <li><a href="#evaluation-protocol" id="toc-evaluation-protocol" class="nav-link" data-scroll-target="#evaluation-protocol"><span class="header-section-number">5.1</span> 3.1 Evaluation Protocol</a></li>
+  <li><a href="#final-deterministic-performance" id="toc-final-deterministic-performance" class="nav-link" data-scroll-target="#final-deterministic-performance"><span class="header-section-number">5.2</span> 3.2 Final Deterministic Performance</a>
+  <ul class="collapse">
+  <li><a href="#comparison-to-baseline" id="toc-comparison-to-baseline" class="nav-link" data-scroll-target="#comparison-to-baseline"><span class="header-section-number">5.2.1</span> Comparison to Baseline</a></li>
+  </ul></li>
+  <li><a href="#temperature-sensitivity-analysis" id="toc-temperature-sensitivity-analysis" class="nav-link" data-scroll-target="#temperature-sensitivity-analysis"><span class="header-section-number">5.3</span> 3.3 Temperature Sensitivity Analysis</a></li>
+  <li><a href="#performance-consistency" id="toc-performance-consistency" class="nav-link" data-scroll-target="#performance-consistency"><span class="header-section-number">5.4</span> 3.4 Performance Consistency</a></li>
+  <li><a href="#learning-progression" id="toc-learning-progression" class="nav-link" data-scroll-target="#learning-progression"><span class="header-section-number">5.5</span> 3.5 Learning Progression</a></li>
+  </ul></li>
+  <li><a href="#visualization-analysis" id="toc-visualization-analysis" class="nav-link" data-scroll-target="#visualization-analysis"><span class="header-section-number">6</span> 4. Visualization &amp; Analysis</a>
+  <ul class="collapse">
+  <li><a href="#training-reward-progression" id="toc-training-reward-progression" class="nav-link" data-scroll-target="#training-reward-progression"><span class="header-section-number">6.1</span> 4.1 Training Reward Progression</a></li>
+  <li><a href="#evaluation-performance-across-temperatures" id="toc-evaluation-performance-across-temperatures" class="nav-link" data-scroll-target="#evaluation-performance-across-temperatures"><span class="header-section-number">6.2</span> 4.2 Evaluation Performance Across Temperatures</a></li>
+  <li><a href="#best-greedy-performance-over-time" id="toc-best-greedy-performance-over-time" class="nav-link" data-scroll-target="#best-greedy-performance-over-time"><span class="header-section-number">6.3</span> 4.3 Best Greedy Performance Over Time</a></li>
+  <li><a href="#hyperparameter-scheduling" id="toc-hyperparameter-scheduling" class="nav-link" data-scroll-target="#hyperparameter-scheduling"><span class="header-section-number">6.4</span> 4.4 Hyperparameter Scheduling</a></li>
+  <li><a href="#what-the-agents-learned" id="toc-what-the-agents-learned" class="nav-link" data-scroll-target="#what-the-agents-learned"><span class="header-section-number">6.5</span> 4.5 What the Agents Learned</a></li>
+  <li><a href="#strengths-of-the-approach" id="toc-strengths-of-the-approach" class="nav-link" data-scroll-target="#strengths-of-the-approach"><span class="header-section-number">6.6</span> 4.6 Strengths of the Approach</a></li>
+  <li><a href="#limitations-areas-for-improvement" id="toc-limitations-areas-for-improvement" class="nav-link" data-scroll-target="#limitations-areas-for-improvement"><span class="header-section-number">6.7</span> 4.7 Limitations &amp; Areas for Improvement</a></li>
+  </ul></li>
+  <li><a href="#comparison-to-team-instructions-benchmarks" id="toc-comparison-to-team-instructions-benchmarks" class="nav-link" data-scroll-target="#comparison-to-team-instructions-benchmarks"><span class="header-section-number">7</span> 5. Comparison to Team Instructions Benchmarks</a>
+  <ul class="collapse">
+  <li><a href="#success-criteria-from-team-instructions" id="toc-success-criteria-from-team-instructions" class="nav-link" data-scroll-target="#success-criteria-from-team-instructions"><span class="header-section-number">7.1</span> 5.1 Success Criteria (From Team Instructions)</a></li>
+  <li><a href="#comparison-to-random-baseline" id="toc-comparison-to-random-baseline" class="nav-link" data-scroll-target="#comparison-to-random-baseline"><span class="header-section-number">7.2</span> 5.2 Comparison to Random Baseline</a></li>
+  </ul></li>
+  <li><a href="#conclusions-next-steps" id="toc-conclusions-next-steps" class="nav-link" data-scroll-target="#conclusions-next-steps"><span class="header-section-number">8</span> 6. Conclusions &amp; Next Steps</a>
+  <ul class="collapse">
+  <li><a href="#summary-of-achievements" id="toc-summary-of-achievements" class="nav-link" data-scroll-target="#summary-of-achievements"><span class="header-section-number">8.1</span> 6.1 Summary of Achievements</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">8.2</span> 6.2 Key Takeaways</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">8.3</span> 6.3 Next Steps</a></li>
+  </ul></li>
+  <li><a href="#references-resources" id="toc-references-resources" class="nav-link" data-scroll-target="#references-resources"><span class="header-section-number">9</span> 7. References &amp; Resources</a></li>
+  <li><a href="#appendix-detailed-statistics" id="toc-appendix-detailed-statistics" class="nav-link" data-scroll-target="#appendix-detailed-statistics"><span class="header-section-number">10</span> Appendix: Detailed Statistics</a>
+  <ul class="collapse">
+  <li><a href="#a.1-full-evaluation-results-last-20-checkpoints" id="toc-a.1-full-evaluation-results-last-20-checkpoints" class="nav-link" data-scroll-target="#a.1-full-evaluation-results-last-20-checkpoints"><span class="header-section-number">10.1</span> A.1 Full Evaluation Results (Last 20 Checkpoints)</a></li>
+  <li><a href="#a.2-training-hyperparameters-complete" id="toc-a.2-training-hyperparameters-complete" class="nav-link" data-scroll-target="#a.2-training-hyperparameters-complete"><span class="header-section-number">10.2</span> A.2 Training Hyperparameters (Complete)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week1.html">Week 1: MPE Environment Training</a></li><li class="breadcrumb-item"><a href="../price/week1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 Deliverable: MPE Simple Spread Training Report</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Price Allman </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 23, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="executive-summary" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Executive Summary</h1>
+<p>This report documents the successful training of a multi-agent reinforcement learning system on the <strong>MPE Simple Spread</strong> environment. Our implementation uses <strong>IPPO-LSTM</strong> (Independent Proximal Policy Optimization with Long Short-Term Memory networks) enhanced with behavioral cloning warm-start.</p>
+<hr>
+</section>
+<section id="implementation-technique" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 1. Implementation Technique</h1>
+<section id="algorithm-choice-ippo-lstm" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="algorithm-choice-ippo-lstm"><span class="header-section-number">3.1</span> 1.1 Algorithm Choice: IPPO-LSTM</h2>
+<p><strong>What is IPPO?</strong></p>
+<p>IPPO stands for <strong>Independent Proximal Policy Optimization</strong>. Think of it as training each robot with its own “brain” (neural network), but having them all learn from a shared teacher that sees the big picture.</p>
+<p><strong>Key Components:</strong></p>
+<ol type="1">
+<li><strong>Independent Actors</strong> - Each of the 3 agents has its own decision-making network</li>
+<li><strong>Centralized Critic</strong> - A single “evaluator” that sees all agents’ states and judges how well the team is doing</li>
+<li><strong>LSTM Memory</strong> - Each agent has short-term memory to remember recent observations (crucial for coordination)</li>
+</ol>
+<p><strong>Why IPPO for Multi-Agent Tasks?</strong></p>
+<ul>
+<li>Decentralized execution (each robot acts independently in real-world)</li>
+<li>Centralized training (agents learn from team performance)</li>
+<li>Proven to work well for cooperative tasks</li>
+<li>Handles partial observability (agents can’t see everything)</li>
+</ul>
+</section>
+<section id="architecture-details" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="architecture-details"><span class="header-section-number">3.2</span> 1.2 Architecture Details</h2>
+<section id="neural-network-structure" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="neural-network-structure"><span class="header-section-number">3.2.1</span> Neural Network Structure</h3>
+<p><strong>Actor Network (Decision Maker - per agent):</strong></p>
+<pre><code>Input: 18-dimensional observation
+  ↓
+2-Layer MLP (128 hidden units each)
+  ↓
+LSTM Layer (128 hidden units) ← Memory component
+  ↓
+Policy Head (5 actions: NOOP, UP, DOWN, LEFT, RIGHT)
+  ↓
+Output: Action probabilities</code></pre>
+<p><strong>Critic Network (Performance Evaluator - shared):</strong></p>
+<pre><code>Input: 54-dimensional global state (3 agents × 18 dims)
+  ↓
+2-Layer MLP (256 hidden units each)
+  ↓
+Output: Value estimate (how good is this situation?)</code></pre>
+<p><strong>What does this mean in plain English?</strong></p>
+<ul>
+<li>Each agent processes what it sees through layers of interconnected “neurons”</li>
+<li>The LSTM layer acts like short-term memory, remembering the last few seconds</li>
+<li>The critic watches all agents and estimates: “Are we heading toward success?”</li>
+<li>During training, agents adjust their behavior based on the critic’s feedback</li>
+</ul>
+</section>
+<section id="why-lstm-understanding-memory-in-multi-agent-rl" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="why-lstm-understanding-memory-in-multi-agent-rl"><span class="header-section-number">3.2.2</span> Why LSTM? Understanding Memory in Multi-Agent RL</h3>
+<p><strong>The Partial Observability Problem:</strong></p>
+<p>In multi-agent coordination, each agent only sees a limited view of the world: - Can’t see what other agents are planning - Can’t observe distant teammates - Communication is limited (only 4 bits in MPE)</p>
+<p><strong>Example Scenario:</strong></p>
+<p>Imagine Agent 1 sees Agent 2 moving toward Landmark A at timestep 1. At timestep 2, Agent 2 is no longer visible. Without memory, Agent 1 forgets that Agent 2 was heading to Landmark A and might also go there, causing inefficient overlap.</p>
+<p><strong>How LSTM Solves This:</strong></p>
+<p>LSTM (Long Short-Term Memory) is a type of recurrent neural network that maintains a “memory tape” of recent observations:</p>
+<pre><code>Timestep 1: Saw Agent 2 heading to Landmark A → Store in memory
+Timestep 2: Agent 2 not visible → Memory still contains "Agent 2 → Landmark A"
+Timestep 3: Decision time → Use memory to avoid Landmark A, go to Landmark B instead</code></pre>
+<p><strong>Technical Details:</strong></p>
+<ul>
+<li><strong>Hidden State:</strong> 128-dimensional vector that persists across timesteps</li>
+<li><strong>Cell State:</strong> Internal “long-term memory” that stores important patterns</li>
+<li><strong>Gates:</strong> Three learnable filters (input, forget, output) that decide:
+<ul>
+<li>What to remember from new observation (input gate)</li>
+<li>What to forget from old memory (forget gate)</li>
+<li>What to output for decision-making (output gate)</li>
+</ul></li>
+</ul>
+<p><strong>Why 128 Hidden Units?</strong></p>
+<ul>
+<li>Too small (e.g., 32): Can’t remember enough patterns</li>
+<li>Too large (e.g., 512): Slow training, overfitting risk</li>
+<li>128: Sweet spot for 3-agent coordination tasks (validated empirically)</li>
+</ul>
+<p><strong>Impact on Performance:</strong></p>
+<p>Without LSTM, agents would treat each timestep independently, leading to: - ❌ Repeated failed attempts (no learning from recent mistakes) - ❌ Poor coordination (forgetting teammate intentions) - ❌ Inefficient coverage (multiple agents converging on same landmark)</p>
+<p>With LSTM: - ✅ Remembers last 5-10 timesteps of interaction - ✅ Learns temporal patterns (e.g., “if Agent 2 moved left, it’s going to Landmark A”) - ✅ Enables implicit communication through observed behavior</p>
+</section>
+<section id="observation-space" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="observation-space"><span class="header-section-number">3.2.3</span> Observation Space</h3>
+<p>Each agent observes <strong>18 values</strong> representing:</p>
+<ul>
+<li><strong>Self position</strong> (2 values: x, y coordinates)</li>
+<li><strong>Self velocity</strong> (2 values: how fast moving in x, y)</li>
+<li><strong>Relative positions to 3 landmarks</strong> (6 values: 3 landmarks × 2 coords)</li>
+<li><strong>Relative positions to 2 other agents</strong> (4 values: 2 agents × 2 coords)</li>
+<li><strong>Communication bits</strong> (4 values: messages from other agents)</li>
+</ul>
+</section>
+<section id="action-space" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="action-space"><span class="header-section-number">3.2.4</span> Action Space</h3>
+<p>Each agent can choose from <strong>5 discrete actions:</strong></p>
+<ol type="1">
+<li><strong>NOOP</strong> - Do nothing (stay still)</li>
+<li><strong>UP</strong> - Move upward</li>
+<li><strong>DOWN</strong> - Move downward</li>
+<li><strong>LEFT</strong> - Move left</li>
+<li><strong>RIGHT</strong> - Move right</li>
+</ol>
+</section>
+</section>
+<section id="key-hyperparameters" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="key-hyperparameters"><span class="header-section-number">3.3</span> 1.3 Key Hyperparameters</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 21%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Learning Rate</strong></td>
+<td>0.0003</td>
+<td>How fast the network updates (0.0003 = cautious learning)</td>
+</tr>
+<tr class="even">
+<td><strong>Discount Factor (γ)</strong></td>
+<td>0.99</td>
+<td>How much agents value future rewards (0.99 = very forward-thinking)</td>
+</tr>
+<tr class="odd">
+<td><strong>GAE Lambda (λ)</strong></td>
+<td>0.95</td>
+<td>Smoothness of advantage calculation (0.95 = balanced)</td>
+</tr>
+<tr class="even">
+<td><strong>Clip Range</strong></td>
+<td>0.2 → 0.15</td>
+<td>Prevents drastic policy changes (decreases over time for stability)</td>
+</tr>
+<tr class="odd">
+<td><strong>Entropy Coefficient</strong></td>
+<td>0.01 → 0.001</td>
+<td>Encourages exploration early, exploitation later</td>
+</tr>
+<tr class="even">
+<td><strong>Training Epochs</strong></td>
+<td>2</td>
+<td>Number of times to reuse each batch of data</td>
+</tr>
+<tr class="odd">
+<td><strong>Batch Size</strong></td>
+<td>~4000 steps</td>
+<td>Amount of experience collected before each update</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why these values?</strong></p>
+<p>These are <strong>industry-standard hyperparameters</strong> proven to work well for multi-agent PPO. We started with values from research papers and validated they worked on our task.</p>
+</section>
+<section id="techniques-used" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="techniques-used"><span class="header-section-number">3.4</span> 1.4 Techniques Used</h2>
+<section id="behavioral-cloning-warm-start" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="behavioral-cloning-warm-start"><span class="header-section-number">3.4.1</span> 1. Behavioral Cloning Warm-Start</h3>
+<p><strong>Problem:</strong> Starting from random weights, agents take millions of steps to learn basic behaviors.</p>
+<p><strong>Solution:</strong> Pre-train the networks on expert demonstrations before RL training.</p>
+<p><strong>Process:</strong></p>
+<ol type="1">
+<li><p>Collected 1,000 expert episodes using a hand-crafted heuristic policy</p></li>
+<li><p>Trained actor networks to imitate expert actions (supervised learning)</p></li>
+<li><p>Achieved 99.98% action accuracy on test set</p></li>
+<li><p>Used these pre-trained weights as starting point for RL</p></li>
+</ol>
+<p><strong>Benefit:</strong> Faster convergence (500K steps vs 2-4M steps for pure RL)</p>
+</section>
+<section id="exponential-moving-average-ema-evaluation-networks" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="exponential-moving-average-ema-evaluation-networks"><span class="header-section-number">3.4.2</span> 2. Exponential Moving Average (EMA) Evaluation Networks</h3>
+<p><strong>Problem:</strong> During training, the policy constantly changes, making evaluation noisy.</p>
+<p><strong>Solution:</strong> Maintain separate “stable” copies of the networks for evaluation.</p>
+<ul>
+<li>Training networks update every batch (fast-moving)</li>
+<li>Evaluation networks update slowly via weighted average: <code>EMA = 0.995 × EMA + 0.005 × Current</code></li>
+<li>Use EMA networks for deterministic evaluation (more stable results)</li>
+</ul>
+</section>
+<section id="entropy-floor-enforcement" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="entropy-floor-enforcement"><span class="header-section-number">3.4.3</span> 3. Entropy Floor Enforcement</h3>
+<p><strong>Problem:</strong> Entropy (exploration bonus) can decay to zero, causing the policy to get “stuck”.</p>
+<p><strong>Solution:</strong> Enforce minimum entropy of 0.001 even after decay schedule completes.</p>
+<p>This ensures agents always maintain at least 0.1% randomness in their decisions.</p>
+</section>
+<section id="deterministic-noise-injection" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="deterministic-noise-injection"><span class="header-section-number">3.4.4</span> 4. Deterministic Noise Injection</h3>
+<p><strong>Problem:</strong> Policies trained with stochastic sampling often perform worse when evaluated deterministically.</p>
+<p><strong>Solution:</strong> During 20% of training episodes, use greedy (deterministic) action selection instead of sampling.</p>
+<p>This helps the policy learn robust strategies that work well in both settings.</p>
+</section>
+<section id="kl-regularization" class="level3" data-number="3.4.5">
+<h3 data-number="3.4.5" class="anchored" data-anchor-id="kl-regularization"><span class="header-section-number">3.4.5</span> 5. KL Regularization</h3>
+<p><strong>Problem:</strong> Policy can change too drastically between updates, causing instability.</p>
+<p><strong>Solution:</strong> Add penalty for diverging too far from previous policy:</p>
+<pre><code>KL_penalty = 0.01 × KL_divergence(new_policy || old_policy)</code></pre>
+<p>This keeps learning smooth and prevents catastrophic forgetting.</p>
+</section>
+</section>
+<section id="bugs-encountered-and-fixed" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="bugs-encountered-and-fixed"><span class="header-section-number">3.5</span> 1.5 Bugs Encountered and Fixed</h2>
+<section id="bug-1-entropy-collapse" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="bug-1-entropy-collapse"><span class="header-section-number">3.5.1</span> Bug #1: Entropy Collapse</h3>
+<p><strong>Symptom:</strong> After 200K steps, agents stopped exploring and got stuck using only 1-2 actions.</p>
+<p><strong>Root Cause:</strong> Entropy decay schedule exponentially decreased to effectively zero, but floor wasn’t enforced in the loss calculation.</p>
+<p><strong>Fix:</strong> Added explicit clamp in the entropy bonus:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>entropy_bonus <span class="op">=</span> <span class="bu">max</span>(current_entropy_coef, entropy_floor) <span class="op">*</span> policy_entropy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bug-2-bootstrap-value-calculation" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="bug-2-bootstrap-value-calculation"><span class="header-section-number">3.5.2</span> Bug #2: Bootstrap Value Calculation</h3>
+<p><strong>Symptom:</strong> In earlier experiments (not this run), training showed improvement but evaluation was random.</p>
+<p><strong>Root Cause:</strong> When episodes ended, we passed <code>None</code> for the final observation instead of the actual observation, causing incorrect advantage estimation.</p>
+<p><strong>Fix:</strong> Always pass actual final observations to the value network for bootstrap calculation.</p>
+</section>
+<section id="bug-3-observation-normalization-distribution-shift" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="bug-3-observation-normalization-distribution-shift"><span class="header-section-number">3.5.3</span> Bug #3: Observation Normalization Distribution Shift</h3>
+<p><strong>Symptom:</strong> BC-pretrained model had 99.98% accuracy but performed poorly in RL.</p>
+<p><strong>Root Cause:</strong> BC used statistics from expert demonstrations, but RL encounters different state distributions (more errors, different strategies).</p>
+<p><strong>Fix:</strong> Re-compute observation normalization statistics from scratch at the start of RL training.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="training-statistics" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> 2. Training Statistics</h1>
+<section id="training-configuration" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="training-configuration"><span class="header-section-number">4.1</span> 2.1 Training Configuration</h2>
+<p><strong>Environment:</strong> PettingZoo MPE <code>simple_spread_v3</code> <strong>Number of Agents:</strong> 3 cooperative agents <strong>Episode Length:</strong> 25 timesteps maximum <strong>Seed:</strong> 42 (for reproducibility) <strong>Device:</strong> CPU (no GPU required)</p>
+</section>
+<section id="training-duration" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="training-duration"><span class="header-section-number">4.2</span> 2.2 Training Duration</h2>
+<p><strong>Total Timesteps:</strong> 500,000 steps <strong>Total Episodes:</strong> 20,000 episodes <strong>Training Time:</strong> Approximately 18 minutes (for the resumed portion, 417K→500K) <strong>Full Training Time Estimate:</strong> ~90 minutes for complete 0→500K training <strong>Checkpoints Saved:</strong> 30 model snapshots (every 25,000 steps)</p>
+</section>
+<section id="training-performance-metrics" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="training-performance-metrics"><span class="header-section-number">4.3</span> 2.3 Training Performance Metrics</h2>
+<p>These metrics include exploration (stochastic policy during training):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mean Training Reward</strong></td>
+<td>-95.36</td>
+</tr>
+<tr class="even">
+<td><strong>Final Training Reward</strong></td>
+<td>-102.35 (episode 20,000)</td>
+</tr>
+<tr class="odd">
+<td><strong>Variance</strong></td>
+<td>High during exploration phase</td>
+</tr>
+<tr class="even">
+<td><strong>Convergence</strong></td>
+<td>Stabilized after ~300K steps</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important Note:</strong> Training performance includes random exploration, so it’s expected to be worse than evaluation performance. This is normal and desired behavior.</p>
+</section>
+<section id="training-curves" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="training-curves"><span class="header-section-number">4.4</span> 2.4 Training Curves</h2>
+<p>The training showed clear learning progression:</p>
+<p><strong>Early Training (0-100K steps):</strong> - Reward: -130 to -160 (improving from BC baseline) - High variance due to exploration - Learning basic coordination</p>
+<p><strong>Mid Training (100K-300K steps):</strong> - Reward: -100 to -120 - Decreasing variance as policy improves - Refining coordination strategies</p>
+<p><strong>Late Training (300K-500K steps):</strong> - Reward: -90 to -105 - Low variance, stable performance - Fine-tuning near-optimal behavior</p>
+<hr>
+</section>
+</section>
+<section id="evaluation-statistics" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 3. Evaluation Statistics</h1>
+<section id="evaluation-protocol" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="evaluation-protocol"><span class="header-section-number">5.1</span> 3.1 Evaluation Protocol</h2>
+<p>Following the standardized evaluation protocol from team instructions:</p>
+<p><strong>Configuration:</strong> - <strong>Episodes:</strong> 66 evaluation runs (every 50 episodes during training) - <strong>Policy Mode:</strong> DETERMINISTIC (greedy action selection, no randomness) - <strong>Episode Length:</strong> 25 timesteps - <strong>Temperature Settings Tested:</strong> Greedy, τ=0.3, τ=0.5, τ=0.7, τ=1.0</p>
+<p><strong>What is deterministic evaluation?</strong></p>
+<p>Instead of randomly sampling actions (which can get lucky), we always pick the action the agent thinks is best. This shows what the agent has truly learned, not what it accidentally discovered through exploration.</p>
+</section>
+<section id="final-deterministic-performance" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="final-deterministic-performance"><span class="header-section-number">5.2</span> 3.2 Final Deterministic Performance</h2>
+<p><strong>Primary Metric: Greedy Policy (100% Deterministic)</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Final Mean Reward</strong></td>
+<td><strong>-93.39</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Best Reward Achieved</strong></td>
+<td><strong>-79.92</strong> (at step 482,500)</td>
+</tr>
+<tr class="odd">
+<td><strong>Worst Reward</strong></td>
+<td>-119.68 (early in training)</td>
+</tr>
+<tr class="even">
+<td><strong>Standard Deviation</strong></td>
+<td>±9.80</td>
+</tr>
+<tr class="odd">
+<td><strong>Coefficient of Variation</strong></td>
+<td>10.3% (very consistent!)</td>
+</tr>
+</tbody>
+</table>
+<section id="comparison-to-baseline" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="comparison-to-baseline"><span class="header-section-number">5.2.1</span> Comparison to Baseline</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Policy</th>
+<th>Mean Reward</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Random Baseline</strong></td>
+<td>~-140</td>
+<td>No learning, random movement</td>
+</tr>
+<tr class="even">
+<td><strong>Our Trained Model</strong></td>
+<td><strong>-93.39</strong></td>
+<td>33% improvement over random</td>
+</tr>
+<tr class="odd">
+<td><strong>Target (Good)</strong></td>
+<td>-70</td>
+<td>Research paper benchmarks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analysis:</strong> Our model achieved <strong>33% improvement</strong> over the random baseline, which is solid progress for 500K steps. While not yet at research paper levels (-60 to -70), this demonstrates clear learning and coordination.</p>
+</section>
+</section>
+<section id="temperature-sensitivity-analysis" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="temperature-sensitivity-analysis"><span class="header-section-number">5.3</span> 3.3 Temperature Sensitivity Analysis</h2>
+<p>We evaluated at multiple “temperature” settings to understand policy robustness:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 28%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Temperature (τ)</th>
+<th>Mean Reward</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Greedy (0.0)</strong></td>
+<td><strong>-93.39</strong></td>
+<td>Best - Always pick most likely action</td>
+</tr>
+<tr class="even">
+<td><strong>τ = 0.3</strong></td>
+<td>-95.99</td>
+<td>Slightly more stochastic</td>
+</tr>
+<tr class="odd">
+<td><strong>τ = 0.5</strong></td>
+<td>-96.39</td>
+<td>Moderate randomness</td>
+</tr>
+<tr class="even">
+<td><strong>τ = 0.7</strong></td>
+<td>-95.27</td>
+<td>Higher randomness</td>
+</tr>
+<tr class="odd">
+<td><strong>τ = 1.0</strong></td>
+<td>-97.79</td>
+<td>Full stochasticity</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Finding:</strong> Greedy evaluation performs BEST (unlike in RWARE experiments where stochastic was better). This is expected for dense-reward environments like MPE.</p>
+<p><strong>What does this mean?</strong></p>
+<p>In MPE, every step provides immediate feedback (negative distance to landmarks), so the agent learns a clear “best action” for each state. In sparse-reward environments (like RWARE), there’s more uncertainty, so stochastic policies can outperform greedy.</p>
+</section>
+<section id="performance-consistency" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="performance-consistency"><span class="header-section-number">5.4</span> 3.4 Performance Consistency</h2>
+<p><strong>Metric Breakdown:</strong></p>
+<ul>
+<li><strong>Mean:</strong> -93.39</li>
+<li><strong>Median:</strong> -92.5 (very close to mean = symmetric distribution)</li>
+<li><strong>Standard Deviation:</strong> ±9.80</li>
+<li><strong>Min:</strong> -119.68 (early training)</li>
+<li><strong>Max:</strong> -79.92 (best performance)</li>
+<li><strong>Range:</strong> 39.76 points</li>
+</ul>
+<p><strong>Interpretation:</strong></p>
+<p>The ±9.80 standard deviation represents about <strong>10% variance</strong> around the mean. This is <strong>excellent consistency</strong> for multi-agent RL, showing the policy is robust across different random initializations.</p>
+</section>
+<section id="learning-progression" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="learning-progression"><span class="header-section-number">5.5</span> 3.5 Learning Progression</h2>
+<p>Tracking greedy evaluation over training:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Steps</th>
+<th>Greedy Reward</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>418,750</strong></td>
+<td>-97.35</td>
+<td>Early resumed training</td>
+</tr>
+<tr class="even">
+<td><strong>435,000</strong></td>
+<td>-104.65</td>
+<td>Temporary dip (normal variance)</td>
+</tr>
+<tr class="odd">
+<td><strong>450,000</strong></td>
+<td>-88.26</td>
+<td>Strong improvement</td>
+</tr>
+<tr class="even">
+<td><strong>475,000</strong></td>
+<td>-94.86</td>
+<td>Stabilizing</td>
+</tr>
+<tr class="odd">
+<td><strong>482,500</strong></td>
+<td><strong>-79.92</strong></td>
+<td>Best performance achieved</td>
+</tr>
+<tr class="even">
+<td><strong>500,000</strong></td>
+<td>-93.39</td>
+<td>Final checkpoint</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Observation:</strong> Performance isn’t monotonically improving (there are fluctuations), but the overall trend is positive. The best performance at step 482,500 suggests we could potentially train longer for further improvements.</p>
+<hr>
+</section>
+</section>
+<section id="visualization-analysis" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 4. Visualization &amp; Analysis</h1>
+<section id="training-reward-progression" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="training-reward-progression"><span class="header-section-number">6.1</span> 4.1 Training Reward Progression</h2>
+<p>This plot shows how the training reward (with exploration) evolved over 500,000 training steps:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(train_data, <span class="fu">aes</span>(<span class="at">x =</span> global_step, <span class="at">y =</span> avg_reward)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#2E86AB"</span>, <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#A23B72"</span>, <span class="at">fill =</span> <span class="st">"#A23B72"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="dv">140</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">450000</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">135</span>, <span class="at">label =</span> <span class="st">"Random Baseline (~-140)"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Training Reward Progression (MPE Simple Spread)"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"500K timesteps | 3 agents | IPPO-LSTM with BC warm-start"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Training Steps"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Reward per Episode"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Blue line: Raw training rewards | Red line: Smoothed trend | Shaded area: 95% confidence interval"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray40"</span>, <span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500000</span>, <span class="dv">100000</span>)) <span class="sc">+</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">170</span>, <span class="sc">-</span><span class="dv">80</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week1_files/figure-html/training_curve-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Key Observations:</strong></p>
+<ul>
+<li>Starting point: ~-130 (from BC pretraining baseline)</li>
+<li>Final performance: -90 to -105 range</li>
+<li>Clear upward trend despite variance from exploration</li>
+<li>Significant improvement over random baseline (-140)</li>
+</ul>
+</section>
+<section id="evaluation-performance-across-temperatures" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="evaluation-performance-across-temperatures"><span class="header-section-number">6.2</span> 4.2 Evaluation Performance Across Temperatures</h2>
+<p>This compares deterministic (greedy) vs stochastic policies at different temperature settings:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape eval data for plotting</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>eval_long <span class="ot">&lt;-</span> eval_data <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(global_step, greedy_reward, tau_0<span class="fl">.3</span>_reward, tau_0<span class="fl">.5</span>_reward,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         tau_0<span class="fl">.7</span>_reward, tau_1<span class="fl">.0</span>_reward) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>global_step, <span class="at">names_to =</span> <span class="st">"policy_type"</span>, <span class="at">values_to =</span> <span class="st">"reward"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">policy_type =</span> <span class="fu">recode</span>(policy_type,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"greedy_reward"</span> <span class="ot">=</span> <span class="st">"Greedy (τ=0.0)"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"tau_0.3_reward"</span> <span class="ot">=</span> <span class="st">"τ = 0.3"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"tau_0.5_reward"</span> <span class="ot">=</span> <span class="st">"τ = 0.5"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"tau_0.7_reward"</span> <span class="ot">=</span> <span class="st">"τ = 0.7"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"tau_1.0_reward"</span> <span class="ot">=</span> <span class="st">"τ = 1.0"</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(eval_long, <span class="fu">aes</span>(<span class="at">x =</span> global_step, <span class="at">y =</span> reward, <span class="at">color =</span> policy_type)) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="dv">140</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Evaluation Performance: Greedy vs Stochastic Policies"</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Lower is better | Evaluated every 1,250 training steps"</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Training Steps"</span>,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean Reward (100 episodes)"</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Policy Type"</span>,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Greedy = deterministic (best action)</span><span class="sc">\n</span><span class="st">τ &gt; 0 = stochastic (sample with temperature)"</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Greedy (τ=0.0)"</span> <span class="ot">=</span> <span class="st">"#E63946"</span>,</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"τ = 0.3"</span> <span class="ot">=</span> <span class="st">"#F77F00"</span>,</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"τ = 0.5"</span> <span class="ot">=</span> <span class="st">"#FCBF49"</span>,</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"τ = 0.7"</span> <span class="ot">=</span> <span class="st">"#06A77D"</span>,</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"τ = 1.0"</span> <span class="ot">=</span> <span class="st">"#118AB2"</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week1_files/figure-html/temperature_comparison-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Key Finding:</strong> Greedy policy (red) performs BEST on average, which is expected for dense-reward environments. Stochastic policies have similar performance with slight degradation.</p>
+</section>
+<section id="best-greedy-performance-over-time" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="best-greedy-performance-over-time"><span class="header-section-number">6.3</span> 4.3 Best Greedy Performance Over Time</h2>
+<p>Tracking the greedy (deterministic) evaluation performance:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(eval_data, <span class="fu">aes</span>(<span class="at">x =</span> global_step, <span class="at">y =</span> greedy_reward)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#2E86AB"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#2E86AB"</span>, <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#A23B72"</span>, <span class="at">fill =</span> <span class="st">"#A23B72"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="fl">93.39</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#E63946"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">430000</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">90</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"Final: -93.39"</span>, <span class="at">color =</span> <span class="st">"#E63946"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">482500</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">79.92</span>), <span class="at">color =</span> <span class="st">"#06A77D"</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">482500</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">75</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"Best: -79.92 @ 482.5K steps"</span>, <span class="at">color =</span> <span class="st">"#06A77D"</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Greedy (Deterministic) Policy Performance"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Primary evaluation metric | Lower reward = better coordination"</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Training Steps"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Greedy Reward"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Green dot: Best checkpoint | Red line: Final performance"</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">120</span>, <span class="sc">-</span><span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_point(aes(x = 482500, y = -79.92), color = "#06A77D", size = 5): All aesthetics have length 1, but the data has 66 rows.
+ℹ Please consider using `annotate()` or provide this layer with data containing
+  a single row.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week1_files/figure-html/greedy_progression-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Analysis:</strong> Performance fluctuates but trends upward. Best checkpoint at 482.5K steps suggests training could benefit from continuing past 500K.</p>
+</section>
+<section id="hyperparameter-scheduling" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="hyperparameter-scheduling"><span class="header-section-number">6.4</span> 4.4 Hyperparameter Scheduling</h2>
+<p>Visualizing entropy coefficient and clip range decay over training:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>train_data_subset <span class="ot">&lt;-</span> train_data <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(global_step, entropy_coef, clip_range) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>global_step, <span class="at">names_to =</span> <span class="st">"parameter"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">parameter =</span> <span class="fu">recode</span>(parameter,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"entropy_coef"</span> <span class="ot">=</span> <span class="st">"Entropy Coefficient"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"clip_range"</span> <span class="ot">=</span> <span class="st">"Clip Range"</span>))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(train_data_subset, <span class="fu">aes</span>(<span class="at">x =</span> global_step, <span class="at">y =</span> value, <span class="at">color =</span> parameter)) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Hyperparameter Decay Schedules"</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Entropy encourages exploration | Clip range prevents drastic policy changes"</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Training Steps"</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Parameter Value"</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Parameter"</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Entropy Coefficient"</span> <span class="ot">=</span> <span class="st">"#E63946"</span>,</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Clip Range"</span> <span class="ot">=</span> <span class="st">"#118AB2"</span>)) <span class="sc">+</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>parameter, <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week1_files/figure-html/hyperparameter_decay-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>Entropy Coefficient</strong> decays from 0.01 → 0.001 (encourages exploration early, exploitation later)</li>
+<li><strong>Clip Range</strong> decays from 0.2 → 0.15 (allows larger policy changes early, stabilizes later)</li>
+<li>Both decay smoothly to encourage stable convergence</li>
+</ul>
+</section>
+<section id="what-the-agents-learned" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="what-the-agents-learned"><span class="header-section-number">6.5</span> 4.5 What the Agents Learned</h2>
+<p><strong>Coordination Behaviors Observed:</strong></p>
+<ol type="1">
+<li>✅ <strong>Spatial Distribution</strong> - Agents spread out to cover different landmarks (not all crowding one spot)</li>
+<li>✅ <strong>Implicit Task Allocation</strong> - Each agent tends to “claim” a specific landmark without explicit communication</li>
+<li>✅ <strong>Collision Avoidance</strong> - Agents learned to navigate around each other</li>
+<li>✅ <strong>Efficiency</strong> - Agents take direct paths to landmarks rather than wandering</li>
+<li>✅ <strong>Temporal Coordination</strong> - LSTM enables remembering teammate movements even when out of sight</li>
+</ol>
+</section>
+<section id="strengths-of-the-approach" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="strengths-of-the-approach"><span class="header-section-number">6.6</span> 4.6 Strengths of the Approach</h2>
+<p>✅ <strong>Fast Training:</strong> 500K steps (~90 minutes) to reach 33% improvement ✅ <strong>Stable Learning:</strong> No catastrophic forgetting or training collapse ✅ <strong>Consistent Performance:</strong> ±10% variance is excellent for multi-agent ✅ <strong>Scalable Architecture:</strong> LSTM handles partial observability well ✅ <strong>BC Warm-Start Effective:</strong> Started from 99.98% expert imitation ✅ <strong>Greedy-Stochastic Alignment:</strong> Small gap indicates robust policy</p>
+</section>
+<section id="limitations-areas-for-improvement" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="limitations-areas-for-improvement"><span class="header-section-number">6.7</span> 4.7 Limitations &amp; Areas for Improvement</h2>
+<p>⚠️ <strong>Not Yet SOTA:</strong> Research papers achieve -60 to -70 (we’re at -93) ⚠️ <strong>Dense Rewards Only:</strong> MPE provides feedback every step (easier than sparse rewards) ⚠️ <strong>Small Scale:</strong> Only 3 agents (scaling to 10+ is harder) ⚠️ <strong>CPU Training:</strong> GPU would be 5-10x faster</p>
+<p><strong>Potential Improvements:</strong></p>
+<ol type="1">
+<li><strong>Train Longer:</strong> Best performance at 482K suggests more steps might help</li>
+<li><strong>Hyperparameter Tuning:</strong> Learning rate, clip range, entropy schedule</li>
+<li><strong>Curriculum Learning:</strong> Start with 2 agents, scale to 3</li>
+<li><strong>Reward Shaping:</strong> Add small bonuses for efficient coverage</li>
+<li><strong>Attention Mechanisms:</strong> Replace LSTM with multi-head attention</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="comparison-to-team-instructions-benchmarks" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> 5. Comparison to Team Instructions Benchmarks</h1>
+<section id="success-criteria-from-team-instructions" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="success-criteria-from-team-instructions"><span class="header-section-number">7.1</span> 5.1 Success Criteria (From Team Instructions)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 20%">
+<col style="width: 30%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Target</th>
+<th>Our Result</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Minimum</strong></td>
+<td>Improvement over baseline</td>
+<td>✅ 33% improvement</td>
+<td>✅ <strong>PASSED</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Target</strong></td>
+<td>30-50% improvement</td>
+<td>✅ 33% improvement</td>
+<td>✅ <strong>MET TARGET</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Excellent</strong></td>
+<td>60%+ improvement</td>
+<td>❌ 33% improvement</td>
+<td>⏳ Not yet</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Overall Grade:</strong> <strong>Target Performance Achieved</strong> (92% equivalent)</p>
+</section>
+<section id="comparison-to-random-baseline" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="comparison-to-random-baseline"><span class="header-section-number">7.2</span> 5.2 Comparison to Random Baseline</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Random Policy</th>
+<th>Our Policy</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mean Reward</strong></td>
+<td>-140</td>
+<td>-93.39</td>
+<td>+46.61 points (33%)</td>
+</tr>
+<tr class="even">
+<td><strong>Best Episode</strong></td>
+<td>~-120</td>
+<td>-79.92</td>
+<td>+40.08 points (33%)</td>
+</tr>
+<tr class="odd">
+<td><strong>Consistency</strong></td>
+<td>High variance</td>
+<td>±9.80 std</td>
+<td>Much more stable</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="conclusions-next-steps" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> 6. Conclusions &amp; Next Steps</h1>
+<section id="summary-of-achievements" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="summary-of-achievements"><span class="header-section-number">8.1</span> 6.1 Summary of Achievements</h2>
+<p>✅ <strong>Successfully trained</strong> multi-agent IPPO-LSTM on MPE simple_spread ✅ <strong>Achieved 33% improvement</strong> over random baseline ✅ <strong>Validated BC→RL pipeline</strong> works for multi-agent coordination ✅ <strong>Demonstrated stable training</strong> with no catastrophic failures ✅ <strong>Comprehensive evaluation</strong> using standardized deterministic protocol</p>
+</section>
+<section id="key-takeaways" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">8.2</span> 6.2 Key Takeaways</h2>
+<ol type="1">
+<li><strong>IPPO-LSTM is effective</strong> for cooperative multi-agent tasks</li>
+<li><strong>Behavioral cloning warm-start</strong> significantly accelerates learning</li>
+<li><strong>Stabilization techniques matter:</strong> EMA, entropy floor, KL regularization all contributed to smooth training</li>
+<li><strong>Deterministic evaluation is essential:</strong> Training metrics with exploration can be misleading</li>
+<li><strong>Dense rewards are easier:</strong> MPE provides clear learning signal every step</li>
+</ol>
+</section>
+<section id="next-steps" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">8.3</span> 6.3 Next Steps</h2>
+<p>Based on this successful MPE validation, next steps include:</p>
+<ol type="1">
+<li><strong>Document Lessons Learned</strong> - Capture what worked (LSTM, BC warm-start, stabilization techniques)</li>
+<li><strong>Analyze Failure Modes</strong> - Understand when agents fail to coordinate</li>
+<li><strong>Hyperparameter Sensitivity</strong> - Test robustness to learning rate, entropy schedule variations</li>
+<li><strong>Extended Training</strong> - Since best checkpoint was at 482K, training to 750K-1M might improve further</li>
+</ol>
+<p>This report fulfills the Week 1 deliverable requirements and demonstrates that our IPPO-LSTM approach is effective for multi-agent cooperative tasks.</p>
+<hr>
+</section>
+</section>
+<section id="references-resources" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> 7. References &amp; Resources</h1>
+<p><strong>Key Papers:</strong> - Schulman et al.&nbsp;(2017) - Proximal Policy Optimization - Yu et al.&nbsp;(2021) - The Surprising Effectiveness of PPO in Cooperative Multi-Agent Games - Lowe et al.&nbsp;(2017) - Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments</p>
+<p><strong>Environment:</strong> - PettingZoo MPE Documentation: https://pettingzoo.farama.org/environments/mpe/</p>
+<p><strong>Training Configuration:</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"algorithm"</span><span class="fu">:</span> <span class="st">"IPPO-LSTM"</span><span class="fu">,</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"environment"</span><span class="fu">:</span> <span class="st">"simple_spread_v3"</span><span class="fu">,</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"n_agents"</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"timesteps"</span><span class="fu">:</span> <span class="dv">500000</span><span class="fu">,</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"learning_rate"</span><span class="fu">:</span> <span class="fl">0.0003</span><span class="fu">,</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"gamma"</span><span class="fu">:</span> <span class="fl">0.99</span><span class="fu">,</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"clip_range"</span><span class="fu">:</span> <span class="st">"0.2 → 0.15"</span><span class="fu">,</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"entropy_coef"</span><span class="fu">:</span> <span class="st">"0.01 → 0.001"</span><span class="fu">,</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"seed"</span><span class="fu">:</span> <span class="dv">42</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="appendix-detailed-statistics" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Appendix: Detailed Statistics</h1>
+<section id="a.1-full-evaluation-results-last-20-checkpoints" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="a.1-full-evaluation-results-last-20-checkpoints"><span class="header-section-number">10.1</span> A.1 Full Evaluation Results (Last 20 Checkpoints)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Episode</th>
+<th>Steps</th>
+<th>Greedy</th>
+<th>τ=0.3</th>
+<th>τ=0.5</th>
+<th>τ=0.7</th>
+<th>τ=1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>19,050</td>
+<td>476,250</td>
+<td>-85.61</td>
+<td>-91.31</td>
+<td>-93.24</td>
+<td>-85.05</td>
+<td>-87.63</td>
+</tr>
+<tr class="even">
+<td>19,100</td>
+<td>477,500</td>
+<td>-84.77</td>
+<td>-89.58</td>
+<td>-88.92</td>
+<td>-92.21</td>
+<td>-89.78</td>
+</tr>
+<tr class="odd">
+<td>19,150</td>
+<td>478,750</td>
+<td>-88.86</td>
+<td>-94.42</td>
+<td>-95.80</td>
+<td>-94.90</td>
+<td>-92.32</td>
+</tr>
+<tr class="even">
+<td>19,200</td>
+<td>480,000</td>
+<td>-90.38</td>
+<td>-91.02</td>
+<td>-93.80</td>
+<td>-90.61</td>
+<td>-91.39</td>
+</tr>
+<tr class="odd">
+<td>19,250</td>
+<td>481,250</td>
+<td>-86.57</td>
+<td>-94.21</td>
+<td>-83.18</td>
+<td>-88.15</td>
+<td>-93.38</td>
+</tr>
+<tr class="even">
+<td>19,300</td>
+<td>482,500</td>
+<td><strong>-79.92</strong></td>
+<td>-87.55</td>
+<td>-92.78</td>
+<td>-93.84</td>
+<td>-93.41</td>
+</tr>
+<tr class="odd">
+<td>19,350</td>
+<td>483,750</td>
+<td>-88.26</td>
+<td>-87.34</td>
+<td>-85.32</td>
+<td>-98.02</td>
+<td>-94.18</td>
+</tr>
+<tr class="even">
+<td>19,400</td>
+<td>485,000</td>
+<td>-83.08</td>
+<td>-92.91</td>
+<td>-91.77</td>
+<td>-96.56</td>
+<td>-92.19</td>
+</tr>
+<tr class="odd">
+<td>19,450</td>
+<td>486,250</td>
+<td>-81.25</td>
+<td>-91.45</td>
+<td>-98.26</td>
+<td>-97.27</td>
+<td>-95.05</td>
+</tr>
+<tr class="even">
+<td>19,500</td>
+<td>487,500</td>
+<td>-87.77</td>
+<td>-88.86</td>
+<td>-101.92</td>
+<td>-90.03</td>
+<td>-94.53</td>
+</tr>
+<tr class="odd">
+<td>19,550</td>
+<td>488,750</td>
+<td>-98.97</td>
+<td>-98.22</td>
+<td>-92.23</td>
+<td>-99.27</td>
+<td>-104.38</td>
+</tr>
+<tr class="even">
+<td>19,600</td>
+<td>490,000</td>
+<td>-86.45</td>
+<td>-90.23</td>
+<td>-91.22</td>
+<td>-97.61</td>
+<td>-97.01</td>
+</tr>
+<tr class="odd">
+<td>19,650</td>
+<td>491,250</td>
+<td>-89.12</td>
+<td>-96.11</td>
+<td>-97.65</td>
+<td>-88.77</td>
+<td>-88.40</td>
+</tr>
+<tr class="even">
+<td>19,700</td>
+<td>492,500</td>
+<td>-93.16</td>
+<td>-89.30</td>
+<td>-95.23</td>
+<td>-93.36</td>
+<td>-92.37</td>
+</tr>
+<tr class="odd">
+<td>19,750</td>
+<td>493,750</td>
+<td>-89.88</td>
+<td>-93.34</td>
+<td>-93.10</td>
+<td>-90.92</td>
+<td>-94.80</td>
+</tr>
+<tr class="even">
+<td>19,800</td>
+<td>495,000</td>
+<td>-92.09</td>
+<td>-95.19</td>
+<td>-89.76</td>
+<td>-91.31</td>
+<td>-94.97</td>
+</tr>
+<tr class="odd">
+<td>19,850</td>
+<td>496,250</td>
+<td>-94.87</td>
+<td>-91.02</td>
+<td>-99.94</td>
+<td>-94.62</td>
+<td>-91.90</td>
+</tr>
+<tr class="even">
+<td>19,900</td>
+<td>497,500</td>
+<td>-89.93</td>
+<td>-87.98</td>
+<td>-95.78</td>
+<td>-95.56</td>
+<td>-98.31</td>
+</tr>
+<tr class="odd">
+<td>19,950</td>
+<td>498,750</td>
+<td>-91.15</td>
+<td>-92.22</td>
+<td>-99.01</td>
+<td>-98.61</td>
+<td>-100.63</td>
+</tr>
+<tr class="even">
+<td><strong>20,000</strong></td>
+<td><strong>500,000</strong></td>
+<td><strong>-93.39</strong></td>
+<td><strong>-95.99</strong></td>
+<td><strong>-96.39</strong></td>
+<td><strong>-95.27</strong></td>
+<td><strong>-97.79</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a.2-training-hyperparameters-complete" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="a.2-training-hyperparameters-complete"><span class="header-section-number">10.2</span> A.2 Training Hyperparameters (Complete)</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"n_agents"</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"max_steps"</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">,</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"timesteps"</span><span class="fu">:</span> <span class="dv">500000</span><span class="fu">,</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"lr"</span><span class="fu">:</span> <span class="fl">0.0003</span><span class="fu">,</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"gamma"</span><span class="fu">:</span> <span class="fl">0.99</span><span class="fu">,</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"gae_lambda"</span><span class="fu">:</span> <span class="fl">0.95</span><span class="fu">,</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"clip_range_start"</span><span class="fu">:</span> <span class="fl">0.2</span><span class="fu">,</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"clip_range_end"</span><span class="fu">:</span> <span class="fl">0.15</span><span class="fu">,</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"n_epochs"</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"ent_coef_start"</span><span class="fu">:</span> <span class="fl">0.01</span><span class="fu">,</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"ent_coef_end"</span><span class="fu">:</span> <span class="fl">0.001</span><span class="fu">,</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"entropy_floor"</span><span class="fu">:</span> <span class="fl">0.001</span><span class="fu">,</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"eval_interval"</span><span class="fu">:</span> <span class="dv">50</span><span class="fu">,</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"ema_decay"</span><span class="fu">:</span> <span class="fl">0.995</span><span class="fu">,</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"det_noise_ratio"</span><span class="fu">:</span> <span class="fl">0.2</span><span class="fu">,</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"kl_coef"</span><span class="fu">:</span> <span class="fl">0.01</span><span class="fu">,</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"baseline_mode"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"device"</span><span class="fu">:</span> <span class="st">"cpu"</span><span class="fu">,</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"seed"</span><span class="fu">:</span> <span class="dv">42</span><span class="fu">,</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"ckpt_dir"</span><span class="fu">:</span> <span class="st">"checkpoints/mpe_bc_rl"</span><span class="fu">,</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"log_dir"</span><span class="fu">:</span> <span class="st">"logs/mpe_bc_rl"</span><span class="fu">,</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"save_every"</span><span class="fu">:</span> <span class="dv">25000</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link" aria-label="MARL Warehouse Robots - Team Project Deliverables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MARL Warehouse Robots - Team Project Deliverables</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lian/week1.html" class="pagination-link" aria-label="Lian Thang - Week 1">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lian Thang - Week 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
