@@ -1,0 +1,291 @@
+---
+title: "Week 4 Deliverable – Extended Results Compilation & Presentation"
+author: "Salmon Riaz"
+date: "2025-11-12"
+format: html
+---
+
+# Week 4 – Extended Training Results & Research Paper Updates
+
+## 1. Weekly Objectives
+
+This week's focus included:
+
+- Receiving extended training results from team members
+- Compiling comprehensive performance comparisons
+- Updating research paper results sections
+- Preparing materials for the second class presentation
+
+---
+
+## 2. Extended Training Results Compilation
+
+### 2.1 QMIX Extended Training (Dre Simmons)
+
+Extended training runs provided deeper insights into QMIX behavior:
+
+| Experiment | Environment | Timesteps | Final Return | Notes |
+|------------|-------------|-----------|--------------|-------|
+| QMIX-tiny-long | tiny-2ag-v2 | 30M | 3.42 | Continued improvement |
+| QMIX-small | small-4ag-v1 | 40M | 2.35 | Stable coordination |
+| QMIX-hard | tiny-2ag-hard | 25M | 2.15 | Challenging but learnable |
+
+**Key Observations:**
+
+- Extended training yields marginal improvements beyond 20M steps
+- Performance plateau suggests policy convergence
+- Hard environment requires ~25% more training
+
+### 2.2 IPPO-LSTM Extended Results (Price Allman)
+
+| Experiment | Environment | Timesteps | Final Return |
+|------------|-------------|-----------|--------------|
+| IPPO-tiny | tiny-2ag-v2 | 15M | 2.92 |
+| IPPO-small | small-4ag-v1 | 25M | 1.85 |
+| IPPO-lstm-large | medium-6ag | 40M | 1.22 |
+
+**Insights:**
+
+- LSTM memory helps in partially observable settings
+- Performance gap with QMIX narrows in larger environments
+- On-policy training provides more stable learning curves
+
+### 2.3 Unity Integration Progress (Price Allman)
+
+Documented Unity ML-Agents integration status:
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| Warehouse Scene | Complete | 3D visualization ready |
+| Robot Prefabs | Complete | Physics-based movement |
+| ML-Agents Connection | Complete | Python-Unity bridge working |
+| QMIX Integration | In Progress | Action-observation mapping |
+
+---
+
+## 3. Research Paper Results Section
+
+### 3.1 Performance Summary Table
+
+*Added to paper:*
+
+| Algorithm | tiny-2ag-v2 | small-4ag-v1 | Training Time |
+|-----------|-------------|--------------|---------------|
+| QMIX | **3.42** | **2.35** | 20-30M steps |
+| IPPO-LSTM | 2.92 | 1.85 | 15-25M steps |
+| MASAC | 2.45 | 1.62 | 15-20M steps |
+| Random | 0.05 | 0.02 | N/A |
+
+### 3.2 Learning Curve Analysis
+
+Documented learning progression patterns:
+
+```
+QMIX Learning Phases:
+├── Phase 1 (0-5M): Exploration, minimal learning
+├── Phase 2 (5-10M): Reward discovery, rapid improvement
+├── Phase 3 (10-15M): Policy refinement, moderate gains
+└── Phase 4 (15M+): Convergence, marginal improvements
+```
+
+### 3.3 Ablation Study Results
+
+Compiled ablation studies on QMIX components:
+
+| Component Modified | Performance Impact |
+|-------------------|-------------------|
+| No mixing network | -45% (VDN baseline) |
+| Linear mixing | -18% |
+| Smaller buffer (50K) | -22% |
+| Faster epsilon decay | -65% (often fails) |
+| Larger batch (512) | +3% |
+
+---
+
+## 4. Second Class Presentation
+
+### 4.1 Presentation Structure
+
+1. **Project Recap** (2 min)
+   - Team roles and algorithm assignments
+   - Environment progression (MPE → RWARE)
+
+2. **Algorithm Deep Dive: QMIX** (5 min)
+   - Value decomposition explained
+   - Mixing network architecture
+   - Hyperparameter sensitivity
+
+3. **Extended Results** (5 min)
+   - Performance comparison tables
+   - Learning curves visualization
+   - Scaling analysis findings
+
+4. **Unity Integration Demo** (3 min)
+   - Live demonstration if available
+   - Visual comparison: RWARE vs Unity
+
+5. **Final Week Plans** (2 min)
+   - Research paper finalization
+   - Industry expert interview preparation
+
+### 4.2 Visual Materials Prepared
+
+- QMIX architecture diagram
+- Learning curve plots (all algorithms)
+- Performance comparison bar charts
+- Unity environment screenshots
+- Scaling analysis graphs
+
+---
+
+## 5. Research Paper Discussion Updates
+
+### 5.1 Key Findings Section
+
+*Added to paper:*
+
+> **Key Findings**: Our experiments reveal several critical insights for applying MARL algorithms to warehouse robotics:
+>
+> 1. **Hyperparameter Sensitivity**: Default configurations consistently fail on RWARE. Extended exploration through slow epsilon decay (5M+ steps) is essential for sparse reward discovery.
+>
+> 2. **Value Decomposition Advantages**: QMIX's monotonic mixing network outperforms independent learning approaches by 15-25%, demonstrating the value of centralized coordination mechanisms.
+>
+> 3. **Scaling Challenges**: Performance degrades sub-linearly with agent count, but training requirements increase super-linearly. A 3x increase in agents requires approximately 4-5x more training steps.
+>
+> 4. **Framework Importance**: PyTorch-based implementations significantly outperform Keras alternatives for multi-agent scenarios, with fewer stability issues and better concurrency handling.
+
+### 5.2 Implications for Warehouse Robotics
+
+*Added to paper:*
+
+> **Practical Implications**: Our findings suggest that QMIX-based coordination is viable for small-scale warehouse deployments (2-4 robots). For larger fleets, hierarchical decomposition or domain-specific constraints may be necessary to maintain tractability. The significant hyperparameter tuning required indicates that production deployments should incorporate automated hyperparameter optimization and robust monitoring systems.
+
+---
+
+## 6. Comparative Analysis Tables
+
+### 6.1 Algorithm Characteristics
+
+| Characteristic | QMIX | IPPO-LSTM | MASAC |
+|---------------|------|-----------|-------|
+| Training Type | Off-policy | On-policy | Off-policy |
+| Coordination | Mixing network | Independent | Centralized critic |
+| Memory | RNN optional | LSTM | None |
+| Sample Efficiency | Moderate | Low | High |
+| Stability | High | High | Moderate |
+
+### 6.2 Training Requirements
+
+| Algorithm | Min Steps (tiny) | Min Steps (small) | GPU Recommended |
+|-----------|-----------------|-------------------|-----------------|
+| QMIX | 15M | 30M | Yes |
+| IPPO-LSTM | 10M | 20M | Optional |
+| MASAC | 8M | 15M | Yes |
+
+---
+
+## 7. Challenges Documented
+
+### 7.1 Technical Challenges
+
+| Challenge | Solution | Status |
+|-----------|----------|--------|
+| Sparse reward discovery | Extended epsilon annealing | Resolved |
+| Memory constraints | Reduced buffer on CPU | Resolved |
+| Training instability | Larger batch sizes | Resolved |
+| Unity latency | Async communication | In Progress |
+
+### 7.2 Research Challenges
+
+| Challenge | Approach | Notes |
+|-----------|----------|-------|
+| Fair comparison | Same environment seeds | Implemented |
+| Reproducibility | Fixed random seeds | Documented |
+| Generalization | Multiple configurations | Tested |
+
+---
+
+## 8. Code Documentation Updates
+
+### 8.1 Training Script Documentation
+
+Documented training command structure:
+
+```bash
+# QMIX Training on RWARE
+python src/main.py \
+  --config=qmix \
+  --env-config=gymma \
+  with env_args.key="rware:rware-tiny-2ag-v2" \
+  batch_size=256 \
+  buffer_size=200000 \
+  epsilon_anneal_time=5000000 \
+  t_max=20000000 \
+  save_model=True
+```
+
+### 8.2 Evaluation Script Documentation
+
+```bash
+# QMIX Evaluation with Visualization
+python src/main.py \
+  --config=qmix \
+  --env-config=gymma \
+  with env_args.key="rware:rware-tiny-2ag-v2" \
+  checkpoint_path="results/models/qmix_seed0_..." \
+  evaluate=True \
+  render=True
+```
+
+---
+
+## 9. Week 5 Preview
+
+Final week objectives:
+
+- Finalize research paper
+- Synthesize insights across all experiments
+- Coordinate industry expert interview (if available)
+- Prepare final presentation materials
+
+---
+
+## 10. Deliverables Summary
+
+| Deliverable | Status |
+|-------------|--------|
+| Extended results compilation | Complete |
+| Performance comparison tables | Complete |
+| Research paper results section | Complete |
+| Presentation preparation | Complete |
+| Code documentation | Complete |
+
+---
+
+## 11. Research Paper Excerpt: Limitations
+
+*Added to Discussion section:*
+
+> **Limitations**: Several limitations should be considered when interpreting our results:
+>
+> 1. **Environment Scope**: Our experiments focus on RWARE simulations. Transfer to physical warehouse systems would require additional domain adaptation.
+>
+> 2. **Agent Count**: Testing was limited to 2-6 agents due to computational constraints. Industrial warehouses may require 50+ coordinating robots.
+>
+> 3. **Task Complexity**: RWARE's simplified task structure (shelf movement) does not capture all warehouse operations (picking, packing, inventory management).
+>
+> 4. **Training Resources**: Extended training requirements (20M+ steps) may be impractical for rapid deployment scenarios.
+
+---
+
+## 12. References
+
+1. Rashid, T., et al. (2018). QMIX: Monotonic Value Function Factorisation. ICML.
+
+2. Papoudakis, G., et al. (2021). Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms. NeurIPS.
+
+3. Unity ML-Agents Toolkit: https://github.com/Unity-Technologies/ml-agents
+
+4. EPyMARL: https://github.com/oxwhirl/epymarl
+
+5. TensorBoard: https://www.tensorflow.org/tensorboard

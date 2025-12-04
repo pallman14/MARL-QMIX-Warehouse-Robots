@@ -1,0 +1,235 @@
+---
+title: "Week 2 Deliverable – RWARE Results Compilation & Paper Updates"
+author: "Salmon Riaz"
+date: "2025-10-29"
+format: html
+---
+
+# Week 2 – RWARE Results Compilation & Research Paper Development
+
+## 1. Weekly Objectives
+
+This week's focus centered on:
+
+- Receiving and compiling RWARE training results from team members
+- Updating research paper sections with experimental findings
+- Preparing class presentation materials
+- Documenting transition from MPE to RWARE environment
+
+---
+
+## 2. Team Reports Received
+
+### 2.1 Price Allman – IPPO-LSTM Results
+
+**Key Findings:**
+
+- Successfully trained IPPO-LSTM on RWARE tiny-2ag-v2
+- Achieved stable policy convergence after ~2M timesteps
+- LSTM memory component crucial for partial observability handling
+- Training conducted on Apple M3 hardware
+
+**Performance Metrics:**
+
+| Metric | Value |
+|--------|-------|
+| Test Return Mean | 2.8 |
+| Episodes to Convergence | ~8,000 |
+| Training Time | ~4 hours |
+
+### 2.2 Lian Thang – MASAC Results
+
+**Key Findings:**
+
+- MASAC implementation tested on RWARE
+- Entropy regularization aids exploration in sparse reward settings
+- Off-policy learning enables efficient sample reuse
+- Centralized critic improves coordination
+
+### 2.3 Dre Simmons – QMIX Results
+
+**Key Findings:**
+
+- Default QMIX parameters insufficient for RWARE learning
+- Extended epsilon anneal time (5M steps) critical for sparse rewards
+- Increased buffer size (200K) and batch size (256) improved stability
+- Final configuration achieved test return mean >3.0
+
+**Configuration Evolution:**
+
+| Parameter | Default | Final |
+|-----------|---------|-------|
+| batch_size | 32 | 256 |
+| buffer_size | 5,000 | 200,000 |
+| epsilon_anneal_time | 50,000 | 5,000,000 |
+| t_max | 2,000,000 | 20,000,000 |
+
+---
+
+## 3. Research Paper Updates
+
+### 3.1 New Sections Added
+
+Updated the research paper with:
+
+1. **Environment Transition Section**: Documented move from MPE to RWARE
+2. **RWARE Environment Description**: Grid-based warehouse, sparse rewards, cooperative objectives
+3. **Initial Experimental Results**: Training configurations and preliminary findings
+
+### 3.2 Methods Section Enhancements
+
+Expanded algorithm descriptions with:
+
+- Hyperparameter sensitivity analysis
+- Framework comparison (PyTorch vs Keras for MARL)
+- Implementation challenges and solutions
+
+---
+
+## 4. RWARE Environment Analysis
+
+### 4.1 Environment Characteristics
+
+| Characteristic | Description |
+|----------------|-------------|
+| Grid Type | Discrete grid-based |
+| Agent Count | 2-8 agents (scalable) |
+| Reward Structure | Sparse, task-completion based |
+| Episode Length | 100 steps (configurable) |
+| Observation Space | Agent-local grid view |
+| Action Space | 5 discrete actions |
+
+### 4.2 Challenge Comparison: MPE vs RWARE
+
+| Challenge | MPE Simple Spread | RWARE |
+|-----------|-------------------|-------|
+| Reward Density | Dense | Sparse |
+| Coordination Need | Moderate | High |
+| Exploration Difficulty | Low | High |
+| Partial Observability | Full observation | Limited view |
+
+---
+
+## 5. Preliminary Performance Comparison
+
+### 5.1 Algorithm Rankings (Week 2 Snapshot)
+
+| Rank | Algorithm | RWARE Performance | Notes |
+|------|-----------|-------------------|-------|
+| 1 | QMIX | Highest returns | Requires extensive tuning |
+| 2 | IPPO-LSTM | Stable learning | Robust across configurations |
+| 3 | MASAC | Promising | Ongoing optimization |
+
+### 5.2 Sample Efficiency Observations
+
+- **QMIX**: Requires longest training (20M steps) but achieves best performance
+- **IPPO-LSTM**: Moderate efficiency, stable convergence
+- **MASAC**: Best sample efficiency potential due to off-policy nature
+
+---
+
+## 6. Class Presentation Preparation
+
+### 6.1 Presentation Outline
+
+1. **Project Overview** (2 min)
+   - Problem statement and motivation
+   - Team structure and algorithm assignments
+
+2. **Environment Introduction** (3 min)
+   - MPE Simple Spread overview
+   - RWARE warehouse environment
+   - Transition rationale
+
+3. **Algorithm Summaries** (5 min)
+   - IPPO-LSTM architecture
+   - MASAC approach
+   - QMIX value decomposition
+
+4. **Preliminary Results** (5 min)
+   - Training configurations
+   - Performance metrics
+   - Learning curves
+
+5. **Next Steps** (2 min)
+   - Extended training plans
+   - Scaling experiments
+   - Unity integration goals
+
+### 6.2 Visual Materials Created
+
+- Algorithm comparison diagrams
+- RWARE environment screenshots
+- Preliminary learning curve plots
+- Hyperparameter comparison tables
+
+---
+
+## 7. Research Paper Section: Transition to RWARE
+
+*Excerpt added to paper:*
+
+> The transition from MPE Simple Spread to RWARE represents a significant increase in task complexity. While MPE provides dense rewards that facilitate rapid policy learning, RWARE's sparse reward structure demands fundamentally different training strategies. Agents must learn to execute multi-step coordination sequences before receiving any positive reinforcement, necessitating extended exploration phases and careful hyperparameter tuning.
+>
+> Our experiments reveal that default algorithm configurations, while effective for MPE, consistently fail on RWARE. The epsilon annealing schedule proves particularly critical—rapid decay to greedy behavior prevents agents from discovering the sparse reward signals characteristic of real-world warehouse logistics tasks.
+
+---
+
+## 8. Key Insights Documented
+
+### 8.1 Hyperparameter Sensitivity
+
+Documented critical parameters for RWARE success:
+
+```
+Critical RWARE Parameters:
+├── Epsilon Anneal Time: 5M+ steps
+├── Replay Buffer Size: 200K+
+├── Batch Size: 256+
+├── Training Duration: 20M+ steps
+└── Learning Rate: 0.0005 (careful tuning required)
+```
+
+### 8.2 Framework Selection Insights
+
+Compiled findings on deep learning framework suitability:
+
+| Framework | MARL Suitability | Issues Encountered |
+|-----------|------------------|-------------------|
+| PyTorch | Excellent | None significant |
+| Keras/TF | Limited | Graph errors, scaling issues |
+
+---
+
+## 9. Week 3 Preview
+
+Upcoming focus areas:
+
+- Compile scaling analysis results
+- Document QMIX focus decision
+- Update research paper methodology
+- Prepare for extended training experiments
+
+---
+
+## 10. Deliverables Summary
+
+| Deliverable | Status |
+|-------------|--------|
+| Team reports compilation | Complete |
+| RWARE results documentation | Complete |
+| Research paper updates | Complete |
+| Presentation preparation | Complete |
+| Performance comparison table | Complete |
+
+---
+
+## 11. References
+
+1. Christianos, F., Schäfer, L., & Albrecht, S. (2020). Shared Experience Actor-Critic for Multi-Agent Reinforcement Learning. NeurIPS.
+
+2. RWARE Environment Documentation: https://github.com/Farama-Foundation/RWARE
+
+3. EPyMARL Framework: https://github.com/oxwhirl/epymarl
+
+4. TensorBoard Visualization: https://www.tensorflow.org/tensorboard

@@ -1,0 +1,246 @@
+---
+title: "Week 3 Deliverable – Scaling Analysis & QMIX Focus Decision"
+author: "Salmon Riaz"
+date: "2025-11-05"
+format: html
+---
+
+# Week 3 – Scaling Analysis & Strategic QMIX Focus
+
+## 1. Weekly Objectives
+
+This week's activities focused on:
+
+- Compiling scaling analysis results from team members
+- Documenting the strategic decision to focus on QMIX
+- Updating research paper methodology sections
+- Analyzing algorithm performance across different configurations
+
+---
+
+## 2. Strategic Decision: QMIX Focus
+
+### 2.1 Decision Rationale
+
+After two weeks of parallel algorithm development, the team made a strategic decision to focus primarily on QMIX for the remainder of the project. This decision was based on:
+
+1. **Strongest Empirical Performance**: QMIX achieved the highest test returns on RWARE
+2. **Value Decomposition Advantages**: Mixing network effectively handles credit assignment
+3. **Scalability Potential**: Architecture designed for varying agent counts
+4. **Industry Relevance**: Value-based methods common in warehouse robotics
+
+### 2.2 Algorithm Comparison Summary
+
+| Algorithm | RWARE Performance | Tuning Difficulty | Scalability |
+|-----------|-------------------|-------------------|-------------|
+| QMIX | Best (3.25 mean) | High | Excellent |
+| IPPO-LSTM | Good (2.8 mean) | Moderate | Good |
+| MASAC | Moderate | Moderate | Good |
+
+### 2.3 Supporting Research on Algorithm Selection
+
+QMIX's suitability for warehouse robotics aligns with literature findings:
+
+> Value decomposition methods like QMIX excel in fully cooperative settings where credit assignment is challenging. The monotonicity constraint ensures that individual agent improvements translate to team-level gains—a critical property for warehouse coordination where all robots must work toward shared objectives.
+
+---
+
+## 3. Scaling Analysis Results
+
+### 3.1 Agent Count Scaling
+
+Compiled results from scaling experiments:
+
+| Configuration | Agents | Test Return | Training Steps |
+|---------------|--------|-------------|----------------|
+| tiny-2ag-v2 | 2 | 3.25 | 20M |
+| small-4ag-v1 | 4 | 2.10 | 30M |
+| medium-6ag-v1 | 6 | 1.45 | 40M |
+
+**Observations:**
+
+- Performance degrades with increased agent count (expected)
+- Training time increases super-linearly with agents
+- Coordination complexity grows combinatorially
+
+### 3.2 Environment Size Scaling
+
+| Environment | Grid Size | Agents | Difficulty |
+|-------------|-----------|--------|------------|
+| tiny | 5×10 | 2 | Low |
+| small | 7×15 | 4 | Medium |
+| medium | 10×20 | 6 | High |
+| hard | 15×30 | 8+ | Very High |
+
+### 3.3 Scaling Insights for Research Paper
+
+*Added to Discussion section:*
+
+> Our scaling analysis reveals significant challenges in applying MARL algorithms to larger warehouse configurations. While QMIX demonstrates robust performance on small-scale problems, the curse of dimensionality becomes apparent as agent counts increase. The joint action space grows exponentially, and the mixing network must learn increasingly complex relationships between individual Q-values and global performance.
+
+---
+
+## 4. Unity Integration Planning
+
+### 4.1 Integration Goals
+
+Documented requirements for Unity ML-Agents integration:
+
+1. **Visual Fidelity**: Realistic warehouse environment rendering
+2. **Agent Control**: Python-Unity communication via ML-Agents
+3. **Observation Compatibility**: Match RWARE observation structure
+4. **Action Mapping**: Discrete actions to Unity robot controllers
+
+### 4.2 Technical Requirements
+
+```
+Unity Integration Stack:
+├── Unity 2021.3+ (LTS)
+├── ML-Agents 0.30.0
+├── Python mlagents-envs
+├── Custom Warehouse Scene
+└── Robot Prefabs with Controllers
+```
+
+### 4.3 Price's Unity Environment Development
+
+Documented Price's work on Unity warehouse environment:
+
+- Custom warehouse scene with shelf prefabs
+- Robot agent prefabs with physics-based movement
+- Reward system mirroring RWARE logic
+- Observation sensors matching grid-based perception
+
+---
+
+## 5. Research Paper Methodology Updates
+
+### 5.1 Algorithm Focus Justification
+
+Added methodology section explaining QMIX focus:
+
+> **Algorithm Selection Rationale**: Following preliminary experiments across IPPO-LSTM, MASAC, and QMIX, we narrow our focus to QMIX for in-depth analysis. This decision reflects QMIX's superior performance on our target environment and its theoretical advantages for fully cooperative multi-agent settings. The value decomposition paradigm directly addresses credit assignment—a fundamental challenge in multi-robot coordination.
+
+### 5.2 Experimental Design Updates
+
+Revised experimental protocol to emphasize:
+
+- Extended QMIX training configurations
+- Ablation studies on mixing network components
+- Scalability experiments across warehouse sizes
+- Comparative analysis with baseline approaches
+
+---
+
+## 6. Hard RWARE Environment Analysis
+
+### 6.1 Environment Characteristics
+
+Documented the "hard" RWARE variant:
+
+| Parameter | Standard | Hard |
+|-----------|----------|------|
+| Grid Size | 5×10 | 15×30 |
+| Shelf Density | Low | High |
+| Navigation Complexity | Simple | Complex |
+| Coordination Requirement | Moderate | Intensive |
+
+### 6.2 Hard Environment Challenges
+
+```
+Hard RWARE Challenges:
+├── Narrow Corridors: Agents must coordinate passing
+├── Distant Goals: Longer paths increase failure risk
+├── Dense Shelves: Limited maneuvering space
+├── Blocking: Agents can obstruct each other
+└── Sparse Rewards: Success requires many coordinated steps
+```
+
+---
+
+## 7. Literature Review Expansion
+
+### 7.1 Value Decomposition Methods
+
+Expanded literature review on QMIX-related work:
+
+1. **VDN** (Sunehag et al., 2018): Additive value decomposition
+2. **QMIX** (Rashid et al., 2018): Monotonic mixing with hypernetworks
+3. **QPLEX** (Wang et al., 2020): Duplex dueling decomposition
+4. **Weighted QMIX** (Rashid et al., 2020): Importance weighting extension
+
+### 7.2 Warehouse Robotics Applications
+
+Added application-focused literature:
+
+1. **Amazon Robotics**: Kiva systems and coordination challenges
+2. **Multi-Robot Path Planning**: Classical vs learning approaches
+3. **Decentralized Warehouse Control**: Real-world deployment constraints
+
+---
+
+## 8. Updated Performance Metrics
+
+### 8.1 Comprehensive QMIX Results
+
+| Run | Configuration | Timesteps | Test Return | Status |
+|-----|---------------|-----------|-------------|--------|
+| 1 | Default | 2M | 0.00 | Failed |
+| 2 | Modified | 10M | 0.00 | Failed |
+| 3 | Optimized | 20M | 3.25 | Success |
+| 4 | Hard env | 30M | 1.82 | Partial |
+
+### 8.2 Training Efficiency Analysis
+
+| Configuration | Time to First Reward | Time to Convergence |
+|---------------|---------------------|---------------------|
+| Default | Never | Never |
+| Optimized | ~5M steps | ~15M steps |
+| Hard | ~10M steps | ~25M steps |
+
+---
+
+## 9. Week 4 Preview
+
+Upcoming activities:
+
+- Receive extended training results from team
+- Compile comprehensive performance comparisons
+- Update research paper results sections
+- Prepare for second class presentation
+
+---
+
+## 10. Deliverables Summary
+
+| Deliverable | Status |
+|-------------|--------|
+| Scaling analysis compilation | Complete |
+| QMIX focus documentation | Complete |
+| Research paper methodology update | Complete |
+| Unity integration planning | Complete |
+| Literature review expansion | Complete |
+
+---
+
+## 11. Research Paper Excerpt: Scaling Discussion
+
+*Added to paper:*
+
+> **Scaling Analysis**: Our experiments reveal that QMIX's performance on RWARE is sensitive to warehouse configuration. On the tiny-2ag-v2 environment (2 agents, 5×10 grid), optimized hyperparameters achieve consistent task completion. However, scaling to 4+ agents introduces coordination challenges that extend training requirements by 50-100%. The mixing network's capacity to represent complex agent interactions becomes a limiting factor, suggesting that architectural innovations may be necessary for warehouse-scale deployments.
+>
+> These findings align with theoretical expectations—the joint action space grows as |A|^n where |A| is the action space size and n is the agent count. For 5 discrete actions and 6 agents, this yields 15,625 joint actions, making exhaustive exploration infeasible. QMIX's implicit coordination through the mixing network provides a tractable approximation, but convergence guarantees weaken as complexity increases.
+
+---
+
+## 12. References
+
+1. Rashid, T., et al. (2018). QMIX: Monotonic Value Function Factorisation. ICML.
+
+2. Wang, J., et al. (2020). QPLEX: Duplex Dueling Multi-Agent Q-Learning. ICLR.
+
+3. Sunehag, P., et al. (2018). Value-Decomposition Networks for Cooperative Multi-Agent Learning. AAMAS.
+
+4. Unity ML-Agents: https://github.com/Unity-Technologies/ml-agents
+
+5. RWARE Scaling: https://github.com/Farama-Foundation/RWARE

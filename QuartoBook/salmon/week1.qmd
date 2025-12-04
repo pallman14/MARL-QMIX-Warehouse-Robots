@@ -1,0 +1,170 @@
+---
+title: "Week 1 Deliverable – Research Paper Foundation"
+author: "Salmon Riaz"
+date: "2025-10-23"
+format: html
+---
+
+# Week 1 – Compiling Research Foundations & Comparative Analysis
+
+## 1. Role Overview: Documentation Expert
+
+As the Documentation Expert for this MARL Warehouse Robotics project, my primary responsibilities include:
+
+- Compiling and synthesizing findings from all team members
+- Conducting comparative analysis across implemented algorithms
+- Developing and maintaining the research paper throughout the project
+- Creating presentation materials for class deliverables
+- Coordinating final documentation and industry expert interviews
+
+---
+
+## 2. Team Structure & Algorithm Assignments
+
+Our team consists of four members, each focusing on different MARL algorithms:
+
+| Team Member | Role | Algorithm Focus |
+|-------------|------|-----------------|
+| Price Allman | Team Lead | IPPO-LSTM |
+| Lian Thang | Environment Specialist | MASAC |
+| Dre Simmons | Training Specialist | QMIX |
+| Salmon Riaz | Documentation Expert | Research Synthesis |
+
+---
+
+## 3. Week 1 Objectives Completed
+
+### 3.1 Compiled Initial Findings from Team
+
+Gathered setup documentation and initial training results from each team member:
+
+- **Price (IPPO-LSTM)**: Environment setup, PPO implementation details, LSTM integration approach
+- **Lian (MASAC)**: Multi-agent SAC architecture, entropy optimization considerations
+- **Dre (QMIX)**: Value decomposition framework, mixing network architecture
+
+### 3.2 Comparative Analysis Framework
+
+Established framework for comparing algorithms across key dimensions:
+
+```
+Comparison Dimensions:
+├── Training Paradigm (on-policy vs off-policy)
+├── Coordination Mechanism (independent vs centralized mixing)
+├── Observation Handling (feedforward vs recurrent)
+├── Sample Efficiency
+└── Scalability to larger agent counts
+```
+
+### 3.3 Research Paper Foundation
+
+Initiated the research paper structure with the following sections:
+
+1. **Introduction** – Problem motivation and contributions
+2. **Related Work** – MARL algorithms and cooperative environments
+3. **Preliminaries** – Mathematical formulation and CTDE paradigm
+4. **Methods** – IPPO-LSTM, MASAC, and QMIX descriptions
+5. **Experiments and Results** – Setup and performance metrics
+6. **Discussion** – Key findings and implications
+7. **Conclusion** – Summary and future directions
+
+---
+
+## 4. Algorithm Comparison Overview
+
+### 4.1 IPPO-LSTM (Independent PPO with LSTM)
+
+- **Type**: On-policy, actor-critic
+- **Coordination**: Independent learning (no explicit coordination)
+- **Memory**: LSTM handles partial observability
+- **Training**: Proximal Policy Optimization with clipped objective
+
+### 4.2 MASAC (Multi-Agent Soft Actor-Critic)
+
+- **Type**: Off-policy, actor-critic
+- **Coordination**: Centralized critic with decentralized actors
+- **Entropy**: Maximum entropy RL for exploration
+- **Training**: Soft Q-learning with experience replay
+
+### 4.3 QMIX (Q-Mixing Network)
+
+- **Type**: Off-policy, value-based
+- **Coordination**: Centralized mixing of Q-values
+- **Constraint**: Monotonicity ensures IGM condition
+- **Training**: Value decomposition with mixing network
+
+---
+
+## 5. Environment Selection
+
+### 5.1 MPE Simple Spread (Week 1-2)
+
+Selected as initial benchmark due to:
+
+- Well-established MARL benchmark
+- Clear cooperative objective (agents cover landmarks)
+- Dense reward signal facilitating learning
+- Moderate complexity for algorithm validation
+
+### 5.2 RWARE (Week 2+)
+
+Planned transition to warehouse-specific environment:
+
+- Grid-based warehouse simulation
+- Sparse, delayed rewards
+- Realistic multi-robot coordination challenges
+- Scalable to different warehouse sizes
+
+---
+
+## 6. Research Paper Abstract Draft
+
+> This paper presents a progressive benchmarking study of Multi-Agent Reinforcement Learning (MARL) algorithms for cooperative warehouse robotics applications. We evaluate three prominent MARL algorithms—IPPO-LSTM, MASAC, and QMIX—on increasingly complex coordination tasks, beginning with the Multi-agent Particle Environment (MPE) simple spread scenario and progressing to the more challenging Robotic Warehouse Environment (RWARE). Our experiments examine algorithm performance across key dimensions including sample efficiency, coordination quality, and scalability. Through systematic comparison, we identify strengths and limitations of each approach for multi-robot warehouse automation, providing practical insights for algorithm selection in real-world deployment scenarios.
+
+---
+
+## 7. Key Literature Identified
+
+Initial literature review compiled the following foundational works:
+
+1. **QMIX**: Rashid et al. (2018) – Monotonic value function factorisation
+2. **IPPO**: de Witt et al. (2020) – Independent PPO effectiveness
+3. **MASAC**: Haarnoja et al. (2018) – Soft actor-critic foundations
+4. **RWARE**: Christianos et al. (2021) – Warehouse benchmark
+5. **EPyMARL**: Papoudakis et al. (2021) – Multi-agent deep RL benchmarking
+
+---
+
+## 8. Week 2 Preview
+
+Next week's focus areas:
+
+- Compile RWARE training results from team
+- Update research paper with experimental findings
+- Prepare class presentation materials
+- Begin performance comparison tables
+
+---
+
+## 9. Deliverables Summary
+
+| Deliverable | Status |
+|-------------|--------|
+| Team findings compilation | Complete |
+| Comparative analysis framework | Complete |
+| Research paper outline | Complete |
+| Abstract draft | Complete |
+| Literature review initiation | Complete |
+
+---
+
+## 10. References
+
+1. Rashid, T., Samvelyan, M., De Witt, C.S., Farquhar, G., Foerster, J., & Whiteson, S. (2018). QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning. ICML.
+
+2. Papoudakis, G., Christianos, F., Schäfer, L., & Albrecht, S.V. (2021). Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks. NeurIPS.
+
+3. Haarnoja, T., Zhou, A., Abbeel, P., & Levine, S. (2018). Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning. ICML.
+
+4. PettingZoo MPE: https://pettingzoo.farama.org/environments/mpe/
+
+5. RWARE: https://github.com/Farama-Foundation/RWARE

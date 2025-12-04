@@ -23,6 +23,8 @@ book:
           href: lian/week1.qmd
         - text: "Dre Simmons - Week 1"
           href: dre/week1.qmd
+        - text: "Salmon Riaz - Week 1"
+          href: salmon/week1.qmd
 
     - part: "Week 2: RWARE Environment Training"
       chapters:
@@ -32,6 +34,8 @@ book:
           href: lian/week2.qmd
         - text: "Dre Simmons - Week 2"
           href: dre/week2.qmd
+        - text: "Salmon Riaz - Week 2"
+          href: salmon/week2.qmd
 
     - part: "Week 3: Unity Integration & Hard RWARE"
       chapters:
@@ -41,6 +45,8 @@ book:
           href: lian/week3.qmd
         - text: "Dre Simmons - Week 3"
           href: dre/week3.qmd
+        - text: "Salmon Riaz - Week 3"
+          href: salmon/week3.qmd
 
     - part: "Week 4: Extended Training & Analysis"
       chapters:
@@ -50,6 +56,8 @@ book:
           href: lian/week4.qmd
         - text: "Dre Simmons - Week 4"
           href: dre/week4.qmd
+        - text: "Salmon Riaz - Week 4"
+          href: salmon/week4.qmd
 
     - part: "Week 5: Final Analysis & Deliverables"
       chapters:
@@ -59,6 +67,8 @@ book:
           href: lian/week5.qmd
         - text: "Dre Simmons - Week 5"
           href: dre/week5.qmd
+        - text: "Salmon Riaz - Week 5"
+          href: salmon/week5.qmd
 
 bibliography: references.bib
 
