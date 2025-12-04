@@ -773,6 +773,12 @@ Model checkpoints saved at intervals (default: every 100k steps):
 - `mixer.th` - QMIX mixer network weights
 - `opt.th` - Optimizer state
 
+## Quarto Book
+
+View the complete team deliverables compiled in a Quarto Book format:
+
+- [MARL Warehouse Robots - Team Deliverables Book](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/index.html)
+
 ## Deliverables
 
 ### Dre's Deliverables
@@ -794,19 +800,19 @@ Model checkpoints saved at intervals (default: every 100k steps):
 
 ### Price's Deliverables
 
-- [Deliverable 1](https://htmlpreview.github.io/?)
-- [Deliverable 2](https://htmlpreview.github.io/?)
-- [Deliverable 3](https://htmlpreview.github.io/?)
-- [Deliverable 4](https://htmlpreview.github.io/?)
-- [Deliverable 5](https://htmlpreview.github.io/?)
+- [Deliverable 1](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week1.html)
+- [Deliverable 2](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week2.html)
+- [Deliverable 3](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week3.html)
+- [Deliverable 4](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week4.html)
+- [Deliverable 5](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/price/week5.html)
 
 ### Salmon's Deliverables
 
-- [Deliverable 1](https://htmlpreview.github.io/?)
-- [Deliverable 2](https://htmlpreview.github.io/?)
-- [Deliverable 3](https://htmlpreview.github.io/?)
-- [Deliverable 4](https://htmlpreview.github.io/?)
-- [Deliverable 5](https://htmlpreview.github.io/?)
+- [Deliverable 1](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week1.html)
+- [Deliverable 2](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week2.html)
+- [Deliverable 3](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week3.html)
+- [Deliverable 4](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week4.html)
+- [Deliverable 5](https://htmlpreview.github.io/?https://github.com/pallman14/MARL-QMIX-Warehouse-Robots/blob/main/QuartoBook/_book/salmon/week5.html)
 
 ## Citation
 
