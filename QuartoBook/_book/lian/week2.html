@@ -6,13 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Price Allman">
 <meta name="author" content="Lian Thang">
-<meta name="author" content="Dre Simmons">
-<meta name="author" content="Salmon Riaz">
-<meta name="dcterms.date" content="2025-12-01">
+<meta name="dcterms.date" content="2025-10-23">
 
-<title>MARL Warehouse Robots - Team Deliverables</title>
+<title>6&nbsp; RL: Multi-Agent Warehouse Robots – MARL Warehouse Robots - Team Deliverables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,27 +22,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./price/week1.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../dre/week2.html" rel="next">
+<link href="../price/week2.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -74,6 +107,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -86,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">MARL Warehouse Robots - Team Project Deliverables</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week2.html">Week 2: RWARE Environment Training</a></li><li class="breadcrumb-item"><a href="../lian/week2.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lian Thang - Week 2</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -101,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">MARL Warehouse Robots - Team Deliverables</a> 
+      <a href="../">MARL Warehouse Robots - Team Deliverables</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -113,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MARL Warehouse Robots - Team Project Deliverables</span></a>
   </div>
 </li>
@@ -128,25 +190,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lian Thang - Week 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 1</span></span></a>
   </div>
 </li>
@@ -163,25 +225,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Price Allman - Week 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lian Thang - Week 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 2</span></span></a>
   </div>
 </li>
@@ -198,25 +260,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Price Allman - Week 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lian Thang - Week 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 3</span></span></a>
   </div>
 </li>
@@ -233,25 +295,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Price Allman - Week 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lian Thang - Week 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 4</span></span></a>
   </div>
 </li>
@@ -268,25 +330,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Price Allman - Week 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lian Thang - Week 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 5</span></span></a>
   </div>
 </li>
@@ -302,20 +364,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#marl-warehouse-robots---team-project-deliverables" id="toc-marl-warehouse-robots---team-project-deliverables" class="nav-link active" data-scroll-target="#marl-warehouse-robots---team-project-deliverables">MARL Warehouse Robots - Team Project Deliverables</a>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro"><span class="header-section-number">7</span> Intro</a>
   <ul class="collapse">
-  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
-  <li><a href="#project-timeline" id="toc-project-timeline" class="nav-link" data-scroll-target="#project-timeline">Project Timeline</a>
+  <li><a href="#implementation-technique" id="toc-implementation-technique" class="nav-link" data-scroll-target="#implementation-technique"><span class="header-section-number">7.1</span> Implementation Technique</a>
   <ul class="collapse">
-  <li><a href="#week-1-mpe-environment-training" id="toc-week-1-mpe-environment-training" class="nav-link" data-scroll-target="#week-1-mpe-environment-training">Week 1: MPE Environment Training</a></li>
-  <li><a href="#week-2-rware-environment-training" id="toc-week-2-rware-environment-training" class="nav-link" data-scroll-target="#week-2-rware-environment-training">Week 2: RWARE Environment Training</a></li>
-  <li><a href="#week-3-unity-integration-hard-rware" id="toc-week-3-unity-integration-hard-rware" class="nav-link" data-scroll-target="#week-3-unity-integration-hard-rware">Week 3: Unity Integration &amp; Hard RWARE</a></li>
-  <li><a href="#week-4-extended-training" id="toc-week-4-extended-training" class="nav-link" data-scroll-target="#week-4-extended-training">Week 4: Extended Training</a></li>
-  <li><a href="#week-5-final-analysis-deliverables" id="toc-week-5-final-analysis-deliverables" class="nav-link" data-scroll-target="#week-5-final-analysis-deliverables">Week 5: Final Analysis &amp; Deliverables</a></li>
+  <li><a href="#device-used" id="toc-device-used" class="nav-link" data-scroll-target="#device-used"><span class="header-section-number">7.1.1</span> Device Used</a></li>
+  <li><a href="#algorithm-used" id="toc-algorithm-used" class="nav-link" data-scroll-target="#algorithm-used"><span class="header-section-number">7.1.2</span> Algorithm Used</a></li>
+  <li><a href="#key-hyperparameters" id="toc-key-hyperparameters" class="nav-link" data-scroll-target="#key-hyperparameters"><span class="header-section-number">7.1.3</span> Key Hyperparameters</a></li>
+  <li><a href="#bugs-encountered-rware-specific" id="toc-bugs-encountered-rware-specific" class="nav-link" data-scroll-target="#bugs-encountered-rware-specific"><span class="header-section-number">7.1.4</span> Bugs Encountered (RWARE Specific)</a></li>
   </ul></li>
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a></li>
-  <li><a href="#lessons-learned" id="toc-lessons-learned" class="nav-link" data-scroll-target="#lessons-learned">Lessons Learned</a></li>
-  <li><a href="#repository" id="toc-repository" class="nav-link" data-scroll-target="#repository">Repository</a></li>
+  <li><a href="#training-statistics" id="toc-training-statistics" class="nav-link" data-scroll-target="#training-statistics"><span class="header-section-number">7.2</span> Training Statistics</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.3</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.3.1</span> References</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -323,10 +385,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week2.html">Week 2: RWARE Environment Training</a></li><li class="breadcrumb-item"><a href="../lian/week2.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lian Thang - Week 2</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">MARL Warehouse Robots - Team Deliverables</h1>
-<p class="subtitle lead">Multi-Agent Reinforcement Learning for Cooperative Warehouse Automation</p>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">RL: Multi-Agent Warehouse Robots</span></h1>
+<p class="subtitle lead">Deliverable 2 – Multi-Agent Soft Actor-Critic (MASAC) on Robotic Warehouse (RWARE) environment</p>
 </div>
 
 
@@ -334,19 +396,16 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Price Allman </p>
              <p>Lian Thang </p>
-             <p>Dre Simmons </p>
-             <p>Salmon Riaz </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 1, 2025</p>
+      <p class="date">October 23, 2025</p>
     </div>
   </div>
   
@@ -358,90 +417,191 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="marl-warehouse-robots---team-project-deliverables" class="level1 unnumbered">
-<h1 class="unnumbered">MARL Warehouse Robots - Team Project Deliverables</h1>
-<section id="project-overview" class="level2">
-<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
-<p>This book compiles the weekly deliverables from our team’s 5-week multi-agent reinforcement learning (MARL) project focused on training cooperative warehouse robots.</p>
-<p><strong>Project Goal:</strong> Train multi-agent warehouse robots using reinforcement learning to coordinate package retrieval and delivery in increasingly complex environments.</p>
-<p><strong>Team Members:</strong> - <strong>Price Allman</strong>: Unity integration, QMIX implementation, learning failure analysis - <strong>Lian Thang</strong>: Visualization, comparative analysis, CPU/GPU performance studies - <strong>Dre Simmons</strong>: Code documentation, implementation guides, setup instructions - <strong>Salmon Riaz</strong>: Research paper compilation and integration</p>
+<section id="intro" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Intro</h1>
+<p>This deliverable marks the transition from the simple PettingZoo Multi-Particle Environment (MPE) to the more complex Robot Warehouse (RWARE) environment. RWARE is a grid-world environment where agents (robots) must collaboratively navigate to fetch shelves and deliver items, balancing individual movement, collision avoidance, and overall task completion for a shared reward.</p>
+<p>My immediate goal for Deliverable 2 was to successfully adapt and execute the Multi-Agent Soft Actor-Critic (MASAC) algorithm within this new environment and establish a performance baseline.</p>
+<section id="implementation-technique" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="implementation-technique"><span class="header-section-number">7.1</span> Implementation Technique</h2>
+<section id="device-used" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="device-used"><span class="header-section-number">7.1.1</span> Device Used</h3>
+<p>In the last deliverable the agent took around three hours to complete the MPE environment. Because it took so long this week, deliverable will be migrated to the super computer Titan in the migration of moving the workspace to tighten. There were some difficulty involved.</p>
+<div id="08c5e622" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load conda module</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>module load anaconda3 </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create conda environment</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>conda create <span class="op">-</span>n </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate environment</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>conda activate</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install PyTorch with CUDA</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>conda install pytorch torchvision torchaudio pytorch<span class="op">-</span>cuda<span class="op">=</span><span class="fl">11.8</span> <span class="op">-</span>c pytorch <span class="op">-</span>c nvidia <span class="op">-</span>y</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Install conda packages</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>conda install numpy scipy matplotlib <span class="op">-</span>y</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Install pip packages </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>pip install gym</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>pip install pettingzoo</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>pip install rware</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>pip install tqdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>And to get the code runing, run conda env everthying a batch is run</p>
+<div id="0226562d" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --job-name=masac_test</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -o masac_test.%j.out</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -e masac_test.%j.err</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -N 1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -n 8</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=0-08:00               # Max runtime (DD-HH:MM)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition=sb</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-user=llianzthang@oru.edu</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-type=</span><span class="re">END</span><span class="co">,FAIL</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize conda</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> [ <span class="op">-</span>f <span class="st">"$HOME/.conda/etc/profile.d/conda.sh"</span> ]<span class="op">;</span> then</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    source <span class="st">"$HOME/.conda/etc/profile.d/conda.sh"</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> [ <span class="op">-</span>f <span class="st">"/opt/software/Anaconda3/2022.05/etc/profile.d/conda.sh"</span> ]<span class="op">;</span> then</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    source <span class="st">"/opt/software/Anaconda3/2022.05/etc/profile.d/conda.sh"</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>fi</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate environment</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>source activate masac_rware <span class="dv">2</span><span class="op">&gt;/</span>dev<span class="op">/</span>null <span class="op">||</span> export PATH<span class="op">=</span><span class="st">"$HOME/.conda/envs/masac_rware/bin:$PATH"</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>.</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>.</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>.</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>python masac_rware.py </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>.</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>.</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>exit_status<span class="op">=</span>$?</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>.</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>.</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>.</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>exit $exit_status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
-<section id="project-timeline" class="level2">
-<h2 class="anchored" data-anchor-id="project-timeline">Project Timeline</h2>
-<section id="week-1-mpe-environment-training" class="level3">
-<h3 class="anchored" data-anchor-id="week-1-mpe-environment-training">Week 1: MPE Environment Training</h3>
-<p>All team members trained on Multi-Particle Environment (MPE) Simple Spread to establish baseline MARL skills with dense rewards.</p>
-<p><strong>Key Algorithms:</strong> IPPO-LSTM, Behavioral Cloning warm-start</p>
+<section id="algorithm-used" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="algorithm-used"><span class="header-section-number">7.1.2</span> Algorithm Used</h3>
+<p>I continue to implement the Multi-Agent Soft Actor-Critic (MASAC) algorithm, now adapted for the RWARE environment’s discrete-action space (movement and item pickup/drop-off). Each of the two robots maintains its own stochastic policy (actor). The centralized critic is now responsible for evaluating joint observations and actions across the larger, partially-observable state space of the warehouse.</p>
+<p>The use of MASAC provides sample efficiency via off-policy replay and promotes robust, non-greedy coordination necessary to avoid deadlocks and collisions inherent in the warehouse setting.</p>
+<p>MASAC provides both <strong>sample efficiency</strong> (through off-policy replay) and <strong>robust coordination</strong> between agents under shared rewards.</p>
 </section>
-<section id="week-2-rware-environment-training" class="level3">
-<h3 class="anchored" data-anchor-id="week-2-rware-environment-training">Week 2: RWARE Environment Training</h3>
-<p>Transition to Robotic Warehouse (RWARE) environment with sparse rewards and grid-based coordination.</p>
-<p><strong>Key Focus:</strong> Algorithm comparison (Vanilla vs Advanced IPPO), sample efficiency analysis</p>
+<section id="key-hyperparameters" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="key-hyperparameters"><span class="header-section-number">7.1.3</span> Key Hyperparameters</h3>
+<p>These parameters reflect the initial quick test run for benchmarking the RWARE adaptation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 24%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Environment</td>
+<td><code>rware-tiny-2ag-v2</code></td>
+<td>Robotic Warehouse, 2 agents, small map</td>
+</tr>
+<tr class="even">
+<td>Episodes</td>
+<td>2000</td>
+<td>Training duration for initial benchmark</td>
+</tr>
+<tr class="odd">
+<td>Agents</td>
+<td>2</td>
+<td>Independent actors, shared centralized critic</td>
+</tr>
+<tr class="even">
+<td>Max Steps per Episode</td>
+<td>150</td>
+<td>Episode length limit</td>
+</tr>
+<tr class="odd">
+<td>Batch Size</td>
+<td>128</td>
+<td>Transitions per update</td>
+</tr>
+<tr class="even">
+<td>Actor/Critic LR</td>
+<td>3e-4</td>
+<td>Step size for policy and value updates</td>
+</tr>
+<tr class="odd">
+<td>Discount Factor (γ)</td>
+<td>0.99</td>
+<td>Future reward weighting (standard for stability)</td>
+</tr>
+<tr class="even">
+<td>Target Smoothing (τ)</td>
+<td>0.005</td>
+<td>For soft target updates</td>
+</tr>
+<tr class="odd">
+<td>Entropy Coefficient (α)</td>
+<td>Auto-tuning</td>
+<td>Controls exploration strength</td>
+</tr>
+<tr class="even">
+<td>Replay Buffer Size</td>
+<td>10,000</td>
+<td>Off-policy experience storage</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="week-3-unity-integration-hard-rware" class="level3">
-<h3 class="anchored" data-anchor-id="week-3-unity-integration-hard-rware">Week 3: Unity Integration &amp; Hard RWARE</h3>
-<ul>
-<li><strong>Price</strong>: Integrated QMIX with Unity ML-Agents 4.0</li>
-<li><strong>Dre</strong>: Hard RWARE training</li>
-<li><strong>Lian</strong>: CPU/GPU performance comparison</li>
-</ul>
-</section>
-<section id="week-4-extended-training" class="level3">
-<h3 class="anchored" data-anchor-id="week-4-extended-training">Week 4: Extended Training</h3>
-<ul>
-<li><strong>Price</strong>: Deployed enhanced Unity warehouse with package queue system</li>
-<li>Partial training run (530k/1M steps)</li>
-<li>Emerging package delivery behaviors observed</li>
-</ul>
-</section>
-<section id="week-5-final-analysis-deliverables" class="level3">
-<h3 class="anchored" data-anchor-id="week-5-final-analysis-deliverables">Week 5: Final Analysis &amp; Deliverables</h3>
-<ul>
-<li><strong>Price</strong>: Critical learning failure analysis - discovered agents rely on exploration, not learned policies</li>
-<li><strong>Lian</strong>: Created comparative visualizations across all experiments</li>
-<li><strong>Dre</strong>: Finalized code documentation</li>
-<li><strong>Salmon</strong>: Research paper integration</li>
-</ul>
-</section>
-</section>
-<section id="key-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
-<ol type="1">
-<li><p><strong>Environment Complexity Hierarchy</strong>: MPE (dense, simple) → RWARE (sparse, grid) → Unity (sparse, physics)</p></li>
-<li><p><strong>Algorithm Performance</strong>:</p>
-<ul>
-<li>Advanced IPPO: 3× better than vanilla, 4× more sample efficient</li>
-<li>QMIX with Unity: Achieved high training returns (207.96) but failed to learn actual policies</li>
-</ul></li>
-<li><p><strong>Critical Discovery</strong> (Week 5): Pure greedy evaluation (ε=0.0) revealed true learned performance</p>
-<ul>
-<li>Training with exploration: 207.96 return</li>
-<li><strong>Pure greedy: 0.21 return</strong> (near-zero!)</li>
-<li>Adding 10% exploration: 191-253 return (904-1207× improvement!)</li>
-</ul></li>
-<li><p><strong>Root Causes of Learning Failure</strong>:</p>
-<ul>
-<li>Sparse rewards insufficient for credit assignment</li>
-<li>Random exploration masked learning failure in training metrics</li>
-<li>Hardware constraints (CPU-only, 16GB RAM) limited training duration</li>
-</ul></li>
-</ol>
-</section>
-<section id="lessons-learned" class="level2">
-<h2 class="anchored" data-anchor-id="lessons-learned">Lessons Learned</h2>
-<ul>
-<li><strong>Always test with ε=0.0</strong>: Pure greedy evaluation reveals true learned performance</li>
-<li><strong>High training returns ≠ successful learning</strong>: Exploration can mask learning failures</li>
-<li><strong>Hardware matters</strong>: Serious MARL research requires GPU computing and extended training</li>
-<li><strong>Systematic debugging pays off</strong>: Hypothesis-driven testing (ε=0.0 vs ε=0.1) exposed root cause</li>
-</ul>
+<section id="bugs-encountered-rware-specific" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="bugs-encountered-rware-specific"><span class="header-section-number">7.1.4</span> Bugs Encountered (RWARE Specific)</h3>
+<p>The training time is much longer than the initial estimate because the early episodes of a run are purely dedicated to experience collection (fast), but once the replay buffer fills up, the bottleneck becomes the training step (slow).</p>
+<p>The MASAC algorithm is computationally expensive because the value function update requires summing over the probabilities of all possible joint actions (act_dim^n_agents), which is a huge number for even small environments.</p>
+<p>It was not able to completed a 2,000 under 8 hour. But the initial test of 50 episode in 30 min was working. The 50 episode show that code was able to run in Titian but there are some hyper parameter that need to be tweak to accelerate the training.</p>
 <hr>
 </section>
-<section id="repository" class="level2">
-<h2 class="anchored" data-anchor-id="repository">Repository</h2>
-<p>Full code, documentation, and training checkpoints: <a href="https://github.com/pallman14/MARL-QMIX-Warehouse-Robots">MARL-QMIX-Warehouse-Robots</a></p>
+</section>
+<section id="training-statistics" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="training-statistics"><span class="header-section-number">7.2</span> Training Statistics</h2>
+<p>A 50 episode in 30 min was able to complete but that was early in the training so the model settled in a policy. And also it didn’t earn any points.</p>
+<p><img src="50eps.png" class="img-fluid"></p>
+<p>A 1300 epsiode and it was the same result as the 50 epsidodes. It was not learning.</p>
+<p><img src="1300eps.gif" class="img-fluid"></p>
+</section>
+<section id="summary" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.3</span> Summary</h2>
+<p>The <strong>MASAC</strong> algorithm has been successfully ported and tested on the <strong>RWARE</strong> environment. It fulfilled the deliverable requirement of running the model on the R warehouse environment. Because the multi agent, soft actor critic model is updating the value function by summing over the probability of all possible action the training loop it took a long time so this week deliverable environment was not able to be completed, but it was able to be run successfully while there might be a few hyper parameters that need to be tweaked over all the model was able to run in the hour environment on the super computer Titan</p>
+<p>The low success rate for full task completion indicates that my policies require further, long-term training to master the spatial and temporal coordination demanded by the RWARE task.</p>
+<p><strong>Next Steps (Weeks 2–3):</strong></p>
+<ul>
+<li><p><strong>Parameters</strong> I will tweak some parameters to make learn better.</p></li>
+<li><p><strong>Buffer Optimization:</strong> I plan to increase the Replay Buffer Capacity significantly (e.g., to <span class="math inline">\(1,000,000\)</span>) to fully utilize the off-policy learning benefits.</p></li>
+</ul>
+<hr>
+<section id="references" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="references"><span class="header-section-number">7.3.1</span> References</h3>
+<ul>
+<li><p>https://pmc.ncbi.nlm.nih.gov/articles/PMC11059992/</p></li>
+<li><p>https://github.com/JohannesAck/tf2multiagentrl</p></li>
+<li><p>https://github.com/semitable/robotic-warehouse</p></li>
+<li><p>OpenAI. (2024). ChatGPT (Oct 23 version) [Large language model]. https://chat.openai.com/chat</p></li>
+</ul>
 
 
+</section>
 </section>
 </section>
 
@@ -847,10 +1007,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../price/week2.html" class="pagination-link" aria-label="Price Allman - Week 2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Price Allman - Week 2</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./price/week1.html" class="pagination-link" aria-label="Price Allman - Week 1">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../dre/week2.html" class="pagination-link" aria-label="Dre Simmons - Week 2">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

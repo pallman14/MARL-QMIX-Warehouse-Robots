@@ -6,13 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Price Allman">
 <meta name="author" content="Lian Thang">
-<meta name="author" content="Dre Simmons">
-<meta name="author" content="Salmon Riaz">
-<meta name="dcterms.date" content="2025-12-01">
+<meta name="dcterms.date" content="2025-12-03">
 
-<title>MARL Warehouse Robots - Team Deliverables</title>
+<title>10&nbsp; RL: Multi-Agent Warehouse Robots – MARL Warehouse Robots - Team Deliverables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -28,24 +25,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./price/week1.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../dre/week3.html" rel="next">
+<link href="../price/week3.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -74,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -86,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">MARL Warehouse Robots - Team Project Deliverables</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week3.html">Week 3: Unity Integration &amp; Hard RWARE</a></li><li class="breadcrumb-item"><a href="../lian/week3.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lian Thang - Week 3</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -101,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">MARL Warehouse Robots - Team Deliverables</a> 
+      <a href="../">MARL Warehouse Robots - Team Deliverables</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -113,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MARL Warehouse Robots - Team Project Deliverables</span></a>
   </div>
 </li>
@@ -128,25 +155,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lian Thang - Week 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 1</span></span></a>
   </div>
 </li>
@@ -163,25 +190,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Price Allman - Week 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lian Thang - Week 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 2</span></span></a>
   </div>
 </li>
@@ -198,25 +225,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Price Allman - Week 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lian Thang - Week 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 3</span></span></a>
   </div>
 </li>
@@ -233,25 +260,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Price Allman - Week 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lian Thang - Week 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 4</span></span></a>
   </div>
 </li>
@@ -268,25 +295,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Price Allman - Week 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lian Thang - Week 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 5</span></span></a>
   </div>
 </li>
@@ -302,20 +329,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#marl-warehouse-robots---team-project-deliverables" id="toc-marl-warehouse-robots---team-project-deliverables" class="nav-link active" data-scroll-target="#marl-warehouse-robots---team-project-deliverables">MARL Warehouse Robots - Team Project Deliverables</a>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro"><span class="header-section-number">11</span> Intro</a></li>
+  <li><a href="#parallelization" id="toc-parallelization" class="nav-link" data-scroll-target="#parallelization"><span class="header-section-number">12</span> Parallelization</a></li>
+  <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test"><span class="header-section-number">13</span> Test</a>
   <ul class="collapse">
-  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
-  <li><a href="#project-timeline" id="toc-project-timeline" class="nav-link" data-scroll-target="#project-timeline">Project Timeline</a>
+  <li><a href="#measured-times-from-runs" id="toc-measured-times-from-runs" class="nav-link" data-scroll-target="#measured-times-from-runs"><span class="header-section-number">13.1</span> Measured times (from runs)</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">13.2</span> Summary</a>
   <ul class="collapse">
-  <li><a href="#week-1-mpe-environment-training" id="toc-week-1-mpe-environment-training" class="nav-link" data-scroll-target="#week-1-mpe-environment-training">Week 1: MPE Environment Training</a></li>
-  <li><a href="#week-2-rware-environment-training" id="toc-week-2-rware-environment-training" class="nav-link" data-scroll-target="#week-2-rware-environment-training">Week 2: RWARE Environment Training</a></li>
-  <li><a href="#week-3-unity-integration-hard-rware" id="toc-week-3-unity-integration-hard-rware" class="nav-link" data-scroll-target="#week-3-unity-integration-hard-rware">Week 3: Unity Integration &amp; Hard RWARE</a></li>
-  <li><a href="#week-4-extended-training" id="toc-week-4-extended-training" class="nav-link" data-scroll-target="#week-4-extended-training">Week 4: Extended Training</a></li>
-  <li><a href="#week-5-final-analysis-deliverables" id="toc-week-5-final-analysis-deliverables" class="nav-link" data-scroll-target="#week-5-final-analysis-deliverables">Week 5: Final Analysis &amp; Deliverables</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">13.2.1</span> References</a></li>
   </ul></li>
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a></li>
-  <li><a href="#lessons-learned" id="toc-lessons-learned" class="nav-link" data-scroll-target="#lessons-learned">Lessons Learned</a></li>
-  <li><a href="#repository" id="toc-repository" class="nav-link" data-scroll-target="#repository">Repository</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -323,10 +345,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week3.html">Week 3: Unity Integration &amp; Hard RWARE</a></li><li class="breadcrumb-item"><a href="../lian/week3.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lian Thang - Week 3</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">MARL Warehouse Robots - Team Deliverables</h1>
-<p class="subtitle lead">Multi-Agent Reinforcement Learning for Cooperative Warehouse Automation</p>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">RL: Multi-Agent Warehouse Robots</span></h1>
+<p class="subtitle lead">Deliverable 3 – Multi-Agent Soft Actor-Critic (MASAC) on Robotic Warehouse (RWARE) environment</p>
 </div>
 
 
@@ -334,19 +356,16 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Price Allman </p>
              <p>Lian Thang </p>
-             <p>Dre Simmons </p>
-             <p>Salmon Riaz </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 1, 2025</p>
+      <p class="date">December 3, 2025</p>
     </div>
   </div>
   
@@ -358,90 +377,124 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="marl-warehouse-robots---team-project-deliverables" class="level1 unnumbered">
-<h1 class="unnumbered">MARL Warehouse Robots - Team Project Deliverables</h1>
-<section id="project-overview" class="level2">
-<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
-<p>This book compiles the weekly deliverables from our team’s 5-week multi-agent reinforcement learning (MARL) project focused on training cooperative warehouse robots.</p>
-<p><strong>Project Goal:</strong> Train multi-agent warehouse robots using reinforcement learning to coordinate package retrieval and delivery in increasingly complex environments.</p>
-<p><strong>Team Members:</strong> - <strong>Price Allman</strong>: Unity integration, QMIX implementation, learning failure analysis - <strong>Lian Thang</strong>: Visualization, comparative analysis, CPU/GPU performance studies - <strong>Dre Simmons</strong>: Code documentation, implementation guides, setup instructions - <strong>Salmon Riaz</strong>: Research paper compilation and integration</p>
+<section id="intro" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Intro</h1>
+<p>Deliverable 3 explore cpu and gpu run time, cpu parallel and gpu parallel run time. In Titan the default partition use was <span class="math inline">\(#SBATCH --partition=sb\)</span>. SB was a 16 CPU, 128 GB memory, and 280 nodes. But it didn’t have GPU.</p>
+<p>While research I came to the conculsion to switch to GPU.</p>
+<p>Using</p>
+<pre class="{bash}"><code>sinfo -o "%P %G %c %m %D %N"</code></pre>
+<p>I was able to see the partition Titan have.</p>
+<pre class="{bash}"><code>PARTITION GRES CPUS MEMORY NODES NODELIST
+bw* (null) 40+ 128000 38 c[001-034,315-318]
+il (null) 48 256000 1 c319
+sb (null) 16 128000 280 c[035-314]
+t4 gpu:t4:4 64 256000 1 g000
+gpu gpu:a30:4 64 512000 8 g[001-008]
+osg (null) 16+ 128000 318 c[001-318]</code></pre>
+<p>Because GPUs were available and greatly accelerate batch forward/backward passes for neural networks, I switched to a GPU partition for the final experiments.</p>
 </section>
-<section id="project-timeline" class="level2">
-<h2 class="anchored" data-anchor-id="project-timeline">Project Timeline</h2>
-<section id="week-1-mpe-environment-training" class="level3">
-<h3 class="anchored" data-anchor-id="week-1-mpe-environment-training">Week 1: MPE Environment Training</h3>
-<p>All team members trained on Multi-Particle Environment (MPE) Simple Spread to establish baseline MARL skills with dense rewards.</p>
-<p><strong>Key Algorithms:</strong> IPPO-LSTM, Behavioral Cloning warm-start</p>
+<section id="parallelization" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Parallelization</h1>
+<p>I opt for a synchronous parallel using internal synchronization wrapper SyncVectorEnv. This would let all environment steps be grouped and run, and the main thread waits for the slowest environment to finish before proceeding to the next step. This would in theroy dramatically increases the throughput of the training data, allowing it to fill the replay buffer much faster.</p>
 </section>
-<section id="week-2-rware-environment-training" class="level3">
-<h3 class="anchored" data-anchor-id="week-2-rware-environment-training">Week 2: RWARE Environment Training</h3>
-<p>Transition to Robotic Warehouse (RWARE) environment with sparse rewards and grid-based coordination.</p>
-<p><strong>Key Focus:</strong> Algorithm comparison (Vanilla vs Advanced IPPO), sample efficiency analysis</p>
+<section id="test" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Test</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test Case</th>
+<th>Episodes</th>
+<th>num_envs</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sequential CPU</td>
+<td>50</td>
+<td>1</td>
+<td>CPU overhead, single-instance processing</td>
+</tr>
+<tr class="even">
+<td>Parallel CPU</td>
+<td>50</td>
+<td>8</td>
+<td>Parallelization Gain (CPU cores used efficiently)</td>
+</tr>
+<tr class="odd">
+<td>Sequential GPU</td>
+<td>50</td>
+<td>1</td>
+<td>GPU Acceleration (single forward pass speed)</td>
+</tr>
+<tr class="even">
+<td>Parallel GPU</td>
+<td>50</td>
+<td>8</td>
+<td>Final Optimized Speed (best-case scenario)</td>
+</tr>
+</tbody>
+</table>
+<section id="measured-times-from-runs" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="measured-times-from-runs"><span class="header-section-number">13.1</span> Measured times (from runs)</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Test Case</th>
+<th>Episodes</th>
+<th>num_envs</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sequential CPU</td>
+<td>50</td>
+<td>1</td>
+<td>1:02:39</td>
+</tr>
+<tr class="even">
+<td>Parallel CPU</td>
+<td>50</td>
+<td>8</td>
+<td>09:49</td>
+</tr>
+<tr class="odd">
+<td>Sequential GPU</td>
+<td>50</td>
+<td>1</td>
+<td>06:43</td>
+</tr>
+<tr class="even">
+<td>Parallel GPU</td>
+<td>50</td>
+<td>8</td>
+<td>01:06</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="week-3-unity-integration-hard-rware" class="level3">
-<h3 class="anchored" data-anchor-id="week-3-unity-integration-hard-rware">Week 3: Unity Integration &amp; Hard RWARE</h3>
-<ul>
-<li><strong>Price</strong>: Integrated QMIX with Unity ML-Agents 4.0</li>
-<li><strong>Dre</strong>: Hard RWARE training</li>
-<li><strong>Lian</strong>: CPU/GPU performance comparison</li>
-</ul>
-</section>
-<section id="week-4-extended-training" class="level3">
-<h3 class="anchored" data-anchor-id="week-4-extended-training">Week 4: Extended Training</h3>
-<ul>
-<li><strong>Price</strong>: Deployed enhanced Unity warehouse with package queue system</li>
-<li>Partial training run (530k/1M steps)</li>
-<li>Emerging package delivery behaviors observed</li>
-</ul>
-</section>
-<section id="week-5-final-analysis-deliverables" class="level3">
-<h3 class="anchored" data-anchor-id="week-5-final-analysis-deliverables">Week 5: Final Analysis &amp; Deliverables</h3>
-<ul>
-<li><strong>Price</strong>: Critical learning failure analysis - discovered agents rely on exploration, not learned policies</li>
-<li><strong>Lian</strong>: Created comparative visualizations across all experiments</li>
-<li><strong>Dre</strong>: Finalized code documentation</li>
-<li><strong>Salmon</strong>: Research paper integration</li>
-</ul>
-</section>
-</section>
-<section id="key-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
-<ol type="1">
-<li><p><strong>Environment Complexity Hierarchy</strong>: MPE (dense, simple) → RWARE (sparse, grid) → Unity (sparse, physics)</p></li>
-<li><p><strong>Algorithm Performance</strong>:</p>
-<ul>
-<li>Advanced IPPO: 3× better than vanilla, 4× more sample efficient</li>
-<li>QMIX with Unity: Achieved high training returns (207.96) but failed to learn actual policies</li>
-</ul></li>
-<li><p><strong>Critical Discovery</strong> (Week 5): Pure greedy evaluation (ε=0.0) revealed true learned performance</p>
-<ul>
-<li>Training with exploration: 207.96 return</li>
-<li><strong>Pure greedy: 0.21 return</strong> (near-zero!)</li>
-<li>Adding 10% exploration: 191-253 return (904-1207× improvement!)</li>
-</ul></li>
-<li><p><strong>Root Causes of Learning Failure</strong>:</p>
-<ul>
-<li>Sparse rewards insufficient for credit assignment</li>
-<li>Random exploration masked learning failure in training metrics</li>
-<li>Hardware constraints (CPU-only, 16GB RAM) limited training duration</li>
-</ul></li>
-</ol>
-</section>
-<section id="lessons-learned" class="level2">
-<h2 class="anchored" data-anchor-id="lessons-learned">Lessons Learned</h2>
-<ul>
-<li><strong>Always test with ε=0.0</strong>: Pure greedy evaluation reveals true learned performance</li>
-<li><strong>High training returns ≠ successful learning</strong>: Exploration can mask learning failures</li>
-<li><strong>Hardware matters</strong>: Serious MARL research requires GPU computing and extended training</li>
-<li><strong>Systematic debugging pays off</strong>: Hypothesis-driven testing (ε=0.0 vs ε=0.1) exposed root cause</li>
-</ul>
+<section id="summary" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">13.2</span> Summary</h2>
+<p>GPU acceleration + parallel environments provide dramatic reductions in wall-clock time for MASAC on RWARE. For the measured runs: sequential CPU (50 ep) took 01:02:39 (3759 s), while parallel GPU (50 ep, 8 envs) took 01:06 (66 s), which is a ~57× reduction in wall-clock time.</p>
 <hr>
+<section id="references" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="references"><span class="header-section-number">13.2.1</span> References</h3>
+<ul>
+<li><p>https://pmc.ncbi.nlm.nih.gov/articles/PMC11059992/</p></li>
+<li><p>https://github.com/JohannesAck/tf2multiagentrl</p></li>
+<li><p>https://github.com/semitable/robotic-warehouse</p></li>
+<li><p>OpenAI. (2024). ChatGPT (Oct 23 version) [Large language model]. https://chat.openai.com/chat</p></li>
+</ul>
+
+
 </section>
-<section id="repository" class="level2">
-<h2 class="anchored" data-anchor-id="repository">Repository</h2>
-<p>Full code, documentation, and training checkpoints: <a href="https://github.com/pallman14/MARL-QMIX-Warehouse-Robots">MARL-QMIX-Warehouse-Robots</a></p>
-
-
 </section>
 </section>
 
@@ -847,10 +900,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../price/week3.html" class="pagination-link" aria-label="Price Allman - Week 3">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Price Allman - Week 3</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./price/week1.html" class="pagination-link" aria-label="Price Allman - Week 1">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../dre/week3.html" class="pagination-link" aria-label="Dre Simmons - Week 3">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 3</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

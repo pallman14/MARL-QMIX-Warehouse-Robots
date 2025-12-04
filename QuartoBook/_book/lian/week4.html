@@ -6,13 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Price Allman">
 <meta name="author" content="Lian Thang">
-<meta name="author" content="Dre Simmons">
-<meta name="author" content="Salmon Riaz">
-<meta name="dcterms.date" content="2025-12-01">
+<meta name="dcterms.date" content="2025-11-13">
 
-<title>MARL Warehouse Robots - Team Deliverables</title>
+<title>14&nbsp; RL: Multi-Agent Warehouse Robots – MARL Warehouse Robots - Team Deliverables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -28,24 +25,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./price/week1.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../dre/week4.html" rel="next">
+<link href="../price/week4.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -74,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -86,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">MARL Warehouse Robots - Team Project Deliverables</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week4.html">Week 4: Extended Training &amp; Analysis</a></li><li class="breadcrumb-item"><a href="../lian/week4.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lian Thang - Week 4</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -101,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">MARL Warehouse Robots - Team Deliverables</a> 
+      <a href="../">MARL Warehouse Robots - Team Deliverables</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -113,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MARL Warehouse Robots - Team Project Deliverables</span></a>
   </div>
 </li>
@@ -128,25 +155,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lian Thang - Week 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week1.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 1</span></span></a>
   </div>
 </li>
@@ -163,25 +190,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Price Allman - Week 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lian Thang - Week 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week2.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 2</span></span></a>
   </div>
 </li>
@@ -198,25 +225,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Price Allman - Week 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lian Thang - Week 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week3.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 3</span></span></a>
   </div>
 </li>
@@ -233,25 +260,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Price Allman - Week 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week4.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lian Thang - Week 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 4</span></span></a>
   </div>
 </li>
@@ -268,25 +295,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./price/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../price/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Price Allman - Week 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lian/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../lian/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lian Thang - Week 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dre/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../dre/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./salmon/week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../salmon/week5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 5</span></span></a>
   </div>
 </li>
@@ -302,20 +329,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#marl-warehouse-robots---team-project-deliverables" id="toc-marl-warehouse-robots---team-project-deliverables" class="nav-link active" data-scroll-target="#marl-warehouse-robots---team-project-deliverables">MARL Warehouse Robots - Team Project Deliverables</a>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro"><span class="header-section-number">15</span> Intro</a></li>
+  <li><a href="#mpe" id="toc-mpe" class="nav-link" data-scroll-target="#mpe"><span class="header-section-number">16</span> MPE</a></li>
+  <li><a href="#rware" id="toc-rware" class="nav-link" data-scroll-target="#rware"><span class="header-section-number">17</span> RWARE</a>
   <ul class="collapse">
-  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
-  <li><a href="#project-timeline" id="toc-project-timeline" class="nav-link" data-scroll-target="#project-timeline">Project Timeline</a>
-  <ul class="collapse">
-  <li><a href="#week-1-mpe-environment-training" id="toc-week-1-mpe-environment-training" class="nav-link" data-scroll-target="#week-1-mpe-environment-training">Week 1: MPE Environment Training</a></li>
-  <li><a href="#week-2-rware-environment-training" id="toc-week-2-rware-environment-training" class="nav-link" data-scroll-target="#week-2-rware-environment-training">Week 2: RWARE Environment Training</a></li>
-  <li><a href="#week-3-unity-integration-hard-rware" id="toc-week-3-unity-integration-hard-rware" class="nav-link" data-scroll-target="#week-3-unity-integration-hard-rware">Week 3: Unity Integration &amp; Hard RWARE</a></li>
-  <li><a href="#week-4-extended-training" id="toc-week-4-extended-training" class="nav-link" data-scroll-target="#week-4-extended-training">Week 4: Extended Training</a></li>
-  <li><a href="#week-5-final-analysis-deliverables" id="toc-week-5-final-analysis-deliverables" class="nav-link" data-scroll-target="#week-5-final-analysis-deliverables">Week 5: Final Analysis &amp; Deliverables</a></li>
+  <li><a href="#return-mean" id="toc-return-mean" class="nav-link" data-scroll-target="#return-mean"><span class="header-section-number">17.0.1</span> Return Mean</a></li>
+  <li><a href="#target-mean" id="toc-target-mean" class="nav-link" data-scroll-target="#target-mean"><span class="header-section-number">17.0.2</span> Target Mean</a></li>
+  <li><a href="#overall-interpretation" id="toc-overall-interpretation" class="nav-link" data-scroll-target="#overall-interpretation"><span class="header-section-number">17.0.3</span> Overall Interpretation</a></li>
   </ul></li>
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a></li>
-  <li><a href="#lessons-learned" id="toc-lessons-learned" class="nav-link" data-scroll-target="#lessons-learned">Lessons Learned</a></li>
-  <li><a href="#repository" id="toc-repository" class="nav-link" data-scroll-target="#repository">Repository</a></li>
+  <li><a href="#unity" id="toc-unity" class="nav-link" data-scroll-target="#unity"><span class="header-section-number">18</span> Unity</a>
+  <ul class="collapse">
+  <li><a href="#training-return-mean-blue-line" id="toc-training-return-mean-blue-line" class="nav-link" data-scroll-target="#training-return-mean-blue-line"><span class="header-section-number">18.0.1</span> Training Return Mean (Blue Line)</a></li>
+  <li><a href="#test-return-mean-red-line" id="toc-test-return-mean-red-line" class="nav-link" data-scroll-target="#test-return-mean-red-line"><span class="header-section-number">18.0.2</span> Test Return Mean (Red Line)</a></li>
+  <li><a href="#overall-interpretation-1" id="toc-overall-interpretation-1" class="nav-link" data-scroll-target="#overall-interpretation-1"><span class="header-section-number">18.0.3</span> Overall Interpretation</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">18.1</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">18.1.1</span> References</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -323,10 +353,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week4.html">Week 4: Extended Training &amp; Analysis</a></li><li class="breadcrumb-item"><a href="../lian/week4.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lian Thang - Week 4</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">MARL Warehouse Robots - Team Deliverables</h1>
-<p class="subtitle lead">Multi-Agent Reinforcement Learning for Cooperative Warehouse Automation</p>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">RL: Multi-Agent Warehouse Robots</span></h1>
+<p class="subtitle lead">Deliverable 4 – QMIX comparison</p>
 </div>
 
 
@@ -334,19 +364,16 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Price Allman </p>
              <p>Lian Thang </p>
-             <p>Dre Simmons </p>
-             <p>Salmon Riaz </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 1, 2025</p>
+      <p class="date">November 13, 2025</p>
     </div>
   </div>
   
@@ -358,90 +385,473 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="marl-warehouse-robots---team-project-deliverables" class="level1 unnumbered">
-<h1 class="unnumbered">MARL Warehouse Robots - Team Project Deliverables</h1>
-<section id="project-overview" class="level2">
-<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
-<p>This book compiles the weekly deliverables from our team’s 5-week multi-agent reinforcement learning (MARL) project focused on training cooperative warehouse robots.</p>
-<p><strong>Project Goal:</strong> Train multi-agent warehouse robots using reinforcement learning to coordinate package retrieval and delivery in increasingly complex environments.</p>
-<p><strong>Team Members:</strong> - <strong>Price Allman</strong>: Unity integration, QMIX implementation, learning failure analysis - <strong>Lian Thang</strong>: Visualization, comparative analysis, CPU/GPU performance studies - <strong>Dre Simmons</strong>: Code documentation, implementation guides, setup instructions - <strong>Salmon Riaz</strong>: Research paper compilation and integration</p>
+<section id="intro" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Intro</h1>
+<p>Create performance comparison visualizations of QMIX in (MPE → RWARE → Unity).</p>
 </section>
-<section id="project-timeline" class="level2">
-<h2 class="anchored" data-anchor-id="project-timeline">Project Timeline</h2>
-<section id="week-1-mpe-environment-training" class="level3">
-<h3 class="anchored" data-anchor-id="week-1-mpe-environment-training">Week 1: MPE Environment Training</h3>
-<p>All team members trained on Multi-Particle Environment (MPE) Simple Spread to establish baseline MARL skills with dense rewards.</p>
-<p><strong>Key Algorithms:</strong> IPPO-LSTM, Behavioral Cloning warm-start</p>
+<section id="mpe" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> MPE</h1>
+<p>ENV</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 8%">
+<col style="width: 74%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>N (Agents)</td>
+<td>3</td>
+<td>The number of agents in the environment.</td>
+</tr>
+<tr class="even">
+<td>n_landmarks</td>
+<td>3</td>
+<td>The number of landmarks (targets) in the environment.</td>
+</tr>
+<tr class="odd">
+<td>max_cycles</td>
+<td>25</td>
+<td>The maximum number of steps an episode can run before truncation.</td>
+</tr>
+<tr class="even">
+<td>local_ratio</td>
+<td>0.5</td>
+<td>The proportion of reward that is local vs.&nbsp;shared.</td>
+</tr>
+<tr class="odd">
+<td>continuous_actions</td>
+<td>False</td>
+<td>Agents use discrete actions (e.g., move left/right/stop); needed for QMIX.</td>
+</tr>
+</tbody>
+</table>
+<p>Training</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>episodes</td>
+<td>2000</td>
+<td>Total number of planned training episodes (run ended at 200 episodes).</td>
+</tr>
+<tr class="even">
+<td>max_cycles</td>
+<td>25</td>
+<td>Same as the environment’s max steps per episode.</td>
+</tr>
+<tr class="odd">
+<td>gamma</td>
+<td>0.99</td>
+<td>Discount factor for future rewards.</td>
+</tr>
+<tr class="even">
+<td>lr</td>
+<td>1e-3</td>
+<td>Learning rate for Adam optimizer.</td>
+</tr>
+<tr class="odd">
+<td>buffer_capacity</td>
+<td>50,000</td>
+<td>Maximum size of the replay buffer.</td>
+</tr>
+<tr class="even">
+<td>batch_size</td>
+<td>128</td>
+<td>Number of transitions sampled per training step.</td>
+</tr>
+<tr class="odd">
+<td>start_learn_after</td>
+<td>1,000</td>
+<td>Minimum number of transitions before learning begins.</td>
+</tr>
+<tr class="even">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Initial exploration rate (ϵ-greedy).</td>
+</tr>
+<tr class="odd">
+<td>epsilon_end</td>
+<td>0.02</td>
+<td>Minimum exploration rate after decay.</td>
+</tr>
+<tr class="even">
+<td>epsilon_decay</td>
+<td>0.997</td>
+<td>Multiplicative decay factor per episode.</td>
+</tr>
+<tr class="odd">
+<td>target_tau</td>
+<td>0.005</td>
+<td>Polyak update rate for target network soft updates.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="mpe_qmix_evaluation_plot.png" class="img-fluid"></p>
+<p><img src="mpe_qmix_environment_episode.gif" class="img-fluid"></p>
+<p>In the MPE QMIX is not really learning.</p>
 </section>
-<section id="week-2-rware-environment-training" class="level3">
-<h3 class="anchored" data-anchor-id="week-2-rware-environment-training">Week 2: RWARE Environment Training</h3>
-<p>Transition to Robotic Warehouse (RWARE) environment with sparse rewards and grid-based coordination.</p>
-<p><strong>Key Focus:</strong> Algorithm comparison (Vanilla vs Advanced IPPO), sample efficiency analysis</p>
-</section>
-<section id="week-3-unity-integration-hard-rware" class="level3">
-<h3 class="anchored" data-anchor-id="week-3-unity-integration-hard-rware">Week 3: Unity Integration &amp; Hard RWARE</h3>
+<section id="rware" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> RWARE</h1>
+<p>Compare to MPE environment where we had no results, we were able to produce a result with RWARE environment.</p>
+<p>Initial Training (Default) QMIX Hyperparameters</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose / Why Important</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch_size</td>
+<td>32</td>
+<td>Number of samples per gradient update; affects stability and speed of learning.</td>
+</tr>
+<tr class="even">
+<td>buffer_size</td>
+<td>5000</td>
+<td>Size of replay buffer; impacts diversity of sampled experiences.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Initial exploration rate; agents begin fully random.</td>
+</tr>
+<tr class="even">
+<td>epsilon_finish</td>
+<td>0.05</td>
+<td>Minimum exploration rate; agents become mostly greedy.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_anneal_time</td>
+<td>50000</td>
+<td>Duration of exploration decay; shorter means faster decay (less exploration).</td>
+</tr>
+<tr class="even">
+<td>t_max</td>
+<td>2,000,000</td>
+<td>Total environment steps; defines full training duration.</td>
+</tr>
+<tr class="odd">
+<td>gamma</td>
+<td>0.99</td>
+<td>Discount factor for future rewards.</td>
+</tr>
+<tr class="even">
+<td>lr (learning rate)</td>
+<td>0.0005</td>
+<td>Controls speed of neural network updates.</td>
+</tr>
+<tr class="odd">
+<td>mixer</td>
+<td>qmix</td>
+<td>Specifies QMIX mixing network used for joint value estimation.</td>
+</tr>
+<tr class="even">
+<td>agent</td>
+<td>rnn</td>
+<td>Recurrent agent model enables handling partial observability.</td>
+</tr>
+<tr class="odd">
+<td>env_args (key)</td>
+<td>rware:rware-tiny-2ag-v2</td>
+<td>Exact environment/task; required for reproducibility.</td>
+</tr>
+<tr class="even">
+<td>env_args (time_limit)</td>
+<td>100</td>
+<td>Maximum steps per episode.</td>
+</tr>
+<tr class="odd">
+<td>save_model</td>
+<td>False</td>
+<td>Checkpoint saving disabled (should be True for reproducibility).</td>
+</tr>
+</tbody>
+</table>
+<p>Modified Parameters (Attempt to Improve Reward)</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose / Why Important</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch_size</td>
+<td>128</td>
+<td>Larger minibatch improves stability compared to default 32.</td>
+</tr>
+<tr class="even">
+<td>buffer_size</td>
+<td>5000</td>
+<td>Replay buffer storing past experiences; unchanged.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Initial exploration rate.</td>
+</tr>
+<tr class="even">
+<td>epsilon_finish</td>
+<td>0.05</td>
+<td>Minimum exploration for exploitation phase.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_anneal_time</td>
+<td>50000</td>
+<td>Duration of epsilon decay; still relatively fast.</td>
+</tr>
+<tr class="even">
+<td>epsilon_anneal</td>
+<td>2,000,000</td>
+<td>Additional global annealing parameter; influences exploration decay over training.</td>
+</tr>
+<tr class="odd">
+<td>t_max</td>
+<td>10,000,000</td>
+<td>Total training timesteps; adjusted but still shorter than improved long-run configs.</td>
+</tr>
+<tr class="even">
+<td>gamma</td>
+<td>0.99</td>
+<td>Standard RL discount factor.</td>
+</tr>
+<tr class="odd">
+<td>lr (learning rate)</td>
+<td>0.001</td>
+<td>Faster learning rate (higher than 0.0005).</td>
+</tr>
+<tr class="even">
+<td>mixer</td>
+<td>qmix</td>
+<td>Same QMIX mixing network architecture.</td>
+</tr>
+<tr class="odd">
+<td>agent</td>
+<td>rnn</td>
+<td>Same recurrent agent architecture.</td>
+</tr>
+<tr class="even">
+<td>env_args (key)</td>
+<td>rware:rware-tiny-2ag-v2</td>
+<td>Same environment/task.</td>
+</tr>
+<tr class="odd">
+<td>env_args (time_limit)</td>
+<td>100</td>
+<td>Same episode length limit.</td>
+</tr>
+<tr class="even">
+<td>save_model</td>
+<td>False</td>
+<td>Still not saving checkpoints.</td>
+</tr>
+</tbody>
+</table>
+<p>This a comparison between two model/training where 416137 is green, 959660 is pink. Pink 20 millions epsiodes and green is 20 millions epsidoeds. Green did better.</p>
+<p><img src="return_mean-3.png" class="img-fluid"> x-axis is the episodes y-axis is the return_mean</p>
+<section id="return-mean" class="level3" data-number="17.0.1">
+<h3 data-number="17.0.1" class="anchored" data-anchor-id="return-mean"><span class="header-section-number">17.0.1</span> Return Mean</h3>
 <ul>
-<li><strong>Price</strong>: Integrated QMIX with Unity ML-Agents 4.0</li>
-<li><strong>Dre</strong>: Hard RWARE training</li>
-<li><strong>Lian</strong>: CPU/GPU performance comparison</li>
+<li>Shows the average episodic return the agents achieve during training.<br>
+</li>
+<li>The teal run peaks around <strong>3.3</strong>, while the pink run stabilizes just under <strong>3</strong>.<br>
+</li>
+<li>Faster improvement and a higher plateau reflect stronger learning and better policy quality.<br>
+</li>
+<li>Overall, the teal run demonstrates more stable and higher performance.</li>
+</ul>
+<p><img src="target_mean-3.png" class="img-fluid"></p>
+<p>x-axis is the episodes y-axis is the target_mean</p>
+</section>
+<section id="target-mean" class="level3" data-number="17.0.2">
+<h3 data-number="17.0.2" class="anchored" data-anchor-id="target-mean"><span class="header-section-number">17.0.2</span> Target Mean</h3>
+<ul>
+<li>Represents the average target Q-value the network attempts to learn.<br>
+</li>
+<li>A sharp spike appears early in training, followed by a gradual decline toward zero.<br>
+</li>
+<li>Convergence toward stable values suggests proper Q-learning without excessive overestimation.<br>
+</li>
+<li>The pink run exhibits larger early spikes, hinting at more instability or aggressive updates.</li>
 </ul>
 </section>
-<section id="week-4-extended-training" class="level3">
-<h3 class="anchored" data-anchor-id="week-4-extended-training">Week 4: Extended Training</h3>
+<section id="overall-interpretation" class="level3" data-number="17.0.3">
+<h3 data-number="17.0.3" class="anchored" data-anchor-id="overall-interpretation"><span class="header-section-number">17.0.3</span> Overall Interpretation</h3>
 <ul>
-<li><strong>Price</strong>: Deployed enhanced Unity warehouse with package queue system</li>
-<li>Partial training run (530k/1M steps)</li>
-<li>Emerging package delivery behaviors observed</li>
-</ul>
-</section>
-<section id="week-5-final-analysis-deliverables" class="level3">
-<h3 class="anchored" data-anchor-id="week-5-final-analysis-deliverables">Week 5: Final Analysis &amp; Deliverables</h3>
-<ul>
-<li><strong>Price</strong>: Critical learning failure analysis - discovered agents rely on exploration, not learned policies</li>
-<li><strong>Lian</strong>: Created comparative visualizations across all experiments</li>
-<li><strong>Dre</strong>: Finalized code documentation</li>
-<li><strong>Salmon</strong>: Research paper integration</li>
+<li>The teal run learns faster and ultimately achieves the stronger policy.<br>
+</li>
+<li>Both runs show early instability that settles as training progresses.<br>
+</li>
+<li>Evidence suggests the teal experiment reflects a better hyperparameter choice or seed.<br>
+</li>
+<li>Differences between runs align with expected variability from seeds or minor configuration changes.</li>
 </ul>
 </section>
 </section>
-<section id="key-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
-<ol type="1">
-<li><p><strong>Environment Complexity Hierarchy</strong>: MPE (dense, simple) → RWARE (sparse, grid) → Unity (sparse, physics)</p></li>
-<li><p><strong>Algorithm Performance</strong>:</p>
+<section id="unity" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Unity</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 18%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose / Why Important</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch_size</td>
+<td>16</td>
+<td>Number of samples per learner update; small batch → faster but noisier learning.</td>
+</tr>
+<tr class="even">
+<td>buffer_size</td>
+<td>2000</td>
+<td>Replay buffer capacity storing past experiences.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Initial exploration rate (full exploration).</td>
+</tr>
+<tr class="even">
+<td>epsilon_finish</td>
+<td>0.1</td>
+<td>Minimum exploration value when training stabilizes.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_anneal_time</td>
+<td>500000</td>
+<td>Timesteps over which epsilon decays from 1.0 → 0.1.</td>
+</tr>
+<tr class="even">
+<td>episode_limit</td>
+<td>500</td>
+<td>Maximum steps per episode.</td>
+</tr>
+<tr class="odd">
+<td>env_args.no_graphics</td>
+<td>false</td>
+<td>Runs Unity with graphics enabled.</td>
+</tr>
+<tr class="even">
+<td>env_args.time_scale</td>
+<td>20.0</td>
+<td>Unity simulation runs 20× faster than real time.</td>
+</tr>
+<tr class="odd">
+<td>t_max</td>
+<td>1000000</td>
+<td>Total number of training timesteps.</td>
+</tr>
+<tr class="even">
+<td>gamma</td>
+<td>0.99</td>
+<td>Standard discount factor prioritizing long-term rewards.</td>
+</tr>
+<tr class="odd">
+<td>lr (learning rate)</td>
+<td>0.0005</td>
+<td>Learning rate for optimizer controlling update speed.</td>
+</tr>
+<tr class="even">
+<td>mixer</td>
+<td>qmix</td>
+<td>QMIX mixing network for cooperative value decomposition.</td>
+</tr>
+<tr class="odd">
+<td>agent</td>
+<td>rnn</td>
+<td>Recurrent agent network to handle partial observability.</td>
+</tr>
+<tr class="even">
+<td>save_model</td>
+<td>true</td>
+<td>Model checkpoints are saved during training.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="Unity_run50_logs/5001/5001_return_mean_vs_steps.png" class="img-fluid"> ### Metric: Mean Return - The <strong>Mean Return</strong> (Y-axis) is the average cumulative reward per episode, indicating task success. A higher value is better. - The training was allowed to run for up to <strong><span class="math inline">\(10^6\)</span> steps</strong>, which is a common benchmark limit.</p>
+<section id="training-return-mean-blue-line" class="level3" data-number="18.0.1">
+<h3 data-number="18.0.1" class="anchored" data-anchor-id="training-return-mean-blue-line"><span class="header-section-number">18.0.1</span> Training Return Mean (Blue Line)</h3>
 <ul>
-<li>Advanced IPPO: 3× better than vanilla, 4× more sample efficient</li>
-<li>QMIX with Unity: Achieved high training returns (207.96) but failed to learn actual policies</li>
-</ul></li>
-<li><p><strong>Critical Discovery</strong> (Week 5): Pure greedy evaluation (ε=0.0) revealed true learned performance</p>
-<ul>
-<li>Training with exploration: 207.96 return</li>
-<li><strong>Pure greedy: 0.21 return</strong> (near-zero!)</li>
-<li>Adding 10% exploration: 191-253 return (904-1207× improvement!)</li>
-</ul></li>
-<li><p><strong>Root Causes of Learning Failure</strong>:</p>
-<ul>
-<li>Sparse rewards insufficient for credit assignment</li>
-<li>Random exploration masked learning failure in training metrics</li>
-<li>Hardware constraints (CPU-only, 16GB RAM) limited training duration</li>
-</ul></li>
-</ol>
-</section>
-<section id="lessons-learned" class="level2">
-<h2 class="anchored" data-anchor-id="lessons-learned">Lessons Learned</h2>
-<ul>
-<li><strong>Always test with ε=0.0</strong>: Pure greedy evaluation reveals true learned performance</li>
-<li><strong>High training returns ≠ successful learning</strong>: Exploration can mask learning failures</li>
-<li><strong>Hardware matters</strong>: Serious MARL research requires GPU computing and extended training</li>
-<li><strong>Systematic debugging pays off</strong>: Hypothesis-driven testing (ε=0.0 vs ε=0.1) exposed root cause</li>
+<li><strong>Initial Phase (0 - <span class="math inline">\(8 \times 10^5\)</span> steps):</strong> The training return remains near <strong>zero</strong>, indicating a failure to find the reward signal or a sub-optimal initial policy.</li>
+<li><strong>Sharp Spike (Around <span class="math inline">\(8.5 \times 10^5\)</span> steps):</strong> A dramatic, isolated spike occurs, reaching a high return (over 8). This suggests the agents <strong>stumbled upon a successful high-reward trajectory</strong> in a few training episodes.</li>
+<li><strong>Post-Spike Behavior:</strong> The performance immediately <strong>drops back to near zero</strong> and remains volatile, demonstrating that the successful policy was <strong>transient and not consolidated</strong>.</li>
 </ul>
+</section>
+<section id="test-return-mean-red-line" class="level3" data-number="18.0.2">
+<h3 data-number="18.0.2" class="anchored" data-anchor-id="test-return-mean-red-line"><span class="header-section-number">18.0.2</span> Test Return Mean (Red Line)</h3>
+<ul>
+<li><strong>Generalization Failure:</strong> The test return remains <strong>flat and close to zero</strong> across the entire training duration, including the period immediately following the major training spike.</li>
+<li><strong>Interpretation:</strong> This is the most critical observation, as it indicates a <strong>complete failure to generalize</strong> any successful behavior from the training policy to the evaluation policy. The learned Q-values were <strong>not robust</strong>.</li>
+</ul>
+</section>
+<section id="overall-interpretation-1" class="level3" data-number="18.0.3">
+<h3 data-number="18.0.3" class="anchored" data-anchor-id="overall-interpretation-1"><span class="header-section-number">18.0.3</span> Overall Interpretation</h3>
+<ul>
+<li><strong>Failure to Converge:</strong> The QMIX run <strong>did not converge</strong> to a stable, high-performing policy within the <span class="math inline">\(10^6\)</span> steps.</li>
+<li><strong>Instability &amp; Overfitting:</strong> The isolated, high-reward spike in the training data, coupled with the consistently low test data, is a strong indicator of <strong>extreme Q-value overestimation</strong> or <strong>overfitting</strong> to rare, successful exploration trajectories.</li>
+<li><strong>Underlying Cause:</strong> This performance profile suggests a significant issue, likely stemming from <strong>sub-optimal hyperparameters</strong> (e.g., a learning rate that is too high, leading to instability/overshooting) or a <strong>sparse reward signal</strong> in the Unity environment that is too difficult to consistently exploit.</li>
+</ul>
+</section>
+<section id="summary" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">18.1</span> Summary</h2>
+<p>Analysis of the visualizations and performance metrics indicates that QMIX scales effectively in larger, more complex environments. Results also show that QMIX maintains stable learning even under sparse-reward conditions, where many algorithms typically struggle. Performance trends across MPE → RWARE → Unity reinforce the algorithm’s robustness across different observation spaces and task structures.</p>
+<p>As we gain more expreience and as we increase the dimension and complexity of environment we were able to fine tune our model to increase success and efficiency.</p>
 <hr>
+<section id="references" class="level3" data-number="18.1.1">
+<h3 data-number="18.1.1" class="anchored" data-anchor-id="references"><span class="header-section-number">18.1.1</span> References</h3>
+<ul>
+<li>OpenAI. (2024). ChatGPT (Oct 23 version) [Large language model]. https://chat.openai.com/chat</li>
+</ul>
+
+
 </section>
-<section id="repository" class="level2">
-<h2 class="anchored" data-anchor-id="repository">Repository</h2>
-<p>Full code, documentation, and training checkpoints: <a href="https://github.com/pallman14/MARL-QMIX-Warehouse-Robots">MARL-QMIX-Warehouse-Robots</a></p>
-
-
 </section>
 </section>
 
@@ -847,10 +1257,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../price/week4.html" class="pagination-link" aria-label="Price Allman - Week 4">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Price Allman - Week 4</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./price/week1.html" class="pagination-link" aria-label="Price Allman - Week 1">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../dre/week4.html" class="pagination-link" aria-label="Dre Simmons - Week 4">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 4</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

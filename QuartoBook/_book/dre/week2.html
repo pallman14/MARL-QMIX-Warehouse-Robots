@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dre Simmons">
+<meta name="dcterms.date" content="2025-10-29">
+
+<title>7&nbsp; Week 2 Deliverable - RWARE tiny-2ag-v2 with QMIX: A Complete Multi-Agent Learning Experiment – MARL Warehouse Robots - Team Deliverables</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../salmon/week2.html" rel="next">
+<link href="../lian/week2.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week2.html">Week 2: RWARE Environment Training</a></li><li class="breadcrumb-item"><a href="../dre/week2.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 2</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">MARL Warehouse Robots - Team Deliverables</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MARL Warehouse Robots - Team Project Deliverables</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 1: MPE Environment Training</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Price Allman - Week 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lian Thang - Week 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 1</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 2: RWARE Environment Training</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Price Allman - Week 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lian Thang - Week 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 3: Unity Integration &amp; Hard RWARE</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Price Allman - Week 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lian Thang - Week 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 3</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 4: Extended Training &amp; Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Price Allman - Week 4</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Lian Thang - Week 4</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 4</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 4</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 5: Final Analysis &amp; Deliverables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../price/week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Price Allman - Week 5</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lian/week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lian Thang - Week 5</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dre/week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 5</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../salmon/week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 5</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">8</span> Executive Summary</a>
+  <ul class="collapse">
+  <li><a href="#transition-from-mpe-to-rware" id="toc-transition-from-mpe-to-rware" class="nav-link" data-scroll-target="#transition-from-mpe-to-rware"><span class="header-section-number">8.1</span> Transition from MPE to RWARE</a></li>
+  <li><a href="#model-implementation-pytorch-vs.-keras" id="toc-model-implementation-pytorch-vs.-keras" class="nav-link" data-scroll-target="#model-implementation-pytorch-vs.-keras"><span class="header-section-number">8.2</span> Model Implementation: PyTorch vs.&nbsp;Keras</a>
+  <ul class="collapse">
+  <li><a href="#why-pytorch-is-superior-for-marl" id="toc-why-pytorch-is-superior-for-marl" class="nav-link" data-scroll-target="#why-pytorch-is-superior-for-marl"><span class="header-section-number">8.2.1</span> Why PyTorch is Superior for MARL</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#problem-context" id="toc-problem-context" class="nav-link" data-scroll-target="#problem-context"><span class="header-section-number">9</span> Problem Context</a></li>
+  <li><a href="#experimental-workflow" id="toc-experimental-workflow" class="nav-link" data-scroll-target="#experimental-workflow"><span class="header-section-number">10</span> Experimental Workflow</a>
+  <ul class="collapse">
+  <li><a href="#environment-and-tool-setup" id="toc-environment-and-tool-setup" class="nav-link" data-scroll-target="#environment-and-tool-setup"><span class="header-section-number">10.1</span> 1. Environment and Tool Setup</a></li>
+  </ul></li>
+  <li><a href="#key-terms-and-qmix-configuration-explained" id="toc-key-terms-and-qmix-configuration-explained" class="nav-link" data-scroll-target="#key-terms-and-qmix-configuration-explained"><span class="header-section-number">11</span> Key Terms and QMIX Configuration Explained</a>
+  <ul class="collapse">
+  <li><a href="#glossary-of-key-rlmarl-terms" id="toc-glossary-of-key-rlmarl-terms" class="nav-link" data-scroll-target="#glossary-of-key-rlmarl-terms"><span class="header-section-number">11.1</span> Glossary of Key RL/MARL Terms</a></li>
+  </ul></li>
+  <li><a href="#configuration-evolution-from-default-failure-to-successful-learning" id="toc-configuration-evolution-from-default-failure-to-successful-learning" class="nav-link" data-scroll-target="#configuration-evolution-from-default-failure-to-successful-learning"><span class="header-section-number">12</span> Configuration Evolution: From Default Failure to Successful Learning</a>
+  <ul class="collapse">
+  <li><a href="#initial-training-default-qmix-hyperparameters" id="toc-initial-training-default-qmix-hyperparameters" class="nav-link" data-scroll-target="#initial-training-default-qmix-hyperparameters"><span class="header-section-number">12.1</span> Initial Training (Default) QMIX Hyperparameters</a></li>
+  <li><a href="#problems-observed" id="toc-problems-observed" class="nav-link" data-scroll-target="#problems-observed"><span class="header-section-number">12.2</span> Problems Observed</a></li>
+  <li><a href="#improved-final-working-configuration" id="toc-improved-final-working-configuration" class="nav-link" data-scroll-target="#improved-final-working-configuration"><span class="header-section-number">12.3</span> Improved (Final, Working) Configuration</a></li>
+  <li><a href="#why-were-these-changes-effective" id="toc-why-were-these-changes-effective" class="nav-link" data-scroll-target="#why-were-these-changes-effective"><span class="header-section-number">12.4</span> Why Were These Changes Effective?</a></li>
+  <li><a href="#training-protocol" id="toc-training-protocol" class="nav-link" data-scroll-target="#training-protocol"><span class="header-section-number">12.5</span> 2. Training Protocol</a></li>
+  <li><a href="#evaluation-and-validation" id="toc-evaluation-and-validation" class="nav-link" data-scroll-target="#evaluation-and-validation"><span class="header-section-number">12.6</span> 3. Evaluation and Validation</a></li>
+  </ul></li>
+  <li><a href="#quantitative-results" id="toc-quantitative-results" class="nav-link" data-scroll-target="#quantitative-results"><span class="header-section-number">13</span> Quantitative Results</a>
+  <ul class="collapse">
+  <li><a href="#main-metrics" id="toc-main-metrics" class="nav-link" data-scroll-target="#main-metrics"><span class="header-section-number">13.1</span> Main Metrics</a></li>
+  </ul></li>
+  <li><a href="#learning-progression-and-stability" id="toc-learning-progression-and-stability" class="nav-link" data-scroll-target="#learning-progression-and-stability"><span class="header-section-number">14</span> Learning Progression and Stability</a>
+  <ul class="collapse">
+  <li><a href="#main-learning-curve" id="toc-main-learning-curve" class="nav-link" data-scroll-target="#main-learning-curve"><span class="header-section-number">14.1</span> Main Learning Curve</a></li>
+  <li><a href="#targetloss-diagnostic" id="toc-targetloss-diagnostic" class="nav-link" data-scroll-target="#targetloss-diagnostic"><span class="header-section-number">14.2</span> Target/Loss Diagnostic</a></li>
+  </ul></li>
+  <li><a href="#visual-agent-proof" id="toc-visual-agent-proof" class="nav-link" data-scroll-target="#visual-agent-proof"><span class="header-section-number">15</span> Visual Agent Proof</a></li>
+  <li><a href="#troubleshooting-best-practices" id="toc-troubleshooting-best-practices" class="nav-link" data-scroll-target="#troubleshooting-best-practices"><span class="header-section-number">16</span> Troubleshooting &amp; Best Practices</a></li>
+  <li><a href="#how-to-replicate" id="toc-how-to-replicate" class="nav-link" data-scroll-target="#how-to-replicate"><span class="header-section-number">17</span> How To Replicate</a></li>
+  <li><a href="#lessons-for-beginners" id="toc-lessons-for-beginners" class="nav-link" data-scroll-target="#lessons-for-beginners"><span class="header-section-number">18</span> Lessons for Beginners</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">19</span> References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../price/week2.html">Week 2: RWARE Environment Training</a></li><li class="breadcrumb-item"><a href="../dre/week2.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dre Simmons - Week 2</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Week 2 Deliverable - RWARE tiny-2ag-v2 with QMIX: A Complete Multi-Agent Learning Experiment</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dre Simmons </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 29, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="executive-summary" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Executive Summary</h1>
+<p>This report provides a step-by-step walkthrough of how QMIX (a popular cooperative multi-agent reinforcement learning algorithm) was trained, debugged, and successfully used to coordinate two agents in the RWARE warehouse environment. The aim is to offer a full, self-contained account suitable for readers new to MARL, RL software, or the RWARE task.</p>
+<hr>
+<section id="transition-from-mpe-to-rware" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="transition-from-mpe-to-rware"><span class="header-section-number">8.1</span> Transition from MPE to RWARE</h2>
+<p>In Week 1, the QMIX algorithm was implemented and validated using the simple spread scenario within Multi-Agent Particle Environment (MPE). This step served to establish a reliable, bug-free baseline for multi-agent training using simpler scenarios and well-tested benchmarks. The verified QMIX training, configuration strategies, and troubleshooting experience from the MPE domain were then applied to the more complex RWARE warehouse environment in Week 2. No trained MPE models were transferred, rather, the lessons learned and workflow improvements guided new training and adaptation for the new task.</p>
+</section>
+<section id="model-implementation-pytorch-vs.-keras" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="model-implementation-pytorch-vs.-keras"><span class="header-section-number">8.2</span> Model Implementation: PyTorch vs.&nbsp;Keras</h2>
+<p>The QMIX implementation for RWARE uses PyTorch as the underlying deep learning framework. PyTorch is widely preferred for multi-agent reinforcement learning (MARL) due to its dynamic graph support and ease of customizing complex agent coordination architectures. In contrast, Keras (which has a TensorFlow backend) is not recommended for environments like RWARE. It struggles with concurrency, graph management errors, and scaling issues when running multiple agents in parallel or managing agent-specific updates efficiently.</p>
+<section id="why-pytorch-is-superior-for-marl" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="why-pytorch-is-superior-for-marl"><span class="header-section-number">8.2.1</span> Why PyTorch is Superior for MARL</h3>
+<ul>
+<li>PyTorch offers dynamic computation graphs, which allow flexible agent architectures and mixing networks which is ideal for algorithms such as QMIX.</li>
+<li>It manages multiple models and environments concurrently without graph or session errors, which often occur in Keras-based RL code.</li>
+<li>PyTorch is the standard in contemporary MARL research, making code easier to debug, extend, and benchmark for multi-agent warehouse tasks in RWARE.</li>
+</ul>
+<p>Below is a summary table:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Framework</th>
+<th>MARL Suitability</th>
+<th>Common Issues</th>
+<th>Research Adoption</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PyTorch</td>
+<td>Excellent for MARL and agent-centric designs</td>
+<td>Few; robust multi-model support</td>
+<td>Widely adopted in RL/MARL research</td>
+</tr>
+<tr class="even">
+<td>Keras</td>
+<td>Limited in multi-agent tasks</td>
+<td>Graph/session errors, scaling bugs</td>
+<td>Seldom used for complex MARL projects</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+</section>
+<section id="problem-context" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Problem Context</h1>
+<section id="what-is-rware" class="level4" data-number="9.0.0.1">
+<h4 data-number="9.0.0.1" class="anchored" data-anchor-id="what-is-rware"><span class="header-section-number">9.0.0.1</span> What is RWARE?</h4>
+<p>RWARE (Multi-Robot Warehouse Environment) is a grid-based simulation where robotic agents must move shelves between start and goal locations. Each agent only succeeds by collaborating, and rewards are both sparse and delayed, making the environment a challenging for multi-agent reinforcement learning (MARL).</p>
+</section>
+<section id="what-is-qmix" class="level4" data-number="9.0.0.2">
+<h4 data-number="9.0.0.2" class="anchored" data-anchor-id="what-is-qmix"><span class="header-section-number">9.0.0.2</span> What is QMIX?</h4>
+<p>QMIX is a value-decomposition deep RL algorithm designed for multi-agent cooperation. Each agent acts individually, but a neural network “mixer” ensures all agents learn to maximize <strong>global team reward</strong>. QMIX specializes in learning complex coordination policies where agents must reason about each others effects.</p>
+</section>
+<section id="objective" class="level4" data-number="9.0.0.3">
+<h4 data-number="9.0.0.3" class="anchored" data-anchor-id="objective"><span class="header-section-number">9.0.0.3</span> Objective</h4>
+<p>Demonstrate that a properly-tuned QMIX agent can solve RWARE tiny-2ag-v2, in this case, my local Mac, and document all required steps, key code/config details, and validation evidence.</p>
+<hr>
+</section>
+</section>
+<section id="experimental-workflow" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Experimental Workflow</h1>
+<section id="environment-and-tool-setup" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="environment-and-tool-setup"><span class="header-section-number">10.1</span> 1. Environment and Tool Setup</h2>
+<ul>
+<li><strong>Platform:</strong> Mac (M3, 16GB RAM), Python venv</li>
+<li><strong>Libraries:</strong> gymnasium, rware, numpy, torch, tensorboard</li>
+<li><strong>Repository:</strong> EPyMARL (QMIX implementation); project folder and virtual environment created</li>
+</ul>
+</section>
+</section>
+<section id="key-terms-and-qmix-configuration-explained" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Key Terms and QMIX Configuration Explained</h1>
+<section id="glossary-of-key-rlmarl-terms" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="glossary-of-key-rlmarl-terms"><span class="header-section-number">11.1</span> Glossary of Key RL/MARL Terms</h2>
+<ul>
+<li><strong>Epsilon (ε) / Exploration:</strong> A parameter controlling the probability that an agent selects a random action. High at first for exploration; decays over time.</li>
+<li><strong>Epsilon Anneal Time:</strong> Number of steps over which ε decays from its max to min. Longer = more sustained exploration.</li>
+<li><strong>Batch size:</strong> Number of experiences (steps) sampled from replay buffer to update the neural network each time.</li>
+<li><strong>Replay Buffer:</strong> Storage for earlier experiences, allowing agents to learn from past actions across many episodes.</li>
+<li><strong>t_max:</strong> Total number of environmental steps for which training is run.</li>
+<li><strong>Test Return Mean:</strong> Average reward gathered during evaluation episodes (usually without exploration).</li>
+<li><strong>Checkpoint:</strong> A saved copy of model weights for reproducibility and mid-training evaluation.</li>
+<li><strong>Render:</strong> Option to visualize agent/environment actions in a pop-up window during evaluation.</li>
+<li><strong>Episode:</strong> A single run of the environment (ends after a max number of steps or task completion).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="configuration-evolution-from-default-failure-to-successful-learning" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Configuration Evolution: From Default Failure to Successful Learning</h1>
+<section id="initial-training-default-qmix-hyperparameters" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="initial-training-default-qmix-hyperparameters"><span class="header-section-number">12.1</span> Initial Training (Default) QMIX Hyperparameters</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 13%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose/Why Important</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch_size</td>
+<td>32</td>
+<td># of samples per gradient update; affects stability and speed of learning.</td>
+</tr>
+<tr class="even">
+<td>buffer_size</td>
+<td>5000</td>
+<td># of experiences stored; impacts learning diversity.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Start exploration rate; agents begin fully random.</td>
+</tr>
+<tr class="even">
+<td>epsilon_finish</td>
+<td>0.05</td>
+<td>Minimum exploration rate; agents become mostly greedy.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_anneal_time</td>
+<td>50000</td>
+<td>How long exploration decays; short means fast decay (less exploration).</td>
+</tr>
+<tr class="even">
+<td>t_max</td>
+<td>2,000,000</td>
+<td>Total environment steps; determines training duration.</td>
+</tr>
+<tr class="odd">
+<td>gamma</td>
+<td>0.99</td>
+<td>Discount factor for future rewards; standard for RL.</td>
+</tr>
+<tr class="even">
+<td>lr (learning rate)</td>
+<td>0.0005</td>
+<td>Controls speed of neural network updates.</td>
+</tr>
+<tr class="odd">
+<td>mixer</td>
+<td>qmix</td>
+<td>QMIX-specific mixing network for joint training.</td>
+</tr>
+<tr class="even">
+<td>agent</td>
+<td>rnn</td>
+<td>Recurrent agent allows partial observability.</td>
+</tr>
+<tr class="odd">
+<td>env_args (key)</td>
+<td>rware:rware-tiny-2ag-v2</td>
+<td>Specifies exact environment/task for reproducibility.</td>
+</tr>
+<tr class="even">
+<td>env_args (time_limit)</td>
+<td>100</td>
+<td>Maximum steps per episode.</td>
+</tr>
+<tr class="odd">
+<td>save_model</td>
+<td>False</td>
+<td>Checkpoint saving status (should be True for reproducibility).</td>
+</tr>
+</tbody>
+</table>
+<p><em>Result:</em><br>
+Agents did <strong>not learn</strong>; returns stayed at 0.</p>
+<p>After the initial run, changes were made to the parameters to see if it would produce a reward. The changes and results are as follows:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 12%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose/Why Important</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch_size</td>
+<td>128</td>
+<td>Size of minibatch for updates; increased for more stable learning (vs.&nbsp;default 32).</td>
+</tr>
+<tr class="even">
+<td>buffer_size</td>
+<td>5000</td>
+<td>Replay buffer for storing past experiences.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Initial full random exploration.</td>
+</tr>
+<tr class="even">
+<td>epsilon_finish</td>
+<td>0.05</td>
+<td>Minimum exploration for agent exploitation.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_anneal_time</td>
+<td>50000</td>
+<td>Steps over which epsilon decays (remained fast in this config).</td>
+</tr>
+<tr class="even">
+<td>epsilon_anneal</td>
+<td>2,000,000</td>
+<td>Additional: describes global annealing process, could affect exploration decay across runs.</td>
+</tr>
+<tr class="odd">
+<td>t_max</td>
+<td>10,000,000</td>
+<td>Total training timesteps; shorter than the previous improved configuration.</td>
+</tr>
+<tr class="even">
+<td>gamma</td>
+<td>0.99</td>
+<td>RL discount factor; unchanged.</td>
+</tr>
+<tr class="odd">
+<td>lr (learning rate)</td>
+<td>0.001</td>
+<td>Learning is faster (higher) than previous config (0.0005).</td>
+</tr>
+<tr class="even">
+<td>mixer</td>
+<td>qmix</td>
+<td>The QMIX mixing network (same).</td>
+</tr>
+<tr class="odd">
+<td>agent</td>
+<td>rnn</td>
+<td>Recurrent agent architecture (same).</td>
+</tr>
+<tr class="even">
+<td>env_args (key)</td>
+<td>rware:rware-tiny-2ag-v2</td>
+<td>Task/environment; unchanged.</td>
+</tr>
+<tr class="odd">
+<td>env_args (time_limit)</td>
+<td>100</td>
+<td>Steps per episode; unchanged.</td>
+</tr>
+<tr class="even">
+<td>save_model</td>
+<td>False</td>
+<td>No checkpoint saving (same as previous default).</td>
+</tr>
+</tbody>
+</table>
+<p><em>Result:</em><br>
+Even with the changes, the agents did <strong>not learn</strong>; returns stayed at 0.</p>
+<hr>
+</section>
+<section id="problems-observed" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="problems-observed"><span class="header-section-number">12.2</span> Problems Observed</h2>
+<ul>
+<li>Exploration rate decayed too quickly (epsilon_anneal_time: 50000), causing agents to stop exploring before ever finding sparse rewards.</li>
+<li>Replay buffer was much too small (buffer_size: 5000), providing poor diversity and failing to capture long-term interactions—especially important in multi-agent RL.</li>
+<li>Batch size was inadequate for stability (32 or 128), resulting in noisy updates that prevented consistent learning.</li>
+<li>Training duration (t_max) was too short for the sparse nature of the RWARE task, limiting the agents’ opportunities to learn effective policies.</li>
+<li>Learning rate was too high in one config (lr: 0.001), which can make training unstable or lead to divergent value estimates.</li>
+<li>No model checkpoints saved (save_model: False), making it impossible to resume, analyze, or recover useful policies from any partial progress.</li>
+</ul>
+<hr>
+</section>
+<section id="improved-final-working-configuration" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="improved-final-working-configuration"><span class="header-section-number">12.3</span> Improved (Final, Working) Configuration</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 16%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Purpose/Why Important</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch_size</td>
+<td>256</td>
+<td>Ensures stable and efficient gradient updates in multi-agent RL.</td>
+</tr>
+<tr class="even">
+<td>buffer_size</td>
+<td>200,000</td>
+<td>Large buffer increases replay diversity, crucial for MARL.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_start</td>
+<td>1.0</td>
+<td>Maximum initial exploration—agents fully random at start.</td>
+</tr>
+<tr class="even">
+<td>epsilon_finish</td>
+<td>0.1</td>
+<td>Lowers to mostly greedy behavior, maintaining some exploration.</td>
+</tr>
+<tr class="odd">
+<td>epsilon_anneal_time</td>
+<td>5,000,000</td>
+<td>Extended decay allows agents to explore long enough to find sparse rewards.</td>
+</tr>
+<tr class="even">
+<td>t_max</td>
+<td>20,000,000</td>
+<td>Sufficient training duration for agents to master the task.</td>
+</tr>
+<tr class="odd">
+<td>gamma</td>
+<td>0.99</td>
+<td>Standard for future-reward discounting; balances foresight and stability.</td>
+</tr>
+<tr class="even">
+<td>lr (learning rate)</td>
+<td>0.0005</td>
+<td>Careful tuning for stable, consistent convergence.</td>
+</tr>
+<tr class="odd">
+<td>mixer</td>
+<td>qmix</td>
+<td>Value mixing network essential for cooperative MARL.</td>
+</tr>
+<tr class="even">
+<td>agent</td>
+<td>rnn</td>
+<td>Use of recurrent agents; handles partial observability in MARL.</td>
+</tr>
+<tr class="odd">
+<td>env_args (key)</td>
+<td>rware:rware-tiny-2ag-v2</td>
+<td>Specifies the tested environment for reproducibility.</td>
+</tr>
+<tr class="even">
+<td>env_args (time_limit)</td>
+<td>100</td>
+<td>Maximum steps per episode—aligned with environment rules.</td>
+</tr>
+<tr class="odd">
+<td>save_model</td>
+<td>True</td>
+<td>Ensures checkpoints for mid-run evaluation and reproducibility.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Result:</em><br>
+Agents reliably and robustly learned to solve the task.</p>
+<hr>
+</section>
+<section id="why-were-these-changes-effective" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="why-were-these-changes-effective"><span class="header-section-number">12.4</span> Why Were These Changes Effective?</h2>
+<ul>
+<li><strong>Epsilon anneal time:</strong> Prolonged exploration helps agents find rewards in sparse, cooperative settings.</li>
+<li><strong>Batch/replay buffer:</strong> Larger values smooth learning and stabilize credit assignment in multi-agent settings.</li>
+<li><strong>t_max:</strong> Extended horizon is required for sparse-reward MARL; agents need more time to learn.</li>
+<li><strong>Checkpointing:</strong> Allowed for intermediate evaluation, reproducibility, and error recovery.</li>
+</ul>
+<hr>
+</section>
+<section id="training-protocol" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="training-protocol"><span class="header-section-number">12.5</span> 2. Training Protocol</h2>
+<ul>
+<li>Initial default parameters (short exploration, small buffers) were <strong>insufficient</strong>; agents failed to learn.</li>
+<li>Critical config changes:
+<ul>
+<li>Epsilon exploration prolonged, annealing over 5 million steps</li>
+<li>Increased batch size (256) and replay buffer (200k)</li>
+<li>Checkpoint saving enabled for reproducibility</li>
+<li>Training horizon set to 20 million environment steps</li>
+</ul></li>
+</ul>
+</section>
+<section id="evaluation-and-validation" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="evaluation-and-validation"><span class="header-section-number">12.6</span> 3. Evaluation and Validation</h2>
+<ul>
+<li>Model always evaluated with <code>evaluate=True</code> and <code>render=True</code> flags.</li>
+<li>Successful runs produced a live pop-up window: agent behavior was <strong>screen recorded</strong> due to lack of automatic GIF export in RWARE.</li>
+<li>Training and evaluation stats tracked in TensorBoard and exported as images for report evidence.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="quantitative-results" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Quantitative Results</h1>
+<section id="main-metrics" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="main-metrics"><span class="header-section-number">13.1</span> Main Metrics</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 31%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Run</th>
+<th>Config</th>
+<th>Timesteps</th>
+<th>Test Return Mean (±std)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Default</td>
+<td>2M</td>
+<td>0.00 (0.00)</td>
+<td>No Learning</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Change Parameters</td>
+<td>10M</td>
+<td>0.00 (0.00)</td>
+<td>No Learning</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Final (Saved)</td>
+<td>20M</td>
+<td>3.25 (0.98)</td>
+<td>Consistently Solved</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Threshold for “solved”:</strong> Test return mean &gt;2.5.<br>
+<strong>Result:</strong> Final run reliably exceeded 3.0.</p>
+<hr>
+</section>
+</section>
+<section id="learning-progression-and-stability" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Learning Progression and Stability</h1>
+<section id="main-learning-curve" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="main-learning-curve"><span class="header-section-number">14.1</span> Main Learning Curve</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="return_mean-3.png" class="img-fluid figure-img"></p>
+<figcaption>QMIX Agents: Return Mean Over Training</figcaption>
+</figure>
+</div>
+<p><em>The return mean starts near zero, then sharply rises and stabilizes at a level well above the “solved” threshold. This plateau confirms that the multi-agent QMIX policy learned successful coordination and robust long-term strategies.</em></p>
+</section>
+<section id="targetloss-diagnostic" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="targetloss-diagnostic"><span class="header-section-number">14.2</span> Target/Loss Diagnostic</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="target_mean-3.png" class="img-fluid figure-img"></p>
+<figcaption>QMIX Network: Target Mean/Loss During Training</figcaption>
+</figure>
+</div>
+<p><em>The target value shows an initial peak followed by a steady downward trend and eventual stabilization, indicating the QMIX agent’s networks rapidly improved their predictions and then maintained stable, low error as training completed.</em></p>
+<hr>
+</section>
+</section>
+<section id="visual-agent-proof" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Visual Agent Proof</h1>
+<p>Below is a frame from the experiment and instructions for viewing full animated results:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="qmix_rware.gif" class="img-fluid figure-img"></p>
+<figcaption>RWARE QMIX Agent (sample frame)</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="troubleshooting-best-practices" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Troubleshooting &amp; Best Practices</h1>
+<ul>
+<li>Immediate RL learning failure is <strong>typical</strong> in sparse-reward, cooperative MARL, especially with short episodes or small replay buffers.</li>
+<li>Rapid improvement required both <strong>slower epsilon decay</strong> and <strong>larger buffer/batch-selection</strong>.</li>
+<li>Model save/load issues traced to config toggles and were resolved after enabling <code>save_model: True</code>.</li>
+<li>GIF evidence was created with manual OS screen recording; TensorBoard plots were exported for learning diagnostics.</li>
+</ul>
+<hr>
+</section>
+<section id="how-to-replicate" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> How To Replicate</h1>
+<ol type="1">
+<li>Clone/Download the EPyMARL library:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/oxwhirl/epymarl.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> epymarl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Setup Python virtual environment &amp; install dependencies:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv venv_qmix</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> venv_qmix/bin/activate  <span class="co"># or 'venv_qmix\\Scripts\\activate' on Windows</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> pip</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install gymnasium rware tensorboard  <span class="co"># If not in requirements, add as needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Training:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/main.py <span class="at">--config</span><span class="op">=</span>qmix <span class="at">--env-config</span><span class="op">=</span>gymma with env_args.key=<span class="st">"rware:rware-tiny-2ag-v2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Evaluation/Render:</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/main.py <span class="at">--config</span><span class="op">=</span>qmix <span class="at">--env-config</span><span class="op">=</span>gymma <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  with env_args.key=<span class="st">"rware:rware-tiny-2ag-v2"</span> <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  checkpoint_path=<span class="st">"results/models/qmix_seed&lt;SEED&gt;_rware:rware-tiny-2ag-v2_&lt;TIMESTAMP&gt;"</span> <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  load_step=<span class="op">&lt;</span>NUMBER_OF_STEPS<span class="op">&gt;</span> <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  evaluate=True <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  render=True</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Export Plots and Agent Demo:</li>
+</ol>
+<p>Launch TensorBoard:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tensorboard</span> <span class="at">--logdir</span><span class="op">=</span>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In your browser, use “Download Plot as PNG” or SVG for report inclusion.</p>
+<p>Screen record the live evaluation window to generate your demonstration GIF.</p>
+<hr>
+</section>
+<section id="lessons-for-beginners" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Lessons for Beginners</h1>
+<ul>
+<li><strong>Do not expect defaults to work:</strong> MARL on RWARE is hard; iterative tuning and patient debugging are essential.</li>
+<li><strong>Automated GIF export is rare:</strong> Manual screen recording is common/accepted for visual demonstration in many real-world MARL projects.</li>
+<li><strong>Interpret return mean and test return mean:</strong> These are your main metrics for “solving” RL tasks.</li>
+</ul>
+<hr>
+</section>
+<section id="references" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> References</h1>
+<ul>
+<li><p>Rashid, T., Samvelyan, M., De Witt, C.S., Farquhar, G., Foerster, J., &amp; Whiteson, S. (2018). QMIX: Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning. Proceedings of the 35th International Conference on Machine Learning (ICML), 2018.</p></li>
+<li><p>Papoudakis, G., Christianos, F., Schäfer, L., &amp; Albrecht, S.V. (2021). Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks. NeurIPS, 2021.</p></li>
+<li><p>Farama Foundation. RWARE: Multi-Agent Warehouse Environment. <a href="https://github.com/Farama-Foundation/RWARE">https://github.com/Farama-Foundation/RWARE</a></p></li>
+<li><p>EPyMARL: Extended PyMARL framework. <a href="https://github.com/oxwhirl/epymarl">https://github.com/oxwhirl/epymarl</a></p></li>
+<li><p>gymnasium: Farama Foundation. <a href="https://github.com/Farama-Foundation/Gymnasium">https://github.com/Farama-Foundation/Gymnasium</a></p></li>
+<li><p>Stable-Baselines3 (for PPO/IPPO reference): <a href="https://github.com/DLR-RM/stable-baselines3">https://github.com/DLR-RM/stable-baselines3</a></p></li>
+<li><p>TensorBoard: <a href="https://www.tensorflow.org/tensorboard">https://www.tensorflow.org/tensorboard</a></p></li>
+<li><p>OpenAI ChatGPT, interactive RL explanations/troubleshooting, October 2025.</p></li>
+</ul>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lian/week2.html" class="pagination-link" aria-label="Lian Thang - Week 2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lian Thang - Week 2</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../salmon/week2.html" class="pagination-link" aria-label="Salmon Riaz - Week 2">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Salmon Riaz - Week 2</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
