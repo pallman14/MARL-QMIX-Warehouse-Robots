@@ -94,6 +94,8 @@ py --version
 If you see something like Python 3.9.x, you’re good to go and can skip to "Clone Repository” below.
 If you get an error or see a version lower than 3.8, follow the install steps next:
 
+For windows users you will have to install Git manually via CLI
+
 --- 
 
 **Install Python on macOS**
