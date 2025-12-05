@@ -5,8 +5,7 @@ author: "Lian Thang"
 date: today
 format: html
 execute:
-  kernel: ai-env
-  interpreter: /Users/z/ai-env/bin/python3
+    enabled: false
 ---
 
 # Intro 
@@ -72,11 +71,6 @@ reduction in wall-clock time.
 ---
 
 ### References
-
-
-* https://pmc.ncbi.nlm.nih.gov/articles/PMC11059992/
-
-* https://github.com/JohannesAck/tf2multiagentrl
 
 * https://github.com/semitable/robotic-warehouse
 
