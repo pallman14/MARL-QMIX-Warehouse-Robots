@@ -960,3 +960,5 @@ This project builds upon:
 ## AI Assistance Disclosure
 
 This project utilized Large Language Model (LLM) assistance for code explanation, overall clarification of complex MARL concepts, and help with our lousy writing skills. All code implementation, experiments, and research decisions were made by the team members.
+
+For detailed breakdown of AI usage by team member and project component, see [AI_ASSISTANCE_DISCLOSURE.md](AI_ASSISTANCE_DISCLOSURE.md).
