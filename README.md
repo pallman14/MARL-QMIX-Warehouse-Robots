@@ -229,7 +229,7 @@ Now we pull the GitHub project to your machine. This step creates the 'MARL-QMIX
 Open up a terminal and enter the following command lines:
 
 ```bash
-git clone https://git@github.com:pallman14/MARL-QMIX-Warehouse-Robots.git
+git clone https://github.com/pallman14/MARL-QMIX-Warehouse-Robots.git
 cd MARL-QMIX-Warehouse-Robots
 ```
 After this, your filesystem will contain `MARL-QMIX-Warehouse-Robots` and will open that directory.
