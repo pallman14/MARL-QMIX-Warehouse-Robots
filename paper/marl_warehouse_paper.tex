@@ -38,11 +38,11 @@ We present a comparative study of multi-agent reinforcement learning (MARL) algo
 
 \section{Introduction}
 
-Warehouse automation requires robots to coordinate movement, avoid collisions, and optimize throughput---a multi-agent coordination problem where traditional centralized planning faces scalability limitations. Multi-agent reinforcement learning (MARL) offers decentralized decision-making through learned policies, but requires solving the credit assignment problem: determining how each agent's actions contribute to team success.
+Our research investigates the complex task of multiple autonomous agents learning to coordinate and deliver packages in warehouse environments---a problem requiring implicit communication, collision avoidance, and efficient task allocation without centralized control. Traditional warehouse automation relies on centralized planning systems that face scalability limitations; multi-agent reinforcement learning (MARL) offers an alternative through decentralized learned policies, but requires solving the credit assignment problem.
 
-We compare MARL algorithms on warehouse tasks: QMIX \citep{rashid2018qmix} (value decomposition), IPPO (independent learning), and MASAC (centralized critic). Our study progresses from MPE for validation to RWARE for warehouse evaluation, culminating in Unity 3D deployment. QMIX emerged as the best performer after systematic comparison.
+We compare MARL algorithms on warehouse coordination: QMIX \citep{rashid2018qmix} (value decomposition), IPPO (independent learning), and MASAC (centralized critic). Our study progresses from MPE for validation to RWARE for warehouse evaluation, culminating in Unity 3D deployment where agents demonstrate learned package delivery behavior. QMIX emerged as the best performer after systematic comparison.
 
-Our contributions: (1) hyperparameter analysis showing default configurations fail on sparse-reward warehouse tasks, (2) comparative evaluation across algorithms and scales, (3) Unity ML-Agents integration demonstrating sim-to-sim transfer, and (4) identification of scaling challenges. Full details: \href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/}{project documentation}.
+Our contributions: (1) hyperparameter analysis showing default configurations fail on sparse-reward warehouse tasks, (2) comparative evaluation across algorithms and scales, (3) Unity ML-Agents integration demonstrating sim-to-sim transfer with successful package delivery, and (4) identification of scaling challenges. Full experimental details and results are documented in our \href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/}{Quarto documentation book}.
 
 \section{Related Work}
 
@@ -91,13 +91,13 @@ Extended epsilon annealing proved critical---rapid decay prevents agents from di
 
 \subsection{Unity ML-Agents Integration}
 
-We developed a Unity environment mirroring RWARE with 3D visualization: 3 agents, 6 discrete actions, 36-dimensional LIDAR-based observations, 200-step episodes. Training uses no-graphics mode with 50x time scaling.
+We developed a Unity environment mirroring RWARE with 3D visualization (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/price/week3.html}{implementation details}): 3 agents, 6 discrete actions, 36-dimensional LIDAR-based observations, 200-step episodes. Training uses no-graphics mode with 50x time scaling.
 
 \section{Experiments and Results}
 
 \subsection{Environment Progression}
 
-We validated on MPE before transitioning to RWARE. MASAC on MPE converged in 30,000 steps; RWARE required 20M+ steps for comparable performance---a 600x difference in sample complexity. Default hyperparameters produced zero learning after 2M steps, underscoring how dense-reward benchmarks mislead about algorithm readiness for sparse warehouse tasks.
+We validated on MPE before transitioning to RWARE (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week2.html}{transition analysis}). MASAC on MPE converged in 30,000 steps achieving 63\% improvement over random baseline (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/lian/week1.html}{MPE results}); RWARE required 20M+ steps for comparable performance---a 600x difference in sample complexity. Default hyperparameters produced zero learning after 2M steps, underscoring how dense-reward benchmarks mislead about algorithm readiness for sparse warehouse tasks.
 
 \subsection{Algorithm Comparison}
 
@@ -117,7 +117,7 @@ Random Baseline & 0.05 & 0.02 & N/A \\
 \end{tabular}
 \end{table}
 
-QMIX (3.25) outperformed advanced IPPO (0.38) by 8.5x on tiny-2ag-v2. Even vanilla IPPO with 4x longer training achieved only 0.13---25x lower than QMIX. Value decomposition provides substantial advantages for sparse-reward coordination.
+QMIX (3.25) outperformed advanced IPPO (0.38) by 8.5x on tiny-2ag-v2 (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/price/week2.html}{IPPO analysis}). Even vanilla IPPO with 4x longer training achieved only 0.13---25x lower than QMIX. Value decomposition provides substantial advantages for sparse-reward coordination where agents must learn to implicitly divide labor for package delivery (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/lian/week4.html}{QMIX learning curves}).
 
 \subsection{Scaling Analysis}
 
@@ -164,9 +164,13 @@ Console logs confirmed consistent package delivery. At 500K steps, agents showed
 
 \section{Discussion}
 
-\textbf{Key Findings}: (1) Default configurations fail---extended epsilon annealing (5M+ steps) is essential for sparse reward discovery; (2) QMIX substantially outperforms independent learning (8.5x on RWARE), validating value decomposition for credit assignment; (3) scaling challenges remain significant---industrial deployments (50+ robots) will require hierarchical approaches.
+Our primary research goal was to investigate the complex task of multiple agents learning to communicate implicitly and coordinate package delivery---a fundamental challenge in warehouse automation. QMIX's value decomposition approach proved effective for this coordination problem, enabling agents to learn complementary roles without explicit communication channels.
 
-\textbf{Practitioner Recommendations}: Extend epsilon annealing to 5M+ steps (100x default), use large replay buffers (200K vs 5K default), and plan for 20M+ training steps. Recommended configuration: batch size 256, buffer 200K, learning rate 0.0005, GRU dimension 64.
+\textbf{Key Findings}: (1) Default configurations fail---extended epsilon annealing (5M+ steps) is essential for sparse reward discovery (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/dre/week2.html}{hyperparameter analysis}); (2) QMIX substantially outperforms independent learning (8.5x on RWARE), validating value decomposition for credit assignment (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/lian/week4.html}{algorithm comparison}); (3) scaling challenges remain significant---industrial deployments (50+ robots) will require hierarchical approaches (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week3.html}{scaling analysis}).
+
+\textbf{Unity Deployment}: Our Unity experiments demonstrated that learned coordination transfers to 3D environments with continuous physics. On Windows Server, agents achieved 238.6 mean test return after 1M steps, with console logs confirming consistent package pickup and delivery behavior (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/salmon/week5.html}{deployment results}). The transition from grid-based RWARE to continuous Unity revealed that core multi-agent coordination---implicit task allocation, collision avoidance, and sequential delivery strategies---generalizes across environment representations.
+
+\textbf{Practitioner Recommendations}: Extend epsilon annealing to 5M+ steps (100x default), use large replay buffers (200K vs 5K default), and plan for 20M+ training steps. Recommended configuration: batch size 256, buffer 200K, learning rate 0.0005, GRU dimension 64 (\href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/dre/week2.html}{configuration details}).
 
 \textbf{Limitations}: Simulation-only evaluation (no physical robots), testing limited to 2-6 agents, simplified RWARE task structure, and extended training requirements may be impractical for rapid deployment.
 
