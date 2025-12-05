@@ -671,6 +671,57 @@ python src/main.py --config=qmix_warehouse_improved --env-config=unity_warehouse
   load_step=300000
 ```
 
+### Evaluating a Trained Model
+
+To run a pre-trained model in evaluation mode (no training, just watching the agents):
+
+#### Step 1: Start the Python Evaluation Script
+
+```bash
+cd epymarl
+source ../epymarl_env/bin/activate
+
+python src/main.py \
+  --config=qmix_warehouse_improved \
+  --env-config=unity_warehouse \
+  with checkpoint_path="results/models/qmix_seed185725254_unity_warehouse_2025-12-04_06-39-24" \
+  evaluate=True \
+  test_nepisode=5 \
+  use_cuda=False
+```
+
+**Note:** The `with` keyword is required before config parameters. Use `use_cuda=False` to run on CPU (recommended for evaluation).
+
+#### Step 2: Press Play in Unity
+
+Once Python is waiting for a connection, press **Play** in the Unity Editor. The trained agents will run for the specified number of episodes.
+
+#### Evaluation Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| `checkpoint_path` | Path to the model folder containing timestep subfolders |
+| `evaluate=True` | Run in evaluation mode (no training) |
+| `load_step=0` | Load latest checkpoint (default). Use `load_step=500199` to load a specific checkpoint |
+| `test_nepisode=5` | Number of episodes to run |
+| `use_cuda=False` | Run on CPU (recommended for evaluation) |
+
+#### Example: Compare Different Checkpoints
+
+```bash
+# Run the final model (1M steps) - load_step=0 picks the latest
+python src/main.py --config=qmix_warehouse_improved --env-config=unity_warehouse \
+  with checkpoint_path="results/models/qmix_seed185725254_unity_warehouse_2025-12-04_06-39-24" \
+  evaluate=True load_step=0 use_cuda=False
+
+# Run an early checkpoint (100k steps) to compare learning progress
+python src/main.py --config=qmix_warehouse_improved --env-config=unity_warehouse \
+  with checkpoint_path="results/models/qmix_seed185725254_unity_warehouse_2025-12-04_06-39-24" \
+  evaluate=True load_step=100199 use_cuda=False
+```
+
+For more details, see [docs/running-trained-models.md](docs/running-trained-models.md).
+
 ## Environment Details
 
 ### RWARE (Robotic Warehouse)
