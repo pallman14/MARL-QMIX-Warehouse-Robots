@@ -10,6 +10,7 @@ This project utilized Large Language Model (LLM) assistance throughout developme
 - **EPyMARL Integration**: Unity wrapper development (`unity_wrapper.py`), troubleshooting Python-Unity connection issues
 - **IPPO Implementation**: Hyperparameter tuning guidance, understanding macro-actions and behavioral cloning concepts
 - **Documentation**: README structure, research paper editing, and conciseness improvements
+- **Git**: Claude Code helped me with git commands, because they scare me. 
 
 ### Dre Simmons (ChatGPT)
 
