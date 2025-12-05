@@ -32,13 +32,13 @@ View the complete team deliverables compiled in a Quarto Book format:
 
 ```
 MARL-QMIX-Warehouse-Robots/
+├── docs/                             # GitHub Pages (Quarto Book output)
+├── paper/                            # arXiv paper (LaTeX source + PDF)
+├── QuartoBook/                       # Quarto Book source files
 ├── epymarl/                          # Multi-agent RL framework
 │   ├── src/                          # Python source code
 │   │   ├── config/algs/              # Algorithm configurations
-│   │   │   └── qmix_warehouse_improved.yaml  # Optimized QMIX config
 │   │   ├── envs/                     # Environment wrappers
-│   │   │   ├── unity_wrapper.py      # Unity ML-Agents interface
-│   │   │   └── warehouse_env.py      # RWARE environment
 │   │   ├── learners/                 # Training algorithms
 │   │   ├── modules/                  # Neural network modules
 │   │   └── main.py                   # Training entry point
@@ -50,6 +50,12 @@ MARL-QMIX-Warehouse-Robots/
 │   │   ├── Scripts/                  # C# ML-Agents scripts
 │   │   └── ML-Agents/                # ML-Agents configurations
 │   └── Packages/                     # Unity packages
+├── DresDeliverables/                 # Dre's weekly deliverables
+├── LiansDeliverables/                # Lian's weekly deliverables
+├── PricesDeliverables/               # Price's weekly deliverables
+├── SalmonsDeliverables/              # Salmon's weekly deliverables
+├── com.unity.perception/             # Unity Perception package
+├── com.unity.simulation.capture/     # Unity Simulation Capture package
 ├── com.unity.robotics.warehouse.base/  # Shared warehouse code
 └── com.unity.robotics.warehouse.urp/   # URP-specific warehouse package
 ```
