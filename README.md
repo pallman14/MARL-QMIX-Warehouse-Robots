@@ -20,6 +20,10 @@ View the complete team deliverables compiled in a Quarto Book format:
 
 **[MARL Warehouse Robots - Team Deliverables Book](https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/)**
 
+## arXiv Paper
+
+**[Multi-Agent Reinforcement Learning for Cooperative Warehouse Automation: QMIX Value Decomposition for Sparse-Reward Coordination](https://arxiv.org/html/2512.04463v1)**
+
 ### Performance
 
 **Note**: Initial training runs show a significant gap between training and test performance, indicating the agents have not yet learned an effective policy. Current best run (#93) achieved **207.96 training return** but only **0.21 test return** in pure greedy evaluation, suggesting the high training returns come primarily from epsilon-greedy exploration rather than learned behavior. This is an active area of investigation - see [Known Issues](#training-vs-test-performance-gap) for details.
