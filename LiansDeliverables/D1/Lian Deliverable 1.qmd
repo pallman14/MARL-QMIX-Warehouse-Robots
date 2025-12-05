@@ -2,7 +2,7 @@
 title: "RL: Multi-Agent Warehouse Robots"
 subtitle: "Deliverable 1 – Multi-Agent Soft Actor-Critic (MASAC) on MPE"
 author: "Lian Thang"
-date: today
+date: "2025-10-23"
 format: html
 execute:
   python: ./ai-env/bin/python3
@@ -101,8 +101,6 @@ With a **63% deterministic improvement over the random baseline**, Week 1’s tr
 
 
 https://pmc.ncbi.nlm.nih.gov/articles/PMC11059992/
-
-https://github.com/JohannesAck/tf2multiagentrl
 
 https://pettingzoo.farama.org/environments/mpe/simple_spread/
 
