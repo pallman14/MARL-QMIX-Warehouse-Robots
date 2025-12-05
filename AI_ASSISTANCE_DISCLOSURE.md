@@ -9,8 +9,7 @@ This project utilized Large Language Model (LLM) assistance throughout developme
 - **Unity Environment**: Debugging C# scripts for QMIXWarehouseAgent, LIDAR sensor implementation, ML-Agents communication setup
 - **EPyMARL Integration**: Unity wrapper development (`unity_wrapper.py`), troubleshooting Python-Unity connection issues
 - **IPPO Implementation**: Hyperparameter tuning guidance, understanding macro-actions and behavioral cloning concepts
-- **Documentation**: README structure, running-trained-models guide, research paper editing and conciseness improvements
-- **Code Debugging**: Resolving CUDA tensor errors, Sacred syntax issues, checkpoint loading problems
+- **Documentation**: README structure, research paper editing, and conciseness improvements
 
 ### Dre Simmons (ChatGPT)
 
