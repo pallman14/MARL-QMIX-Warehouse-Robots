@@ -24,6 +24,7 @@
 \title{Multi-Agent Reinforcement Learning for Cooperative Warehouse Automation: QMIX Value Decomposition for Sparse-Reward Coordination}
 
 \author{Price Allman, Lian Thang, Dre Simmons, Salmon Riaz \\
+\textit{Course: Artificial Intelligence,}\\
 \textit{Department of Computer Science, Oral Roberts University, Tulsa, OK, USA}}
 
 \date{December 2025}
@@ -31,6 +32,11 @@
 \begin{document}
 
 \maketitle
+
+\begin{center}
+\textbf{Preamble}\\
+This paper was written as part of the Artificial Intelligence course at Oral Roberts University. Its purpose is educational: to document the methodologies, analyses, and results of the project completed during the Fall semester. Although it follows academic standards, it is not a formal research publication.
+\end{center}
 
 \begin{abstract}
 We present a comparative study of multi-agent reinforcement learning (MARL) algorithms for cooperative warehouse robotics. We evaluate QMIX and IPPO on the Robotic Warehouse (RWARE) environment and a custom Unity 3D simulation. Our experiments reveal that QMIX's value decomposition significantly outperforms independent learning approaches (achieving 3.25 mean return vs. 0.38 for advanced IPPO), but requires extensive hyperparameter tuning---particularly extended epsilon annealing (5M+ steps) for sparse reward discovery. We demonstrate successful deployment in Unity ML-Agents, achieving consistent package delivery after 1M training steps. While MARL shows promise for small-scale deployments (2-4 robots), significant scaling challenges remain. Code and analyses: \href{https://pallman14.github.io/MARL-QMIX-Warehouse-Robots/}{project documentation}.
@@ -224,3 +230,4 @@ Yu, C., Velu, A., Vinitsky, E., Gao, J., Wang, Y., Baez, A., and Wu, Y.
 \end{thebibliography}
 
 \end{document}
+
